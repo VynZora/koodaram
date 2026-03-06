@@ -83,7 +83,7 @@
 				<div class="container">
 					<!-- Logo Start -->
 					<a class="navbar-brand" href="{% url 'home' %}">
-						<img src="{% static 'images/logo.svg' %}" alt="Logo">
+						<img src="{% static 'no-bg-logo.png' %}" alt="Logo">
 					</a>
 					<!-- Logo End -->
 
@@ -93,30 +93,15 @@
                             <ul class="navbar-nav mr-auto" id="menu">
                                 <li class="nav-item submenu"><a class="nav-link" href="{% url 'home' %}">Home</a>
                                     <ul>
-                                        <li class="nav-item"><a class="nav-link" href="index.html">Home - Version 1</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index-2.html">Home - Version 2</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index-3.html">Home - Version 3</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home - Version 1</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Koodaram Home</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Koodaram</a></li>
                                     </ul>
                                 </li>                                
                                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a>
-                                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
-                                <li class="nav-item submenu"><a class="nav-link" href="#">Pages</a>
-                                    <ul>                                        
-                                        <li class="nav-item"><a class="nav-link" href="service-single.html">Service Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="blog-single.html">Blog Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="trips.html">Our Trips</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="trip-single.html">Trips Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="team.html">Our Team</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="team-single.html">Team Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing Plan</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="image-gallery.html">Image Gallery</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="video-gallery.html">Video Gallery</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="404.html">404</a></li>
-                                    </ul>
-                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'image_gallery' %}">Gallery</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
                             </ul>
                         </div>
@@ -147,15 +132,15 @@
                     <div class="main-footer-header-royal">
                         <!-- Footer Logo Start -->
                         <div class="footer-logo-royal">
-                            <img src="{% static 'images/footer-logo-white.svg' %}" alt="">
+                            <img src="{% static 'no-bg-logo.png' %}" alt="">
                         </div>
                         <!-- Footer Logo End -->
                         
                         <!-- Footer Contact Details Start -->
                         <div class="footer-contact-details-royal">
                             <ul>
-                                <li><img src="{% static 'images/icon-location-accent.svg' %}" alt="">Location: 123 Adventure Valley,</li>
-                                <li><img src="{% static 'images/icon-mail-accent.svg' %}" alt=""><a href="mailto:info@domainname.com">info@domainname.com</a></li>
+                                <li><img src="{% static 'images/icon-location-accent.svg' %}" alt="">Location: Koodaram, Munnar, Kerala</li>
+                                <li><img src="{% static 'images/icon-mail-accent.svg' %}" alt=""><a href="mailto:hello@koodaram.com">hello@koodaram.com</a></li>
                             </ul>
                         </div>
                         <!-- Footer Contact Details End --> 
@@ -180,7 +165,7 @@
                                     <img src="{% static 'images/icon-headphone-accent.svg' %}" alt="">
                                 </div>
                                 <div class="footer-about-contact-content-royal">
-                                    <h3><a href="tel:123456789">+(123) 456-789</a></h3>
+                                    <h3><a href="tel:+919497000000">+91 94970 00000</a></h3>
                                 </div>
                             </div>
                             <!-- Footer About Contact Box End -->
@@ -193,11 +178,11 @@
                             <div class="footer-links-royal">
                                 <h3>Quick links</h3>
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="about.html">About us</a></li>
-                                    <li><a href="services.html">Services</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About us</a></li>
+                                    <li><a href="{% url 'services' %}">Services</a></li>
+                                    <li><a href="{% url 'blog' %}">Blog</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
                                 </ul>
                             </div>
                             <!-- Footer Links End -->
@@ -206,11 +191,11 @@
                             <div class="footer-links-royal">
                                 <h3>Glamping Sites</h3>
                                 <ul>
-                                    <li><a href="service-single.html">Ocean Cliff Glamp</a></li>
-                                    <li><a href="service-single.html">Forest Dome Escape</a></li>
-                                    <li><a href="service-single.html">Jungle Canopy Lodge</a></li>
-                                    <li><a href="service-single.html">Lakeside Luxury Camp</a></li>
-                                    <li><a href="service-single.html">Desert Stargazer Tents</a></li>
+                                    <li><a href="{% url 'service_single' %}">Munnar Valley Retreat</a></li>
+                                    <li><a href="{% url 'service_single' %}">Tea Garden Dome Stay</a></li>
+                                    <li><a href="{% url 'service_single' %}">Rainforest Canopy Stay</a></li>
+                                    <li><a href="{% url 'service_single' %}">Lakeside Camp Munnar</a></li>
+                                    <li><a href="{% url 'service_single' %}">Stargazer Tents Munnar</a></li>
                                 </ul>
                             </div>
                             <!-- Footer Links End -->

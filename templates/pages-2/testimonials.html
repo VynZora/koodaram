@@ -1,8 +1,8 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
 
-{% block title %}Trips | Koodaram{% endblock %}
-{% block meta_description %}Koodaram Trips page.{% endblock %}
+{% block title %}Testimonials | Koodaram{% endblock %}
+{% block meta_description %}Koodaram Testimonials page.{% endblock %}
 
 {% block content %}
 
@@ -13,11 +13,11 @@
                 <div class="col-lg-12">
                     <!-- Page Header Box Start -->
                     <div class="page-header-box">
-                        <h1 class="text-anime-style-3" data-cursor="-opaque">Explore Koodaram Stays</h1>
+                        <h1 class="text-anime-style-3" data-cursor="-opaque">Our testimonials</h1>
                         <nav class="wow fadeInUp">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="./">home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Explore Koodaram Stays</li>
+                                <li class="breadcrumb-item active" aria-current="page">testimonials</li>
                             </ol>
                         </nav>
                     </div>
@@ -28,211 +28,223 @@
     </div>
     <!-- Page Header Section End -->
 
-    <!-- Page Trips Start -->
-    <div class="page-trips">
+    <!-- page Testimonials Start -->
+    <div class="page-testimonials">
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-md-6">
-                    <!-- Trip Item Start -->
-                    <div class="trip-item wow fadeInUp">
-                        <!-- Trip Item Image Start -->
-                        <div class="trip-item-image">
-                            <a href="trip-single.html" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/trip-image-1.jpg' %}" alt="">
-                                </figure>
-                            </a>
+                    <!-- Testimonial Item Start -->
+                    <div class="testimonial-item wow fadeInUp">
+                        <div class="testimonial-item-header">
+                            <div class="testimonial-quote">
+                                <img src="{% static 'images/testimonial-quote.svg' %}" alt="">
+                            </div> 
+                            <div class="testimonial-rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
                         </div>
-                        <!-- Trip Item Image End -->
-
-                        <!-- Trip Item Body Start -->
-                        <div class="trip-item-body">
-                            <!-- Trip Content Start -->
-                            <div class="trip-item-content">
-                                <h3><a href="trip-single.html">Attukad Waterfalls, Munnar</a></h3>
-                                <p>Start your journey by exploring our carefully curated collection of camping and adventure experiences.</p>
+                        <div class="testimonial-body">
+                            <div class="testimonial-content">
+                                <p>Our stay was magical! Waking up to the sounds of nature while enjoying the comfort of a cozy bed was the best of both worlds. The team made everything seamless, from check-in to organizing</p>
                             </div>
-                            <!-- Trip Content End -->
-                            
-                            <!-- Trip Readmore Button Start -->
-                            <div class="trip-item-btn">
-                                <a href="trip-single.html" class="btn-default">Explore Trip</a>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <figure class="image-anime">
+                                        <img src="{% static 'images/author-2.jpg' %}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="author-content">
+                                    <h3>Darrell Steward</h3>
+                                    <p>Tourist</p>
+                                </div>
                             </div>
-                            <!-- Trip Readmore Button End -->
-                        </div>  
-                        <!-- Trip Item Body End -->
+                        </div>
                     </div>
-                    <!-- Trip Item End -->
+                    <!-- Testimonial Item End -->
                 </div>
 
                 <div class="col-xl-4 col-md-6">
-                    <!-- Trip Item Start -->
-                    <div class="trip-item wow fadeInUp" data-wow-delay="0.2s">
-                        <!-- Trip Item Image Start -->
-                        <div class="trip-item-image">
-                            <a href="trip-single.html" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/trip-image-2.jpg' %}" alt="">
-                                </figure>
-                            </a>
+                    <!-- Testimonial Item Start -->
+                    <div class="testimonial-item wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="testimonial-item-header">
+                            <div class="testimonial-quote">
+                                <img src="{% static 'images/testimonial-quote.svg' %}" alt="">
+                            </div> 
+                            <div class="testimonial-rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
                         </div>
-                        <!-- Trip Item Image End -->
-
-                        <!-- Trip Item Body Start -->
-                        <div class="trip-item-body">
-                            <!-- Trip Content Start -->
-                            <div class="trip-item-content">
-                                <h3><a href="trip-single.html">Rocky Mountains, Colorado, USA</a></h3>
-                                <p>Start your journey by exploring our carefully curated collection of camping and adventure experiences.</p>
+                        <div class="testimonial-body">
+                            <div class="testimonial-content">
+                                <p>This was our first camping experience it exceed expectation. The tent was spacious and beautifully decorated with little touches that made it feel truly unforgettable and special.</p>
                             </div>
-                            <!-- Trip Content End -->
-                            
-                            <!-- Trip Readmore Button Start -->
-                            <div class="trip-item-btn">
-                                <a href="trip-single.html" class="btn-default">Explore Trip</a>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <figure class="image-anime">
+                                        <img src="{% static 'images/author-3.jpg' %}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="author-content">
+                                    <h3>Annette Black</h3>
+                                    <p>Tourist</p>
+                                </div>
                             </div>
-                            <!-- Trip Readmore Button End -->
-                        </div>  
-                        <!-- Trip Item Body End -->
+                        </div>
                     </div>
-                    <!-- Trip Item End -->
+                    <!-- Testimonial Item End -->
                 </div>
 
                 <div class="col-xl-4 col-md-6">
-                    <!-- Trip Item Start -->
-                    <div class="trip-item wow fadeInUp" data-wow-delay="0.4s">
-                        <!-- Trip Item Image Start -->
-                        <div class="trip-item-image">
-                            <a href="trip-single.html" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/trip-image-3.jpg' %}" alt="">
-                                </figure>
-                            </a>
+                    <!-- Testimonial Item Start -->
+                    <div class="testimonial-item wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="testimonial-item-header">
+                            <div class="testimonial-quote">
+                                <img src="{% static 'images/testimonial-quote.svg' %}" alt="">
+                            </div> 
+                            <div class="testimonial-rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
                         </div>
-                        <!-- Trip Item Image End -->
-
-                        <!-- Trip Item Body Start -->
-                        <div class="trip-item-body">
-                            <!-- Trip Content Start -->
-                            <div class="trip-item-content">
-                                <h3><a href="trip-single.html">Ubud, Bali, Indonesia</a></h3>
-                                <p>Start your journey by exploring our carefully curated collection of camping and adventure experiences.</p>
+                        <div class="testimonial-body">
+                            <div class="testimonial-content">
+                                <p>I've stayed in luxury hotels, but this was something different. The views were absolutely breathtak the food was fantastic & the staff were so friendly & attentive.</p>
                             </div>
-                            <!-- Trip Content End -->
-                            
-                            <!-- Trip Readmore Button Start -->
-                            <div class="trip-item-btn">
-                                <a href="trip-single.html" class="btn-default">Explore Trip</a>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <figure class="image-anime">
+                                        <img src="{% static 'images/author-4.jpg' %}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="author-content">
+                                    <h3>Esther Howard</h3>
+                                    <p>Tourist</p>
+                                </div>
                             </div>
-                            <!-- Trip Readmore Button End -->
-                        </div>  
-                        <!-- Trip Item Body End -->
+                        </div>
                     </div>
-                    <!-- Trip Item End -->
+                    <!-- Testimonial Item End -->
                 </div>
 
                 <div class="col-xl-4 col-md-6">
-                    <!-- Trip Item Start -->
-                    <div class="trip-item wow fadeInUp" data-wow-delay="0.6s">
-                        <!-- Trip Item Image Start -->
-                        <div class="trip-item-image">
-                            <a href="trip-single.html" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/trip-image-4.jpg' %}" alt="">
-                                </figure>
-                            </a>
+                    <!-- Testimonial Item Start -->
+                    <div class="testimonial-item wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="testimonial-item-header">
+                            <div class="testimonial-quote">
+                                <img src="{% static 'images/testimonial-quote.svg' %}" alt="">
+                            </div> 
+                            <div class="testimonial-rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
                         </div>
-                        <!-- Trip Item Image End -->
-
-                        <!-- Trip Item Body Start -->
-                        <div class="trip-item-body">
-                            <!-- Trip Content Start -->
-                            <div class="trip-item-content">
-                                <h3><a href="trip-single.html">Amazon Rainforest, Brazil</a></h3>
-                                <p>Start your journey by exploring our carefully curated collection of camping and adventure experiences.</p>
+                        <div class="testimonial-body">
+                            <div class="testimonial-content">
+                                <p>Staying here was the perfect mix of adventure and luxury! We spent our mornings hiking scenic trails, our afternoons rafting with expert guides, and our evenings. </p>
                             </div>
-                            <!-- Trip Content End -->
-                            
-                            <!-- Trip Readmore Button Start -->
-                            <div class="trip-item-btn">
-                                <a href="trip-single.html" class="btn-default">Explore Trip</a>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <figure class="image-anime">
+                                        <img src="{% static 'images/author-5.jpg' %}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="author-content">
+                                    <h3>Wade Warren</h3>
+                                    <p>Tourist</p>
+                                </div>
                             </div>
-                            <!-- Trip Readmore Button End -->
-                        </div>  
-                        <!-- Trip Item Body End -->
+                        </div>
                     </div>
-                    <!-- Trip Item End -->
+                    <!-- Testimonial Item End -->
                 </div>
 
                 <div class="col-xl-4 col-md-6">
-                    <!-- Trip Item Start -->
-                    <div class="trip-item wow fadeInUp" data-wow-delay="0.8s">
-                        <!-- Trip Item Image Start -->
-                        <div class="trip-item-image">
-                            <a href="trip-single.html" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/trip-image-5.jpg' %}" alt="">
-                                </figure>
-                            </a>
+                    <!-- Testimonial Item Start -->
+                    <div class="testimonial-item wow fadeInUp" data-wow-delay="0.8s">
+                        <div class="testimonial-item-header">
+                            <div class="testimonial-quote">
+                                <img src="{% static 'images/testimonial-quote.svg' %}" alt="">
+                            </div> 
+                            <div class="testimonial-rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
                         </div>
-                        <!-- Trip Item Image End -->
-
-                        <!-- Trip Item Body Start -->
-                        <div class="trip-item-body">
-                            <!-- Trip Content Start -->
-                            <div class="trip-item-content">
-                                <h3><a href="trip-single.html">Swiss Alps, Switzerland</a></h3>
-                                <p>Start your journey by exploring our carefully curated collection of camping and adventure experiences.</p>
+                        <div class="testimonial-body">
+                            <div class="testimonial-content">
+                                <p>This was unlike any camping trip I've ever taken! We explored forest trails during the day, then came back to a tent that felt like a boutique hotel. The balance of thrill and comfort is</p>
                             </div>
-                            <!-- Trip Content End -->
-                            
-                            <!-- Trip Readmore Button Start -->
-                            <div class="trip-item-btn">
-                                <a href="trip-single.html" class="btn-default">Explore Trip</a>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <figure class="image-anime">
+                                        <img src="{% static 'images/author-6.jpg' %}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="author-content">
+                                    <h3>Guy Hawkins</h3>
+                                    <p>Tourist</p>
+                                </div>
                             </div>
-                            <!-- Trip Readmore Button End -->
-                        </div>  
-                        <!-- Trip Item Body End -->
+                        </div>
                     </div>
-                    <!-- Trip Item End -->
+                    <!-- Testimonial Item End -->
                 </div>
 
                 <div class="col-xl-4 col-md-6">
-                    <!-- Trip Item Start -->
-                    <div class="trip-item wow fadeInUp" data-wow-delay="1s">
-                        <!-- Trip Item Image Start -->
-                        <div class="trip-item-image">
-                            <a href="trip-single.html" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/trip-image-6.jpg' %}" alt="">
-                                </figure>
-                            </a>
+                    <!-- Testimonial Item Start -->
+                    <div class="testimonial-item wow fadeInUp" data-wow-delay="1s">
+                        <div class="testimonial-item-header">
+                            <div class="testimonial-quote">
+                                <img src="{% static 'images/testimonial-quote.svg' %}" alt="">
+                            </div> 
+                            <div class="testimonial-rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
                         </div>
-                        <!-- Trip Item Image End -->
-
-                        <!-- Trip Item Body Start -->
-                        <div class="trip-item-body">
-                            <!-- Trip Content Start -->
-                            <div class="trip-item-content">
-                                <h3><a href="trip-single.html">Rajasthan Desert, India</a></h3>
-                                <p>Start your journey by exploring our carefully curated collection of camping and adventure experiences.</p>
+                        <div class="testimonial-body">
+                            <div class="testimonial-content">
+                                <p>Our family getaway was flawless — the kids loved the zip-lining, and we loved the peace of the evenings by the fire. Everything was safe, well-organized, and beautifully designed.</p>
                             </div>
-                            <!-- Trip Content End -->
-                            
-                            <!-- Trip Readmore Button Start -->
-                            <div class="trip-item-btn">
-                                <a href="trip-single.html" class="btn-default">Explore Trip</a>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <figure class="image-anime">
+                                        <img src="{% static 'images/author-1.jpg' %}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="author-content">
+                                    <h3>Robert Fox</h3>
+                                    <p>Tourist</p>
+                                </div>
                             </div>
-                            <!-- Trip Readmore Button End -->
-                        </div>  
-                        <!-- Trip Item Body End -->
+                        </div>
                     </div>
-                    <!-- Trip Item End -->
+                    <!-- Testimonial Item End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Page Trips End -->
+    <!-- page Testimonials End -->
 
     <!-- Our Experiences Section Start -->
     <div class="our-adventures parallaxie">
@@ -251,7 +263,7 @@
 
                         <!-- Our Experiences Button Start -->
                         <div class="our-adventures-btn wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="contact.html" class="btn-default">Contact Us</a>
+                            <a href="{% url 'contact' %}" class="btn-default">Contact Us</a>
                         </div>
                         <!-- Our Experiences Button End -->
                     </div>
@@ -370,7 +382,7 @@
                                 <p>Enjoy hotel-like comfort with cozy beds, climate control, private decks, and stylish interiors.</p>
                             </div>
                             <div class="feature-item-btn">
-                                <a href="contact.html" class="readmore-btn">Read More</a>
+                                <a href="{% url 'contact' %}" class="readmore-btn">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -389,7 +401,7 @@
                                 <p>From Wi-Fi and charging stations to hot showers and gourmet meals, we blend rustic charm.</p>
                             </div>
                             <div class="feature-item-btn">
-                                <a href="contact.html" class="readmore-btn">Read More</a>
+                                <a href="{% url 'contact' %}" class="readmore-btn">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -408,7 +420,7 @@
                                 <p>Our campsites follow strict safety protocols with 24/7 security, first-aid kits, and trained staff.</p>
                             </div>
                             <div class="feature-item-btn">
-                                <a href="contact.html" class="readmore-btn">Read More</a>
+                                <a href="{% url 'contact' %}" class="readmore-btn">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -427,7 +439,7 @@
                                 <p>Stay in thoughtfully designed spaces that combine natural beauty with sustainable practices.</p>
                             </div>
                             <div class="feature-item-btn">
-                                <a href="contact.html" class="readmore-btn">Read More</a>
+                                <a href="{% url 'contact' %}" class="readmore-btn">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -439,7 +451,7 @@
             <div class="col-lg-12">
                 <!-- Section Footer Text Start -->
                 <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                    <p>From check-in to checkout - <a href="contact.html">we turn wild landscapes into personal, luxurious retreats.</a></p>
+                    <p>From check-in to checkout - <a href="{% url 'contact' %}">we turn wild landscapes into personal, luxurious retreats.</a></p>
                 </div>
                 <!-- Section Footer Text End -->
             </div>
@@ -447,92 +459,48 @@
     </div>
     <!-- Our Feature Section End -->
 
-    <!-- Our Partners Section Start -->
-    <div class="our-partners dark-section parallaxie">
+    <!-- Our Story Section Start -->
+    <div class="our-story dark-section parallaxie">
         <div class="container">
-            <div class="row section-row">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">Our Partners</h3>
-                        <h2 class="text-effect" data-cursor="-opaque">Working with the best in outdoor living and exploration</h2>
+            <div class="row align-items-center">
+                <div class="col-xxl-7 col-xl-8 col-md-9">
+                    <!-- Our Story Content Start -->
+                    <div class="our-story-content">
+                        <!-- Section Title Start -->
+                        <div class="section-title">
+                            <h3 class="wow fadeInUp">Our Story</h3>
+                            <h2 class="text-effect" data-cursor="-opaque">A journey built on adventure, comfort & the desire to redefine the way people connect with outdoors</h2>
+                        </div>
+                        <!-- Section Title End -->
                     </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Partners Logo List Start -->
-                    <div class="partners-logo-list">
-                        <!-- Partner Logo Start -->
-                        <div class="partner-logo">
-                            <img src="{% static 'images/partner-logo-1.svg' %}" alt="">
-                        </div>
-                        <!-- Partner Logo End -->
-
-                        <!-- Partner Logo Start -->
-                        <div class="partner-logo">
-                            <img src="{% static 'images/partner-logo-2.svg' %}" alt="">
-                        </div>
-                        <!-- Partner Logo End -->
-
-                        <!-- Partner Logo Start -->
-                        <div class="partner-logo">
-                            <img src="{% static 'images/partner-logo-3.svg' %}" alt="">
-                        </div>
-                        <!-- Partner Logo End -->
-
-                        <!-- Partner Logo Start -->
-                        <div class="partner-logo">
-                            <img src="{% static 'images/partner-logo-4.svg' %}" alt="">
-                        </div>
-                        <!-- Partner Logo End -->
-
-                        <!-- Partner Logo Start -->
-                        <div class="partner-logo">
-                            <img src="{% static 'images/partner-logo-5.svg' %}" alt="">
-                        </div>
-                        <!-- Partner Logo End -->
-
-                        <!-- Partner Logo Start -->
-                        <div class="partner-logo">
-                            <img src="{% static 'images/partner-logo-6.svg' %}" alt="">
-                        </div>
-                        <!-- Partner Logo End -->
-
-                        <!-- Partner Logo Start -->
-                        <div class="partner-logo">
-                            <img src="{% static 'images/partner-logo-7.svg' %}" alt="">
-                        </div>
-                        <!-- Partner Logo End -->
-
-                        <!-- Partner Logo Start -->
-                        <div class="partner-logo">
-                            <img src="{% static 'images/partner-logo-8.svg' %}" alt="">
-                        </div>
-                        <!-- Partner Logo End -->
-
-                        <!-- Partner Logo Start -->
-                        <div class="partner-logo">
-                            <img src="{% static 'images/partner-logo-9.svg' %}" alt="">
-                        </div>
-                        <!-- Partner Logo End -->
-                    </div>
-                    <!-- Partners Logo List End -->
+                    <!-- Our Story Content End -->
                 </div>
 
-                <div class="col-lg-12">
-                    <!-- Section Footer Text Start -->
-                    <div class="section-footer-text wow fadeInUp" data-wow-delay="0.2s">
-                        <p><span>Free</span> Let's make something great work together. <a href="contact.html">Get Free Quote</a></p>
+                <div class="col-xxl-5 col-xl-4 col-md-3">
+                    <!-- Story Play Button Start -->
+                    <div class="story-play-button">
+                        <!-- Watch Video Circle Start -->
+                        <div class="watch-video-circle">
+                            <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
+                                <figure>
+                                    <img src="{% static 'images/watch-video-circle.svg' %}" alt="">
+                                </figure>
+
+                                <!-- Video Play Button Start -->
+                                <div class="watch-video-play-button">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                                <!-- Video Play Button End -->
+                            </a> 
+                        </div>     
+                        <!-- Watch Video Circle End -->                                 
                     </div>
-                    <!-- Section Footer Text End -->
+                    <!-- Story Play Button End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Our Partners Section End -->
+    <!-- Our Story Section End -->
 
     <!-- Our FAQs Section Start -->
     <div class="our-faqs bg-section">
@@ -566,7 +534,7 @@
                                 </div>
                                 <div class="faqs-cta-contact-content">
                                     <h3>Need Any Help?</h3>
-                                    <p>Contact: <a href="mailto:123456789">+91 94970 00000</a></p>
+                                    <p>Contact: <a href="tel:+919497000000">+91 94970 00000</a></p>
                                 </div>
                             </div>
                             <!-- FAQs CTA Contact Item End -->

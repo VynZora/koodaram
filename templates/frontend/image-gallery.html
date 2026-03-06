@@ -16,7 +16,7 @@
                         <h1 class="text-anime-style-3" data-cursor="-opaque">Our gallery</h1>
                         <nav class="wow fadeInUp">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="./">home</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">our gallery</li>
                             </ol>
                         </nav>
@@ -29,119 +29,38 @@
     <!-- Page Header Section End -->
 
     <!-- Photo Gallery Start -->
-    <div class="page-gallery">
+    <div class="our-gallery page-gallery">
         <div class="container">
-            <!-- gallery section start -->
-            <div class="row gallery-items page-gallery-box">
-                <div class="col-lg-4 col-6">
-                    <!-- Image Gallery start -->
-                    <div class="photo-gallery wow fadeInUp">
-                        <a href="{% static 'images/gallery-1.jpg' %}" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{% static 'images/gallery-1.jpg' %}" alt="">
-                            </figure>
-                        </a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="our-gallery-nav wow fadeInUp">
+                        <ul>
+                            <li><a href="#" class="active-btn" data-filter="*">All</a></li>
+                            {% for category in categories %}
+                            <li><a href="#" data-filter=".cat-{{ category.id }}">{{ category.name }}</a></li>
+                            {% endfor %}
+                        </ul>
                     </div>
-                    <!-- Image Gallery end -->
-                </div>
-
-                <div class="col-lg-4 col-6">
-                    <!-- Image Gallery start -->
-                    <div class="photo-gallery wow fadeInUp" data-wow-delay="0.2s">
-                        <a href="{% static 'images/gallery-2.jpg' %}" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{% static 'images/gallery-2.jpg' %}" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Image Gallery end -->
-                </div>
-
-                <div class="col-lg-4 col-6">
-                    <!-- Image Gallery start -->
-                    <div class="photo-gallery wow fadeInUp" data-wow-delay="0.4s">
-                        <a href="{% static 'images/gallery-3.jpg' %}" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{% static 'images/gallery-3.jpg' %}" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Image Gallery end -->
-                </div>
-
-                <div class="col-lg-4 col-6">
-                    <!-- Image Gallery start -->
-                    <div class="photo-gallery wow fadeInUp" data-wow-delay="0.6s">
-                        <a href="{% static 'images/gallery-4.jpg' %}" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{% static 'images/gallery-4.jpg' %}" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Image Gallery end -->
-                </div>
-
-                <div class="col-lg-4 col-6">
-                    <!-- Image Gallery start -->
-                    <div class="photo-gallery wow fadeInUp" data-wow-delay="0.8s">
-                        <a href="{% static 'images/gallery-5.jpg' %}" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{% static 'images/gallery-5.jpg' %}" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Image Gallery end -->
-                </div>
-
-                <div class="col-lg-4 col-6">
-                    <!-- Image Gallery start -->
-                    <div class="photo-gallery wow fadeInUp" data-wow-delay="1s">
-                        <a href="{% static 'images/gallery-6.jpg' %}" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{% static 'images/gallery-6.jpg' %}" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Image Gallery end -->
-                </div>
-                
-                <div class="col-lg-4 col-6">
-                    <!-- Image Gallery start -->
-                    <div class="photo-gallery wow fadeInUp" data-wow-delay="1.2s">
-                        <a href="{% static 'images/gallery-7.jpg' %}" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{% static 'images/gallery-7.jpg' %}" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Image Gallery end -->
-                </div>
-
-                <div class="col-lg-4 col-6">
-                    <!-- Image Gallery start -->
-                    <div class="photo-gallery wow fadeInUp" data-wow-delay="1.4s">
-                        <a href="{% static 'images/gallery-8.jpg' %}" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{% static 'images/gallery-8.jpg' %}" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Image Gallery end -->
-                </div>
-
-                <div class="col-lg-4 col-6">
-                    <!-- Image Gallery start -->
-                    <div class="photo-gallery wow fadeInUp" data-wow-delay="1.6s">
-                        <a href="{% static 'images/gallery-9.jpg' %}" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{% static 'images/gallery-9.jpg' %}" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Image Gallery end -->
                 </div>
             </div>
-            <!-- gallery section end -->
+
+            <div class="row gallery-item-boxes">
+                {% for image in gallery_images %}
+                <div class="col-xl-4 col-md-6 gallery-item-box cat-{{ image.category.id }}">
+                    <div class="gallery-item wow fadeInUp">
+                        <a href="{{ image.image.url }}" data-cursor-text="View">
+                            <figure class="image-anime">
+                                <img src="{{ image.image.url }}" alt="{{ image.title|default:image.category.name }}">
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-lg-12 text-center">
+                    <p>No gallery images available yet.</p>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <!-- Photo Gallery End -->

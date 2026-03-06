@@ -46,7 +46,7 @@
                             <!-- About Client Box Image Start -->
                             <div class="about-client-box-image">
                                 <figure>
-                                    <img src="{% static 'images/about-client-box-image.jpg' %}" alt="">
+                                    <img src="{% static 'images/new/about-man.jpeg' %}" alt="">
                                 </figure>
                             </div>
                             <!-- About Client Box Image End -->
@@ -157,7 +157,7 @@
                             <!-- Approach Image 1 Start -->
                             <div class="approach-image-1">
                                 <figure class="image-anime">
-                                    <img src="{% static 'images/our-approach-image-1.jpg' %}" alt="">
+                                    <img src="{% static 'images/new/scene.jpeg' %}" alt="">
                                 </figure>
                             </div>
                             <!-- Approach Image 1 End -->
@@ -203,7 +203,7 @@
                             <!-- Approach Image 2 Start -->
                             <div class="approach-image-2">
                                 <figure class="image-anime">
-                                    <img src="{% static 'images/our-approach-image-2.jpg' %}" alt="">
+                                    <img src="{% static 'images/new/play.jpeg' %}" alt="">
                                 </figure>
                             </div>
                             <!-- Approach Image 2 End -->
@@ -414,7 +414,7 @@
                             <!-- What We Image 1 Start -->
                             <div class="what-we-image-1">
                                 <figure class="image-anime reveal">
-                                    <img src="{% static 'images/what-we-do-image-1.jpg' %}" alt="">
+                                    <img src="{% static 'images/new/what-we.jpeg' %}" alt="">
                                 </figure>
                             </div>
                             <!-- What We Image 1 End -->
@@ -430,7 +430,7 @@
                                 </div>
                                 <div class="what-we-contact-content">
                                     <p>Call Any Time</p>
-                                    <h3><a href="tel:123456789">+123-456-789</a></h3>
+                                    <h3><a href="tel:+919497000000">+91 94970 00000</a></h3>
                                 </div>
                             </div>
                             <!-- What We Client Box End -->
@@ -438,7 +438,7 @@
                             <!-- What We Image 2 Start -->
                             <div class="what-we-image-2">
                                 <figure class="image-anime">
-                                    <img src="{% static 'images/what-we-do-image-2.jpg' %}" alt="">
+                                    <img src="{% static 'images/new/what-we2.jpeg' %}" alt="">
                                 </figure>
                             </div>
                             <!-- What We Image 2 End -->
@@ -528,7 +528,7 @@
                     <div class="team-item wow fadeInUp">
                         <!-- team Image Start -->
                         <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
+                            <a href="{% url 'team_single' %}" data-cursor-text="View">
                                 <figure>
                                     <img src="{% static 'images/team-1.jpg' %}" alt="">
                                 </figure>
@@ -540,7 +540,7 @@
                         <div class="team-item-body">
                             <!-- Team Content Start -->
                             <div class="team-content">
-                                <h3><a href="team-single.html">Olivia Hart</a></h3>
+                                <h3><a href="{% url 'team_single' %}">Olivia Hart</a></h3>
                                 <p>Experience Director</p>
                             </div>
                             <!-- Team Content End -->
@@ -566,7 +566,7 @@
                     <div class="team-item wow fadeInUp" data-wow-delay="0.2s">
                         <!-- team Image Start -->
                         <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
+                            <a href="{% url 'team_single' %}" data-cursor-text="View">
                                 <figure>
                                     <img src="{% static 'images/team-2.jpg' %}" alt="">
                                 </figure>
@@ -578,7 +578,7 @@
                         <div class="team-item-body">
                             <!-- Team Content Start -->
                             <div class="team-content">
-                                <h3><a href="team-single.html">Cameron Williamson</a></h3>
+                                <h3><a href="{% url 'team_single' %}">Cameron Williamson</a></h3>
                                 <p>Nature Retreats</p>
                             </div>
                             <!-- Team Content End -->
@@ -604,7 +604,7 @@
                     <div class="team-item wow fadeInUp" data-wow-delay="0.4s">
                         <!-- team Image Start -->
                         <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
+                            <a href="{% url 'team_single' %}" data-cursor-text="View">
                                 <figure>
                                     <img src="{% static 'images/team-3.jpg' %}" alt="">
                                 </figure>
@@ -616,7 +616,7 @@
                         <div class="team-item-body">
                             <!-- Team Content Start -->
                             <div class="team-content">
-                                <h3><a href="team-single.html">Esther Howard</a></h3>
+                                <h3><a href="{% url 'team_single' %}">Esther Howard</a></h3>
                                 <p>Sustainability Manager</p>
                             </div>
                             <!-- Team Content End -->
@@ -642,7 +642,7 @@
                     <div class="team-item wow fadeInUp" data-wow-delay="0.6s">
                         <!-- team Image Start -->
                         <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
+                            <a href="{% url 'team_single' %}" data-cursor-text="View">
                                 <figure>
                                     <img src="{% static 'images/team-4.jpg' %}" alt="">
                                 </figure>
@@ -654,7 +654,7 @@
                         <div class="team-item-body">
                             <!-- Team Content Start -->
                             <div class="team-content">
-                                <h3><a href="team-single.html">Robert Fox</a></h3>
+                                <h3><a href="{% url 'team_single' %}">Robert Fox</a></h3>
                                 <p>Experience Curator</p>
                             </div>
                             <!-- Team Content End -->
@@ -680,24 +680,21 @@
     <!-- Our Team End -->
 
     <!-- How It Work Section Start -->
-    <div class="How-it-work parallaxie">
+    <!--
+    <div class="How-it-work how-work-no-image parallaxie">
         <div class="container">
             <div class="row section-row">
                 <div class="col-lg-12">
-                    <!-- Section Title Start -->
                     <div class="section-title section-title-center">
                         <h3 class="wow fadeInUp">How it work</h3>
                         <h2 class="text-effect" data-cursor="-opaque">From choosing your experience to creating lifelong memories in just minutes</h2>
                     </div>
-                    <!-- Section Title End -->
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-4 col-md-6 order-1">
-                    <!-- How Work Item List Start -->
                     <div class="how-work-item-list">
-                        <!-- How Work Item Start -->
                         <div class="how-work-item wow fadeInUp" data-wow-delay="0.2s">
                             <div class="icon-box">
                                 <img src="{% static 'images/icon-how-it-work-1.svg' %}" alt="">
@@ -707,9 +704,7 @@
                                 <p>Browse our range of luxury stays & adventure packages — pick what excites you most.</p>
                             </div>
                         </div>
-                        <!-- How Work Item End -->
 
-                        <!-- How Work Item Start -->
                         <div class="how-work-item wow fadeInUp" data-wow-delay="0.4s">
                             <div class="icon-box">
                                 <img src="{% static 'images/icon-how-it-work-2.svg' %}" alt="">
@@ -719,25 +714,19 @@
                                 <p>Secure your spot online with instant confirmation and flexible payment options.</p>
                             </div>
                         </div>
-                        <!-- How Work Item End -->
                     </div>
-                    <!-- How Work Item List End -->
                 </div>
 
                 <div class="col-lg-4 order-lg-2 order-md-3 order-3">
-                    <!-- How Work Image Start -->
                     <div class="how-work-image">
                         <figure>
-                            <img src="{% static 'images/how-it-work-image.png' %}" alt="">
+                            <img src="{% static 'images/new/how-it.jpeg' %}" alt="">
                         </figure>
                     </div>
-                    <!-- How Work Image End -->
                 </div>
 
                 <div class="col-lg-4 col-md-6 order-lg-2 order-md-2 order-2">
-                    <!-- How Work Item List Start -->
                     <div class="how-work-item-list">
-                        <!-- How Work Item Start -->
                         <div class="how-work-item wow fadeInUp" data-wow-delay="0.2s">
                             <div class="icon-box">
                                 <img src="{% static 'images/icon-how-it-work-3.svg' %}" alt="">
@@ -747,9 +736,7 @@
                                 <p>Add activities, cultural experiences, wellness sessions to make your journey truly yours.</p>
                             </div>
                         </div>
-                        <!-- How Work Item End -->
 
-                        <!-- How Work Item Start -->
                         <div class="how-work-item wow fadeInUp" data-wow-delay="0.4s">
                             <div class="icon-box">
                                 <img src="{% static 'images/icon-how-it-work-4.svg' %}" alt="">
@@ -759,9 +746,71 @@
                                 <p>From the moment you arrive, we take care of everything — you just relax and explore.</p>
                             </div>
                         </div>
-                        <!-- How Work Item End -->
                     </div>
-                    <!-- How Work Item List End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <div class="How-it-work parallaxie">
+        <div class="container">
+            <div class="row section-row">
+                <div class="col-lg-12">
+                    <div class="section-title section-title-center">
+                        <h3 class="wow fadeInUp">How it work</h3>
+                        <h2 class="text-effect" data-cursor="-opaque">From choosing your experience to creating lifelong memories in just minutes</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6 col-md-6">
+                    <div class="how-work-item-list">
+                        <div class="how-work-item wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="icon-box">
+                                <img src="{% static 'images/icon-how-it-work-1.svg' %}" alt="">
+                            </div>
+                            <div class="how-work-item-content">
+                                <h3>Choose Your Experience</h3>
+                                <p>Browse our range of luxury stays & adventure packages — pick what excites you most.</p>
+                            </div>
+                        </div>
+
+                        <div class="how-work-item wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="icon-box">
+                                <img src="{% static 'images/icon-how-it-work-2.svg' %}" alt="">
+                            </div>
+                            <div class="how-work-item-content">
+                                <h3>Book With Ease</h3>
+                                <p>Secure your spot online with instant confirmation and flexible payment options.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="how-work-item-list">
+                        <div class="how-work-item wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="icon-box">
+                                <img src="{% static 'images/icon-how-it-work-3.svg' %}" alt="">
+                            </div>
+                            <div class="how-work-item-content">
+                                <h3>Customize Your Trip</h3>
+                                <p>Add activities, cultural experiences, wellness sessions to make your journey truly yours.</p>
+                            </div>
+                        </div>
+
+                        <div class="how-work-item wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="icon-box">
+                                <img src="{% static 'images/icon-how-it-work-4.svg' %}" alt="">
+                            </div>
+                            <div class="how-work-item-content">
+                                <h3>Arrive and Unwind</h3>
+                                <p>From the moment you arrive, we take care of everything — you just relax and explore.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1023,7 +1072,7 @@
                                 </div>
                                 <div class="faqs-cta-contact-content">
                                     <h3>Need Any Help?</h3>
-                                    <p>Contact: <a href="mailto:123456789">+91 94970 00000</a></p>
+                                    <p>Contact: <a href="tel:+919497000000">+91 94970 00000</a></p>
                                 </div>
                             </div>
                             <!-- FAQs CTA Contact Item End -->

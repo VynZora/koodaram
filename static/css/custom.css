@@ -620,6 +620,10 @@ header.main-header .header-sticky.active {
 	margin: 0;
 }
 
+.navbar-brand img {
+	max-width: 250px;
+}
+
 .main-menu .nav-menu-wrapper {
 	flex: 1;
 	text-align: center;
@@ -2616,7 +2620,7 @@ header.main-header .header-sticky.active {
 
 .our-testimonials {
 	position: relative;
-	background: url('../images/testimonials-bg.jpg') no-repeat;
+	background: url('../images/new/testimonial-bg.webp') no-repeat;
 	background-position: center center;
 	background-size: cover;
 	padding: 100px 0;
@@ -3735,7 +3739,7 @@ header.main-header .header-sticky.active {
 
 .How-it-work {
 	position: relative;
-	background-image: url('../images/how-it-work-bg.jpg');
+	background-image: url('../images/new/koodaram-banner.jpg');
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -3840,6 +3844,18 @@ header.main-header .header-sticky.active {
 
 .how-work-item-content p {
 	margin-bottom: 0;
+}
+
+.how-work-no-image .how-work-item-list {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	height: 100%;
+}
+
+.how-work-no-image .how-work-item {
+	margin-bottom: 0;
+	min-height: 170px;
 }
 
 .how-work-image {
@@ -5007,7 +5023,28 @@ header.main-header .header-sticky.active {
 /************************************/
 
 .page-testimonials {
+	position: relative;
+	background: url('../images/new/testimonial-bg.webp') no-repeat;
+	background-position: center center;
+	background-size: cover;
 	padding: 100px 0 70px;
+}
+
+.page-testimonials::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: var(--primary-color);
+	opacity: 0.15;
+	z-index: 0;
+}
+
+.page-testimonials .container {
+	position: relative;
+	z-index: 1;
 }
 
 .page-testimonials .testimonial-item {
@@ -5137,7 +5174,27 @@ header.main-header .header-sticky.active {
 /************************************/
 
 .page-faqs {
+	position: relative;
 	padding: 100px 0;
+}
+
+.page-faqs::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 150px;
+	background: url('../images/section-bg-leaf-left.png') no-repeat;
+	background-position: center center;
+	background-size: cover;
+	width: 190px;
+	height: 150px;
+	animation: leftscroll 3s infinite alternate linear;
+	z-index: 0;
+}
+
+.page-faqs .container {
+	position: relative;
+	z-index: 1;
 }
 
 .page-faqs .page-single-faqs {
@@ -8500,7 +8557,7 @@ header.main-header.header-royal .header-sticky.active {
 
 .intro-video-royal {
 	position: relative;
-	background: url('../images/intero-video-bg-royal.jpg') no-repeat;
+	background: url('../images/new/river.jpeg') no-repeat;
 	background-position: center center;
 	background-size: cover;
 	padding: 100px 0;
@@ -8925,7 +8982,7 @@ header.main-header.header-royal .header-sticky.active {
 
 .main-footer-royal {
 	position: relative;
-	background: url('../images/footer-bg-royal.jpg') no-repeat;
+	background: url('../images/new/koodaram-banner.jpg') no-repeat;
 	background-position: center center;
 	background-size: cover;
 	padding: 100px 0 0 0;
@@ -8941,7 +8998,7 @@ header.main-header.header-royal .header-sticky.active {
 	left: 0;
 	right: 0;
 	background: var(--primary-color);
-	opacity: 80%;
+	opacity: 55%;
 	width: 100%;
 	height: 100%;
 	z-index: 1;
@@ -8964,7 +9021,7 @@ header.main-header.header-royal .header-sticky.active {
 }
 
 .footer-logo-royal img {
-	max-width: 138px;
+	max-width: 220px;
 }
 
 .footer-contact-details-royal ul {

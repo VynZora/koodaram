@@ -10,7 +10,14 @@ from .models import Blog, Category, ContactMessage, GalleryImage, Testimonial
 
 
 def home(request):
-    return render(request, "frontend/index.html")
+    testimonials = list(Testimonial.objects.all()[:8])
+    if testimonials and len(testimonials) < 3:
+        repeat_count = (3 + len(testimonials) - 1) // len(testimonials)
+        testimonials = (testimonials * repeat_count)[:3]
+
+    blogs = Blog.objects.all()[:3]
+    context = {"testimonials": testimonials, "blogs": blogs}
+    return render(request, "frontend/index.html", context)
 
 
 def about(request):
@@ -45,6 +52,57 @@ def contact(request):
             return redirect("contact")
         messages.error(request, "Please check the form and try again.")
     return render(request, "frontend/contact.html", {"form": form})
+
+
+def services(request):
+    return render(request, "frontend/services.html")
+
+
+def service_single(request):
+    return render(request, "frontend/service-single.html")
+
+
+def trips(request):
+    return render(request, "frontend/trips.html")
+
+
+def trip_single(request):
+    return render(request, "frontend/trip-single.html")
+
+
+def team(request):
+    return render(request, "frontend/team.html")
+
+
+def team_single(request):
+    return render(request, "frontend/team-single.html")
+
+
+def pricing(request):
+    return render(request, "frontend/pricing.html")
+
+
+def testimonials(request):
+    return render(request, "frontend/testimonials.html")
+
+
+def image_gallery(request):
+    categories = Category.objects.filter(images__isnull=False).distinct().order_by("name")
+    gallery_images = GalleryImage.objects.select_related("category").order_by("-uploaded_at")
+    context = {"categories": categories, "gallery_images": gallery_images}
+    return render(request, "frontend/image-gallery.html", context)
+
+
+def video_gallery(request):
+    return render(request, "frontend/video-gallery.html")
+
+
+def faqs(request):
+    return render(request, "frontend/faqs.html")
+
+
+def page_not_found(request):
+    return render(request, "frontend/404.html")
 
 
 def admin_login(request):

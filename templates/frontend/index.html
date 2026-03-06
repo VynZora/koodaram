@@ -25,7 +25,7 @@
     
                             <!-- Hero Button Start -->
                             <div class="hero-btn-royal wow fadeInUp" data-wow-delay="0.4s">
-                                <a href="contact.html" class="btn-default-royal btn-highlighted-royal">Book Your Stay</a>
+                                <a href="{% url 'contact' %}" class="btn-default-royal btn-highlighted-royal">Book Your Stay</a>
                             </div>
                             <!-- Hero Button End -->
                         </div>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="hero-contact-item-content-royal">
                                         <h3>Call us</h3>
-                                        <p><a href="tel:123456789">+91 94970 00000</a></p>
+                                        <p><a href="tel:+919497000000">+91 94970 00000</a></p>
                                     </div>
                                 </div>
                                 <!-- Hero Contact Item End -->
@@ -181,7 +181,7 @@
                                 <p>“Your Journey, Your Comfort, Your Adventure.”</p>
 
                                 <div class="about-body-btn-royal">
-                                    <a href="about.html" class="btn-default-royal">Learn More About</a>
+                                    <a href="{% url 'about' %}" class="btn-default-royal">Learn More About</a>
                                 </div>
                             </div>
                             <!-- About Body Content End -->
@@ -216,7 +216,7 @@
                         <!-- Service Image Start -->
                         <div class="service-image-royal">
                             <div class="service-img-royal">
-                                <a href="service-single.html" data-cursor-text="View">
+                                <a href="{% url 'service_single' %}" data-cursor-text="View">
                                     <figure>
                                         <img src="{% static 'images/service-image-royal-1.jpg' %}" alt="">
                                     </figure>
@@ -232,14 +232,14 @@
                         <div class="service-content-body-royal">
                             <!-- Service Content Start -->
                             <div class="service-content-royal">
-                                <h3><a href="service-single.html">Luxury Camping Stays</a></h3>
+                                <h3><a href="{% url 'service_single' %}">Luxury Camping Stays</a></h3>
                                 <p>Stay in comfort amidst tea gardens and misty hills.</p>
                             </div>
                             <!-- Service Content End --> 
 
                             <!-- Service Button Start -->
                             <div class="service-btn-royal">
-                                <a href="service-single.html" class="btn-default-royal">Read More</a>
+                                <a href="{% url 'service_single' %}" class="btn-default-royal">Read More</a>
                             </div>
                             <!-- Service Button End -->
                         </div> 
@@ -254,7 +254,7 @@
                         <!-- Service Image Start -->
                         <div class="service-image-royal">
                             <div class="service-img-royal">
-                                <a href="service-single.html" data-cursor-text="View">
+                                <a href="{% url 'service_single' %}" data-cursor-text="View">
                                     <figure>
                                         <img src="{% static 'images/service-image-royal-2.jpg' %}" alt="">
                                     </figure>
@@ -270,14 +270,14 @@
                         <div class="service-content-body-royal">
                             <!-- Service Content Start -->
                             <div class="service-content-royal">
-                                <h3><a href="service-single.html">Nature Retreats</a></h3>
+                                <h3><a href="{% url 'service_single' %}">Nature Retreats</a></h3>
                                 <p>Stay in comfort amidst tea gardens and misty hills.</p>
                             </div>
                             <!-- Service Content End --> 
 
                             <!-- Service Button Start -->
                             <div class="service-btn-royal">
-                                <a href="service-single.html" class="btn-default-royal">Read More</a>
+                                <a href="{% url 'service_single' %}" class="btn-default-royal">Read More</a>
                             </div>
                             <!-- Service Button End -->
                         </div> 
@@ -292,7 +292,7 @@
                         <!-- Service Image Start -->
                         <div class="service-image-royal">
                             <div class="service-img-royal">
-                                <a href="service-single.html" data-cursor-text="View">
+                                <a href="{% url 'service_single' %}" data-cursor-text="View">
                                     <figure>
                                         <img src="{% static 'images/service-image-royal-3.jpg' %}" alt="">
                                     </figure>
@@ -308,14 +308,14 @@
                         <div class="service-content-body-royal">
                             <!-- Service Content Start -->
                             <div class="service-content-royal">
-                                <h3><a href="service-single.html">Family & Group Activities</a></h3>
+                                <h3><a href="{% url 'service_single' %}">Family & Group Activities</a></h3>
                                 <p>Stay in comfort amidst tea gardens and misty hills.</p>
                             </div>
                             <!-- Service Content End --> 
 
                             <!-- Service Button Start -->
                             <div class="service-btn-royal">
-                                <a href="service-single.html" class="btn-default-royal">Read More</a>
+                                <a href="{% url 'service_single' %}" class="btn-default-royal">Read More</a>
                             </div>
                             <!-- Service Button End -->
                         </div> 
@@ -330,7 +330,7 @@
                         <!-- Service Image Start -->
                         <div class="service-image-royal">
                             <div class="service-img-royal">
-                                <a href="service-single.html" data-cursor-text="View">
+                                <a href="{% url 'service_single' %}" data-cursor-text="View">
                                     <figure>
                                         <img src="{% static 'images/service-image-royal-4.jpg' %}" alt="">
                                     </figure>
@@ -346,14 +346,14 @@
                         <div class="service-content-body-royal">
                             <!-- Service Content Start -->
                             <div class="service-content-royal">
-                                <h3><a href="service-single.html">Romantic Getaways</a></h3>
+                                <h3><a href="{% url 'service_single' %}">Romantic Getaways</a></h3>
                                 <p>Stay in comfort amidst tea gardens and misty hills.</p>
                             </div>
                             <!-- Service Content End --> 
 
                             <!-- Service Button Start -->
                             <div class="service-btn-royal">
-                                <a href="service-single.html" class="btn-default-royal">Read More</a>
+                                <a href="{% url 'service_single' %}" class="btn-default-royal">Read More</a>
                             </div>
                             <!-- Service Button End -->
                         </div> 
@@ -367,7 +367,7 @@
                 <div class="col-lg-12">
                     <!-- Section Footer Text Start -->
                     <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                        <p><span>Free</span>Luxury in the wild is just a message away - <a href="contact.html">Reach out for your custom quote.</a></p>
+                        <p><span>Free</span>Luxury in the wild is just a message away - <a href="{% url 'contact' %}">Reach out for your custom quote.</a></p>
                     </div>
                     <!-- Section Footer Text End -->
                 </div>
@@ -391,7 +391,7 @@
                 <div class="col-xl-6 col-lg-5">
                     <!-- Section Button Start -->
                     <div class="section-btn wow fadeInUp" data-wow-delay="0.2s">
-                        <a href="contact.html" class="btn-default-royal">Start Your Journey</a>
+                        <a href="{% url 'contact' %}" class="btn-default-royal">Start Your Journey</a>
                     </div>
                     <!-- Section Button End -->
                 </div>
@@ -407,7 +407,7 @@
                                 <h3>Step Into Nature's Heart and Begin Writing Your Unique Story of Adventure & Discovery</h3>
                             </div>
                             <div class="adventure-box-btn-royal">
-                                <a href="about.html" class="btn-default-royal">Learn More About</a>
+                                <a href="{% url 'about' %}" class="btn-default-royal">Learn More About</a>
                             </div>
                         </div>
                         <!-- Adventure Box 1 End -->
@@ -436,7 +436,7 @@
                                             </ul>
                                         </div>
                                         <div class="adventure-info-btn-royal">
-                                            <a href="contact.html"><img src="{% static 'images/arrow-primary-royal.svg' %}" alt=""></a>
+                                            <a href="{% url 'contact' %}"><img src="{% static 'images/arrow-primary-royal.svg' %}" alt=""></a>
                                         </div>
                                     </div>
                                     <!-- Adventure Info Footer End -->
@@ -464,7 +464,7 @@
                                             </ul>
                                         </div>
                                         <div class="adventure-info-btn-royal">
-                                            <a href="contact.html"><img src="{% static 'images/arrow-primary-royal.svg' %}" alt=""></a>
+                                            <a href="{% url 'contact' %}"><img src="{% static 'images/arrow-primary-royal.svg' %}" alt=""></a>
                                         </div>
                                     </div>
                                     <!-- Adventure Info Footer End -->
@@ -676,7 +676,7 @@
                     <div class="trip-item-royal wow fadeInUp">
                         <!-- Trip Item Image Start -->
                         <div class="trip-item-image-royal">
-                            <a href="trip-single.html" data-cursor-text="View">
+                            <a href="{% url 'trip_single' %}" data-cursor-text="View">
                                 <figure>
                                     <img src="{% static 'images/trip-image-royal-1.jpg' %}" alt="">
                                 </figure>
@@ -689,13 +689,13 @@
                             <!-- Trip Content Start -->
                             <div class="trip-item-content-royal">
                                 <p>Romance</p>
-                                <h3><a href="trip-single.html">Romantic Getaways Under the Starry Sky</a></h3>
+                                <h3><a href="{% url 'trip_single' %}">Romantic Getaways Under the Starry Sky</a></h3>
                             </div>
                             <!-- Trip Content End -->
                             
                             <!-- Trip Readmore Button Start -->
                             <div class="trip-item-btn-royal">
-                                <a href="trip-single.html" class="readmore-btn">Explore Trip</a>
+                                <a href="{% url 'trip_single' %}" class="readmore-btn">Explore Trip</a>
                             </div>
                             <!-- Trip Readmore Button End -->
                         </div>  
@@ -709,7 +709,7 @@
                     <div class="trip-item-royal wow fadeInUp" data-wow-delay="0.2s">
                         <!-- Trip Item Image Start -->
                         <div class="trip-item-image-royal">
-                            <a href="trip-single.html" data-cursor-text="View">
+                            <a href="{% url 'trip_single' %}" data-cursor-text="View">
                                 <figure>
                                     <img src="{% static 'images/trip-image-royal-2.jpg' %}" alt="">
                                 </figure>
@@ -722,13 +722,13 @@
                             <!-- Trip Content Start -->
                             <div class="trip-item-content-royal">
                                 <p>Luxury</p>
-                                <h3><a href="trip-single.html">Luxury Escape Surround by Scenic Wilderness</a></h3>
+                                <h3><a href="{% url 'trip_single' %}">Luxury Escape Surround by Scenic Wilderness</a></h3>
                             </div>
                             <!-- Trip Content End -->
                             
                             <!-- Trip Readmore Button Start -->
                             <div class="trip-item-btn-royal">
-                                <a href="trip-single.html" class="readmore-btn">Explore Trip</a>
+                                <a href="{% url 'trip_single' %}" class="readmore-btn">Explore Trip</a>
                             </div>
                             <!-- Trip Readmore Button End -->
                         </div>  
@@ -742,7 +742,7 @@
                     <div class="trip-item-royal wow fadeInUp" data-wow-delay="0.4s">
                         <!-- Trip Item Image Start -->
                         <div class="trip-item-image-royal">
-                            <a href="trip-single.html" data-cursor-text="View">
+                            <a href="{% url 'trip_single' %}" data-cursor-text="View">
                                 <figure>
                                     <img src="{% static 'images/trip-image-royal-3.jpg' %}" alt="">
                                 </figure>
@@ -755,13 +755,13 @@
                             <!-- Trip Content Start -->
                             <div class="trip-item-content-royal">
                                 <p>Adventure</p>
-                                <h3><a href="trip-single.html">Family Adventures in Nature's Playground</a></h3>
+                                <h3><a href="{% url 'trip_single' %}">Family Adventures in Nature's Playground</a></h3>
                             </div>
                             <!-- Trip Content End -->
                             
                             <!-- Trip Readmore Button Start -->
                             <div class="trip-item-btn-royal">
-                                <a href="trip-single.html" class="readmore-btn">Explore Trip</a>
+                                <a href="{% url 'trip_single' %}" class="readmore-btn">Explore Trip</a>
                             </div>
                             <!-- Trip Readmore Button End -->
                         </div>  
@@ -775,7 +775,7 @@
                     <div class="trip-item-royal wow fadeInUp" data-wow-delay="0.6s">
                         <!-- Trip Item Image Start -->
                         <div class="trip-item-image-royal">
-                            <a href="trip-single.html" data-cursor-text="View">
+                            <a href="{% url 'trip_single' %}" data-cursor-text="View">
                                 <figure>
                                     <img src="{% static 'images/trip-image-royal-4.jpg' %}" alt="">
                                 </figure>
@@ -788,13 +788,13 @@
                             <!-- Trip Content Start -->
                             <div class="trip-item-content-royal">
                                 <p>Stargazer</p>
-                                <h3><a href="trip-single.html">Thrilling Outdoor Journeys for Every Explorer</a></h3>
+                                <h3><a href="{% url 'trip_single' %}">Thrilling Outdoor Journeys for Every Explorer</a></h3>
                             </div>
                             <!-- Trip Content End -->
                             
                             <!-- Trip Readmore Button Start -->
                             <div class="trip-item-btn-royal">
-                                <a href="trip-single.html" class="readmore-btn">Explore Trip</a>
+                                <a href="{% url 'trip_single' %}" class="readmore-btn">Explore Trip</a>
                             </div>
                             <!-- Trip Readmore Button End -->
                         </div>  
@@ -806,7 +806,7 @@
                 <div class="col-lg-12">
                     <!-- Section Footer Text Start -->
                     <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                        <p><span>Free</span>Let's find your perfect escape together. <a href="trips.html">View All Trips.</a></p>
+                        <p><span>Free</span>Let's find your perfect escape together. <a href="{% url 'trips' %}">View All Trips.</a></p>
                     </div>
                     <!-- Section Footer Text End -->
                 </div>
@@ -840,7 +840,7 @@
                                 <p>We believe travel is more than just reaching a destination—it's about the experiences you create along the way.</p>
                             </div>
                             <div class="feature-item-btn-royal">
-                                <a href="contact.html" class="btn-default-royal">Read More</a>
+                                <a href="{% url 'contact' %}" class="btn-default-royal">Read More</a>
                             </div>
                         </div>
                         <div class="feature-item-image-royal">
@@ -863,7 +863,7 @@
                                 <p>(Happy Tourist)</p>
                             </div>
                             <div class="feature-item-btn-royal">
-                                <a href="contact.html" class="readmore-btn">Read More</a>
+                                <a href="{% url 'contact' %}" class="readmore-btn">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -943,7 +943,7 @@
 
                         <!-- What We Button Start -->
                         <div class="what-we-btn-royal wow fadeInUp" data-wow-delay="0.6s">
-                            <a href="contact.html" class="btn-default-royal">Start Your Journey</a>
+                            <a href="{% url 'contact' %}" class="btn-default-royal">Start Your Journey</a>
                         </div>
                         <!-- What We Button End -->
                     </div>
@@ -1144,7 +1144,7 @@
 
                         <!-- Pricing Button Start -->
                         <div class="pricing-btn-royal">
-                            <a href="contact.html" class="btn-default-royal">get started now</a>
+                            <a href="{% url 'contact' %}" class="btn-default-royal">get started now</a>
                         </div>
                         <!-- Pricing Button End -->
                     </div>
@@ -1185,7 +1185,7 @@
 
                         <!-- Pricing Button Start -->
                         <div class="pricing-btn-royal">
-                            <a href="contact.html" class="btn-default-royal btn-highlighted-royal">get started now</a>
+                            <a href="{% url 'contact' %}" class="btn-default-royal btn-highlighted-royal">get started now</a>
                         </div>
                         <!-- Pricing Button End -->
                     </div>
@@ -1226,7 +1226,7 @@
 
                         <!-- Pricing Button Start -->
                         <div class="pricing-btn-royal">
-                            <a href="contact.html" class="btn-default-royal">get started now</a>
+                            <a href="{% url 'contact' %}" class="btn-default-royal">get started now</a>
                         </div>
                         <!-- Pricing Button End -->
                     </div>
@@ -1269,113 +1269,54 @@
                     <div class="testimonial-slider-royal">
                         <div class="swiper">
                             <div class="swiper-wrapper" data-cursor-text="Drag">
-                                <!-- Testimonial Slide Start -->
+                                {% for testimonial in testimonials %}
                                 <div class="swiper-slide">
                                     <div class="testimonial-item-royal">
                                         <div class="testimonial-quote-royal">
                                             <img src="{% static 'images/testimonial-quote-royal.svg' %}" alt="">
-                                        </div> 
+                                        </div>
                                         <div class="testimonial-body-royal">
                                             <div class="testimonial-content-royal">
-                                                <h3>“A Perfect Balance of Adventure”</h3>
-                                                <p>The perfect balance of adventure and comfort. Sleeping under the stars in luxury tents was unforgettable our family had the best time! The activities kept everyone engaged.!</p>
+                                                {{ testimonial.review|safe }}
                                             </div>
                                             <div class="testimonial-author-royal">
                                                 <div class="author-image-royal">
                                                     <figure class="image-anime">
-                                                        <img src="{% static 'images/author-1.jpg' %}" alt="">
+                                                        {% if testimonial.image %}
+                                                        <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
+                                                        {% else %}
+                                                        <img src="{% static 'images/author-1.jpg' %}" alt="{{ testimonial.name }}">
+                                                        {% endif %}
                                                     </figure>
                                                 </div>
                                                 <div class="author-content-royal">
-                                                    <h3>Cameron Williamson</h3>
-                                                    <p>Travel Enthusiast</p>
+                                                    <h3>{{ testimonial.name }}</h3>
+                                                    <p>Guest</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
+                                {% empty %}
                                 <div class="swiper-slide">
                                     <div class="testimonial-item-royal">
                                         <div class="testimonial-quote-royal">
                                             <img src="{% static 'images/testimonial-quote-royal.svg' %}" alt="">
-                                        </div> 
+                                        </div>
                                         <div class="testimonial-body-royal">
                                             <div class="testimonial-content-royal">
-                                                <h3>“Magical Family Getaway a Nature”</h3>
-                                                <p>The perfect balance of adventure and comfort. Sleeping under the stars in luxury tents was unforgettable our family had the best time! The activities kept everyone engaged.!</p>
+                                                <p>Our guests love the Koodaram experience. Reviews will appear here once added.</p>
                                             </div>
                                             <div class="testimonial-author-royal">
-                                                <div class="author-image-royal">
-                                                    <figure class="image-anime">
-                                                        <img src="{% static 'images/author-2.jpg' %}" alt="">
-                                                    </figure>
-                                                </div>
                                                 <div class="author-content-royal">
-                                                    <h3>Brooklyn Simmons</h3>
-                                                    <p>Travel Blogger</p>
+                                                    <h3>Koodaram Guest</h3>
+                                                    <p>Guest</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item-royal">
-                                        <div class="testimonial-quote-royal">
-                                            <img src="{% static 'images/testimonial-quote-royal.svg' %}" alt="">
-                                        </div> 
-                                        <div class="testimonial-body-royal">
-                                            <div class="testimonial-content-royal">
-                                                <h3>“Most Romantic Escape Ever Had”</h3>
-                                                <p>The perfect balance of adventure and comfort. Sleeping under the stars in luxury tents was unforgettable our family had the best time! The activities kept everyone engaged.!</p>
-                                            </div>
-                                            <div class="testimonial-author-royal">
-                                                <div class="author-image-royal">
-                                                    <figure class="image-anime">
-                                                        <img src="{% static 'images/author-3.jpg' %}" alt="">
-                                                    </figure>
-                                                </div>
-                                                <div class="author-content-royal">
-                                                    <h3>Darlene Robertson</h3>
-                                                    <p>Outdoor Enthusiast</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item-royal">
-                                        <div class="testimonial-quote-royal">
-                                            <img src="{% static 'images/testimonial-quote-royal.svg' %}" alt="">
-                                        </div> 
-                                        <div class="testimonial-body-royal">
-                                            <div class="testimonial-content-royal">
-                                                <h3>“Our Dream Vacation Come True”</h3>
-                                                <p>The perfect balance of adventure and comfort. Sleeping under the stars in luxury tents was unforgettable our family had the best time! The activities kept everyone engaged.!</p>
-                                            </div>
-                                            <div class="testimonial-author-royal">
-                                                <div class="author-image-royal">
-                                                    <figure class="image-anime">
-                                                        <img src="{% static 'images/author-4.jpg' %}" alt="">
-                                                    </figure>
-                                                </div>
-                                                <div class="author-content-royal">
-                                                    <h3>Chloe Bennett</h3>
-                                                    <p>Weekend Explorer</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Testimonial Slide End -->
+                                {% endfor %}
                             </div>
                             <div class="testimonial-pagination-royal"></div>
                         </div>
@@ -1420,101 +1361,31 @@
             </div>
 
             <div class="row">
+                {% for post in blogs %}
                 <div class="col-xl-4 col-md-6">
-                    <!-- Post Item Start -->
                     <div class="post-item-royal wow fadeInUp">
-                        <!-- Post Featured Image Start-->
                         <div class="post-featured-image-royal">
-                            <a href="blog-single.html" data-cursor-text="View">
+                            <a href="{% url 'blog_single' post.slug %}" data-cursor-text="View">
                                 <figure class="image-anime">
-                                    <img src="{% static 'images/post-1.jpg' %}" alt="">
+                                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
                                 </figure>
                             </a>
                         </div>
-                        <!-- Post Featured Image End -->
-
-                        <!-- Post Item Body Start -->
                         <div class="post-item-body-royal">
-                            <!-- Post Item Content Start -->
                             <div class="post-item-content-royal">
-                                <h2><a href="blog-single.html">Eco-Friendly Camping at Koodaram Munnar</a></h2>
+                                <h2><a href="{% url 'blog_single' post.slug %}">{{ post.title }}</a></h2>
                             </div>
-                            <!-- Post Item Content End -->
-
-                            <!-- Post Item Readmore Button Start-->
                             <div class="post-item-btn-royal">
-                                <a href="blog-single.html" class="readmore-btn">read more</a>
+                                <a href="{% url 'blog_single' post.slug %}" class="readmore-btn">read more</a>
                             </div>
-                            <!-- Post Item Readmore Button End-->
                         </div>
-                        <!-- Post Item Body End -->
                     </div>
-                    <!-- Post Item End -->
                 </div>
-
-                <div class="col-xl-4 col-md-6">
-                    <!-- Post Item Start -->
-                    <div class="post-item-royal wow fadeInUp" data-wow-delay="0.2s">
-                        <!-- Post Featured Image Start-->
-                        <div class="post-featured-image-royal">
-                            <a href="blog-single.html" data-cursor-text="View">
-                                <figure class="image-anime">
-                                    <img src="{% static 'images/post-2.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Post Featured Image End -->
-
-                        <!-- Post Item Body Start -->
-                        <div class="post-item-body-royal">
-                            <!-- Post Item Content Start -->
-                            <div class="post-item-content-royal">
-                                <h2><a href="blog-single.html">Campfires, Comfort and Misty Mornings in Munnar</a></h2>
-                            </div>
-                            <!-- Post Item Content End -->
-
-                            <!-- Post Item Readmore Button Start-->
-                            <div class="post-item-btn-royal">
-                                <a href="blog-single.html" class="readmore-btn">read more</a>
-                            </div>
-                            <!-- Post Item Readmore Button End-->
-                        </div>
-                        <!-- Post Item Body End -->
-                    </div>
-                    <!-- Post Item End -->
+                {% empty %}
+                <div class="col-lg-12">
+                    <p>No blog posts available right now.</p>
                 </div>
-
-                <div class="col-xl-4 col-md-6">
-                    <!-- Post Item Start -->
-                    <div class="post-item-royal wow fadeInUp" data-wow-delay="0.4s">
-                        <!-- Post Featured Image Start-->
-                        <div class="post-featured-image-royal">
-                            <a href="blog-single.html" data-cursor-text="View">
-                                <figure class="image-anime">
-                                    <img src="{% static 'images/post-3.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Post Featured Image End -->
-
-                        <!-- Post Item Body Start -->
-                        <div class="post-item-body-royal">
-                            <!-- Post Item Content Start -->
-                            <div class="post-item-content-royal">
-                                <h2><a href="blog-single.html">Creating a Digital Detox Why Nature Is the Ultimate Reset</a></h2>
-                            </div>
-                            <!-- Post Item Content End -->
-
-                            <!-- Post Item Readmore Button Start-->
-                            <div class="post-item-btn-royal">
-                                <a href="blog-single.html" class="readmore-btn">read more</a>
-                            </div>
-                            <!-- Post Item Readmore Button End-->
-                        </div>
-                        <!-- Post Item Body End -->
-                    </div>
-                    <!-- Post Item End -->
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

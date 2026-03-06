@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+handler404 = "koodaram_app.views.page_not_found"
+
 urlpatterns = [
     path('', include('koodaram_app.urls')),
 ]

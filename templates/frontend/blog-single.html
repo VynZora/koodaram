@@ -3,6 +3,13 @@
 
 {% block title %}Blog Details | Koodaram{% endblock %}
 {% block meta_description %}Koodaram Blog Details page.{% endblock %}
+{% block page_header_style %}
+<style>
+    .page-header {
+        background-image: url('{{ blog.image.url }}');
+    }
+</style>
+{% endblock %}
 
 {% block content %} 
     <!-- Page Header Start -->
@@ -15,7 +22,7 @@
                         <h1 class="text-anime-style-3" data-cursor="-opaque">{{ blog.title }}</h1>
                         <div class="post-single-meta wow fadeInUp">
 							<ol class="breadcrumb">
-                                <li><i class="fa-regular fa-user"></i> Admin</li>
+                                {% comment %} <li><i class="fa-regular fa-user"></i> Admin</li> {% endcomment %}
 								<li><i class="fa-regular fa-clock"></i> {{ blog.created_at|date:"d M, Y" }}</li>
                             </ol>
 						</div>
@@ -46,6 +53,7 @@
                          
                         <div class="post-entry">
                             <div class="wow fadeInUp">{{ blog.description|safe }}</div>
+                            <br> <br>
                             <blockquote class="wow fadeInUp" data-wow-delay="0.4s">
                                 <p>Glamping is no longer just about glamorous tents-it's about conscious travel. From bamboo furnishings to biodegradable toiletries and locally guided eco-tours, discover how glamping resorts are helping adventurers reconnect with the planet while protecting it for future generations.</p>
                             </blockquote>

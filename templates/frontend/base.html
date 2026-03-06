@@ -36,6 +36,7 @@
 	<link rel="stylesheet" href="{% static 'css/mousecursor.css' %}">
 	<!-- Main Custom Css -->
 	<link href="{% static 'css/custom.css' %}" rel="stylesheet" media="screen">
+	{% block page_header_style %}{% endblock %}
 </head>
 <body>
 
@@ -91,13 +92,7 @@
 					<div class="collapse navbar-collapse main-menu">
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav mr-auto" id="menu">
-                                <li class="nav-item submenu"><a class="nav-link" href="{% url 'home' %}">Home</a>
-                                    <ul>
-                                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home - Version 1</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Koodaram Home</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Koodaram</a></li>
-                                    </ul>
-                                </li>                                
+                                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a>
                                 <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
@@ -214,7 +209,10 @@
                     <div class="col-md-6">
                         <!-- Footer Copyright Text Start -->
                         <div class="footer-copyright-text-royal">
-                            <p>Copyright © 2025 All Rights Reserved.</p>
+                            <p class="mb-0">
+                                &copy; <span id="currentYear"></span> <strong>Koodaram</strong>. All rights reserved.
+                            </p>
+                            <small>Designed by <a href="https://vynzora.com/">Vynzora</a></small>
                         </div>
                         <!-- Footer Copyright Text End -->
                     </div>
@@ -272,6 +270,12 @@
     <script src="{% static 'js/wow.min.js' %}"></script>
     <!-- Main Custom js file -->
     <script src="{% static 'js/function.js' %}"></script>
+    <script>
+      const currentYearElement = document.getElementById("currentYear");
+      if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+      }
+    </script>
     {% block extra_js %}{% endblock %}
 
     {% comment %} <script>

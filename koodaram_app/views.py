@@ -101,7 +101,7 @@ def faqs(request):
     return render(request, "frontend/faqs.html")
 
 
-def page_not_found(request):
+def page_not_found(request, exception=None):
     return render(request, "frontend/404.html")
 
 

@@ -3,6 +3,13 @@
 
 {% block title %}Services | Koodaram{% endblock %}
 {% block meta_description %}Koodaram Services page.{% endblock %}
+{% block page_header_style %}
+<style>
+    .page-header {
+        background-image: url('{% static "images/new/service-page.jpg" %}');
+    }
+</style>
+{% endblock %}
 
 {% block content %}
 
@@ -628,7 +635,7 @@
                             <!-- FAQs CTA Image Start -->
                             <div class="faqs-cta-image">
                                 <figure>
-                                    <img src="{% static 'images/faqs-cta-image.jpg' %}" alt="">
+                                    <img src="{% static 'images/new/adventure.webp' %}" alt="">
                                 </figure>
                             </div>
                             <!-- FAQs CTA Image End -->

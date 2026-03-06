@@ -390,7 +390,11 @@
 
 	/* Contact form validation */
 	var $contactform = $("#contactForm");
+	var isAjaxContact = $contactform.length && ($contactform.data("ajax") === true || $contactform.attr("action") === "form-process.php");
 	$contactform.validator({focus: false}).on("submit", function (event) {
+		if (!isAjaxContact) {
+			return;
+		}
 		if (!event.isDefaultPrevented()) {
 			event.preventDefault();
 			submitForm();

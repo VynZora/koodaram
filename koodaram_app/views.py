@@ -5,12 +5,46 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models.functions import Lower
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import BlogForm, TestimonialForm
+from .forms import BlogForm, ContactForm, TestimonialForm
 from .models import Blog, Category, ContactMessage, GalleryImage, Testimonial
 
 
 def home(request):
     return render(request, "frontend/index.html")
+
+
+def about(request):
+    testimonials = list(Testimonial.objects.all()[:8])
+    if testimonials and len(testimonials) < 3:
+        repeat_count = (3 + len(testimonials) - 1) // len(testimonials)
+        testimonials = (testimonials * repeat_count)[:3]
+    return render(request, "frontend/about.html", {"testimonials": testimonials})
+
+
+def blog(request):
+    blog_queryset = Blog.objects.all()
+    paginator = Paginator(blog_queryset, 6)
+    page_number = request.GET.get("page")
+    blogs = paginator.get_page(page_number)
+    return render(request, "frontend/blog.html", {"blogs": blogs})
+
+
+def blog_single(request, slug):
+    blog_post = get_object_or_404(Blog, slug=slug)
+    recent_blogs = Blog.objects.exclude(slug=slug)[:4]
+    context = {"blog": blog_post, "recent_blogs": recent_blogs}
+    return render(request, "frontend/blog-single.html", context)
+
+
+def contact(request):
+    form = ContactForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Message sent successfully. We will contact you soon.")
+            return redirect("contact")
+        messages.error(request, "Please check the form and try again.")
+    return render(request, "frontend/contact.html", {"form": form})
 
 
 def admin_login(request):

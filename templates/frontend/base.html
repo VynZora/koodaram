@@ -12,7 +12,10 @@
 	<!-- Page Title -->
     <title>{% block title %}Koodaram{% endblock %}</title>
 	<!-- Favicon Icon -->
-	<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
 	<!-- Google Fonts Css-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,15 +46,43 @@
 			<div id="loading-icon"><img src="{% static 'images/loader.svg' %}" alt=""></div>
 		</div>
 	</div>
-	<!-- Preloader End -->
+	    <!-- Preloader End -->
 
-    <!-- Header Start -->
-	<header class="main-header header-royal">
+		{% if request.resolver_match.url_name != 'home' %}
+		<!-- Topbar Section Start -->
+		<div class="topbar">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-7 col-md-6">
+						<div class="topbar-contact-info">
+							<ul>
+								<li><img src="{% static 'images/icon-phone-primary.svg' %}" alt=""><a href="tel:+919497000000">+91 94970 00000</a></li>
+								<li><img src="{% static 'images/icon-mail-primary.svg' %}" alt=""><a href="mailto:hello@koodaram.com">hello@koodaram.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-5 col-md-6">
+						<div class="topbar-social-links">
+							<ul>
+								<li><a href="#"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
+								<li><a href="#"><i class="fa-brands fa-facebook-f"></i>Facebook</a></li>
+								<li><a href="#"><i class="fa-brands fa-youtube"></i>YouTube</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Topbar Section End -->
+		{% endif %}
+
+	    <!-- Header Start -->
+		<header class="main-header header-royal">
 		<div class="header-sticky bg-section-royal">
 			<nav class="navbar navbar-expand-lg">
 				<div class="container">
 					<!-- Logo Start -->
-					<a class="navbar-brand" href="./">
+					<a class="navbar-brand" href="{% url 'home' %}">
 						<img src="{% static 'images/logo.svg' %}" alt="Logo">
 					</a>
 					<!-- Logo End -->
@@ -60,16 +91,16 @@
 					<div class="collapse navbar-collapse main-menu">
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav mr-auto" id="menu">
-                                <li class="nav-item submenu"><a class="nav-link" href="./">Home</a>
+                                <li class="nav-item submenu"><a class="nav-link" href="{% url 'home' %}">Home</a>
                                     <ul>
                                         <li class="nav-item"><a class="nav-link" href="index.html">Home - Version 1</a></li>
                                         <li class="nav-item"><a class="nav-link" href="index-2.html">Home - Version 2</a></li>
                                         <li class="nav-item"><a class="nav-link" href="index-3.html">Home - Version 3</a></li>
                                     </ul>
                                 </li>                                
-                                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a>
                                 <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
                                 <li class="nav-item submenu"><a class="nav-link" href="#">Pages</a>
                                     <ul>                                        
                                         <li class="nav-item"><a class="nav-link" href="service-single.html">Service Details</a></li>
@@ -86,13 +117,13 @@
                                         <li class="nav-item"><a class="nav-link" href="404.html">404</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
                             </ul>
                         </div>
 
                         <!-- Header Btn Start -->
                         <div class="header-btn">
-                            <a class="btn-default-royal btn-highlighted-royal" href="contact.html">Get Started Now</a>
+                            <a class="btn-default-royal btn-highlighted-royal" href="{% url 'contact' %}">Get Started Now</a>
                         </div>
                         <!-- Header Btn End -->                      
 					</div>
@@ -106,6 +137,122 @@
 	<!-- Header End -->
 
     {% block content %}{% endblock %}
+
+    <!-- Footer Start -->
+    <footer class="main-footer-royal bg-section-royal dark-section">
+		<div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Main Footer Header Start -->
+                    <div class="main-footer-header-royal">
+                        <!-- Footer Logo Start -->
+                        <div class="footer-logo-royal">
+                            <img src="{% static 'images/footer-logo-white.svg' %}" alt="">
+                        </div>
+                        <!-- Footer Logo End -->
+                        
+                        <!-- Footer Contact Details Start -->
+                        <div class="footer-contact-details-royal">
+                            <ul>
+                                <li><img src="{% static 'images/icon-location-accent.svg' %}" alt="">Location: 123 Adventure Valley,</li>
+                                <li><img src="{% static 'images/icon-mail-accent.svg' %}" alt=""><a href="mailto:info@domainname.com">info@domainname.com</a></li>
+                            </ul>
+                        </div>
+                        <!-- Footer Contact Details End --> 
+                    </div>
+                    <!-- Main Footer Header End -->
+                </div>
+
+                <div class="col-lg-12">
+                    <!-- Main Footer Body Start -->
+                    <div class="main-footer-body">
+                        <!-- Footer About Start -->
+                        <div class="footer-about-royal">
+                            <!-- Section Title Start -->
+                            <div class="section-title">
+                                <h2 class="text-anime-style-3">Explore more, dream bigger stay inspire with every step</h2>
+                            </div>
+                            <!-- Section Title End -->
+
+                            <!-- Footer About Contact Box Start -->
+                            <div class="footer-about-contact-box-royal">
+                                <div class="icon-box">
+                                    <img src="{% static 'images/icon-headphone-accent.svg' %}" alt="">
+                                </div>
+                                <div class="footer-about-contact-content-royal">
+                                    <h3><a href="tel:123456789">+(123) 456-789</a></h3>
+                                </div>
+                            </div>
+                            <!-- Footer About Contact Box End -->
+                        </div>
+                        <!-- Footer About End -->
+
+                        <!-- Footer Links Box Start -->
+                        <div class="footer-links-box-royal">
+                            <!-- Footer Links Start -->
+                            <div class="footer-links-royal">
+                                <h3>Quick links</h3>
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="services.html">Services</a></li>
+                                    <li><a href="blog.html">Blog</a></li>
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                </ul>
+                            </div>
+                            <!-- Footer Links End -->
+        
+                            <!-- Footer Links Start -->
+                            <div class="footer-links-royal">
+                                <h3>Glamping Sites</h3>
+                                <ul>
+                                    <li><a href="service-single.html">Ocean Cliff Glamp</a></li>
+                                    <li><a href="service-single.html">Forest Dome Escape</a></li>
+                                    <li><a href="service-single.html">Jungle Canopy Lodge</a></li>
+                                    <li><a href="service-single.html">Lakeside Luxury Camp</a></li>
+                                    <li><a href="service-single.html">Desert Stargazer Tents</a></li>
+                                </ul>
+                            </div>
+                            <!-- Footer Links End -->
+                        </div>
+                        <!-- Footer Links Box End -->
+                    </div>
+                    <!-- Main Footer Body End -->                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Copyright Start -->
+        <div class="footer-copyright-royal">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <!-- Footer Copyright Text Start -->
+                        <div class="footer-copyright-text-royal">
+                            <p>Copyright © 2025 All Rights Reserved.</p>
+                        </div>
+                        <!-- Footer Copyright Text End -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <!-- Footer Social Links Start -->
+                        <div class="footer-social-links-royal">
+                            <ul>
+                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Footer Social Links End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Copyright End -->
+    </footer>
+    <!-- Footer End -->
+
 
     <!-- Jquery Library File -->
     <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
@@ -140,6 +287,7 @@
     <script src="{% static 'js/wow.min.js' %}"></script>
     <!-- Main Custom js file -->
     <script src="{% static 'js/function.js' %}"></script>
+    {% block extra_js %}{% endblock %}
 
     {% comment %} <script>
       (function () {

@@ -5,7 +5,6 @@
 {% block meta_description %}Koodaram Contact page.{% endblock %}
 
 {% block content %}
-
     <!-- Page Header Section Start -->
     <div class="page-header parallaxie">
         <div class="container">
@@ -16,7 +15,7 @@
                         <h1 class="text-anime-style-3" data-cursor="-opaque">Contact us</h1>
                         <nav class="wow fadeInUp">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="./">home</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
                             </ol>
                         </nav>
@@ -43,7 +42,7 @@
                             <div class="contact-info-content">
                                 <h3>Phone Number</h3>
                                 <p><a href="tel:+456789254">+(456) 789 254</a></p>
-                                <p><a href="tel:+123456789">+(123) 456 789</a></p>
+                                <p><a href="tel:+123456789">+91 94970 00000</a></p>
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
@@ -55,8 +54,8 @@
                             </div>
                             <div class="contact-info-content">
                                 <h3>Email Address</h3>
-                                <p><a href="mailto:support@domain.com">support@domain.com</a></p>
-                                <p><a href="mailto:info@domainname.com">info@domainname.com</a></p>
+                                <p><a href="mailto:hello@koodaram.com">hello@koodaram.com</a></p>
+                                <p><a href="mailto:hello@koodaram.com">hello@koodaram.com</a></p>
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
@@ -68,7 +67,7 @@
                             </div>
                             <div class="contact-info-content">
                                 <h3>Our Location</h3>
-                                <p>Evergreen Trails Luxury Glamping</p>
+                                <p>Koodaram Munnar, Kerala</p>
                                 <p>Retreat, 123 Wilderness</p>
                             </div>
                         </div>
@@ -101,30 +100,31 @@
                         <!-- Section Title End -->
                         
                         <!-- Contact Form Start -->
-                        <form id="contactForm" action="#" method="POST" data-toggle="validator" class="wow fadeInUp" data-wow-delay="0.2s">
+                        <form id="contactForm" action="{% url 'contact' %}" method="POST" data-toggle="validator" class="wow fadeInUp" data-wow-delay="0.2s">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="fname" class="form-control" id="fname" placeholder="First Name" required>
+                                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name" value="{{ request.POST.first_name|default:'' }}" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
         
                                 <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="lname" class="form-control" id="lname" placeholder="Last Name" required>
+                                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name" value="{{ request.POST.last_name|default:'' }}" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 
                                 <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" required>
+                                    <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" value="{{ request.POST.phone|default:'' }}" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
         
                                 <div class="form-group col-md-6 mb-4">
-                                    <input type="email" name ="email" class="form-control" id="email" placeholder="Email Address" required>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email Address" value="{{ request.POST.email|default:'' }}" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
         
                                 <div class="form-group col-md-12 mb-5">
-                                    <textarea name="message" class="form-control" id="message" rows="4" placeholder="Send Message"></textarea>
+                                    <textarea name="message" class="form-control" id="message" rows="4" placeholder="Send Message">{{ request.POST.message|default:'' }}</textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
         
@@ -144,7 +144,8 @@
                 <div class="col-xl-6 col-lg-12">
                     <!-- Google Map Iframe Start -->
                     <div class="google-map-iframe">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96737.10562045308!2d-74.08535042841811!3d40.739265258395164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1703158537552!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.5319800241!2d77.0583012753632!3d10.05542447207791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0799229725f51f%3A0xc5074e224af4afa6!2sKoodaram%20camping!5e0!3m2!1sen!2sin!4v1772703451783!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        {% comment %} <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96737.10562045308!2d-74.08535042841811!3d40.739265258395164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1703158537552!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> {% endcomment %}
                     </div>
                     <!-- Google Map Iframe End -->
                 </div>
@@ -152,47 +153,47 @@
         </div>
     </div>
     <!-- Page Contact Us End -->
-
+{% comment %} 
     <!-- Scrolling Ticker Section Start -->
     <div class="our-scrolling-ticker bg-section">
         <!-- Scrolling Ticker Start -->
         <div class="scrolling-ticker-box">
             <div class="scrolling-content">
-                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Outdoor Adventure</span>
+                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Stargazing Nights</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Forest Stay</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Off-Grid Escape</span>
-                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Outdoor Adventure</span>
+                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Stargazing Nights</span>
-                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Outdoor Adventure</span>
+                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Stargazing Nights</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Forest Stay</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Off-Grid Escape</span>
-                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Outdoor Adventure</span>
+                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Stargazing Nights</span>
             </div>
 
             <div class="scrolling-content">
-                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Outdoor Adventure</span>
+                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Stargazing Nights</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Forest Stay</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Off-Grid Escape</span>
-                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Outdoor Adventure</span>
+                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Stargazing Nights</span>
-                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Outdoor Adventure</span>
+                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Stargazing Nights</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Forest Stay</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Off-Grid Escape</span>
-                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Outdoor Adventure</span>
+                <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Nature Retreat</span>
                 <span><img src="{% static 'images/icon-sparkle.svg' %}" alt="">Stargazing Nights</span>
             </div>
         </div>
         <!-- Scrolling Ticker End -->
     </div>
-    <!-- Scrolling Ticker Section End -->
+    <!-- Scrolling Ticker Section End --> {% endcomment %}
 
 {% endblock %}

@@ -5,8 +5,6 @@ from . import views
 urlpatterns = [
     path("", views.home, name="home"),
     path("about/", views.about, name="about"),
-    path("services/", views.services, name="services"),
-    path("service-single/", views.service_single, name="service_single"),
     path("trips/", views.trips, name="trips"),
     path("trip-single/", views.trip_single, name="trip_single"),
     path("team/", views.team, name="team"),
@@ -19,6 +17,10 @@ urlpatterns = [
     path("404/", views.page_not_found, name="page_not_found"),
     path("blog/", views.blog, name="blog"),
     path("blog/<slug:slug>/", views.blog_single, name="blog_single"),
+    path("activities/", views.activity_list, name="activity_list"),
+    path("activities/<slug:slug>/", views.activity_single, name="activity_single"),
+    path("services/", views.services, name="services"),
+    path("services/<slug:slug>/", views.service_single, name="service_single"),
     path("contact/", views.contact, name="contact"),
     path("admin-login/", views.admin_login, name="admin_login"),
     path("admin-logout/", views.admin_logout, name="admin_logout"),
@@ -42,6 +44,16 @@ urlpatterns = [
     path("dashboard/testimonials/add/", views.testimonial_create, name="testimonial_create"),
     path("dashboard/testimonials/<int:pk>/edit/", views.testimonial_update, name="testimonial_update"),
     path("dashboard/testimonials/<int:pk>/delete/", views.testimonial_delete, name="testimonial_delete"),
+
+    path("dashboard/activities/", views.admin_activity_list, name="admin_activity_list"),
+    path("dashboard/activities/create/", views.activity_create, name="activity_create"),
+    path("dashboard/activities/<int:pk>/edit/", views.activity_update, name="activity_update"),
+    path("dashboard/activities/<int:pk>/delete/", views.activity_delete, name="activity_delete"),
+
+    path("dashboard/camping-packages/", views.admin_camping_package_list, name="admin_camping_package_list"),
+    path("dashboard/camping-packages/create/", views.camping_package_create, name="camping_package_create"),
+    path("dashboard/camping-packages/<int:pk>/edit/", views.camping_package_update, name="camping_package_update"),
+    path("dashboard/camping-packages/<int:pk>/delete/", views.camping_package_delete, name="camping_package_delete"),
 
     path("dashboard/contacts/", views.view_contacts, name="view_contacts"),
     path("dashboard/contacts/<int:pk>/delete/", views.delete_contact, name="delete_contact"),

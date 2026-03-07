@@ -9,7 +9,37 @@ from django.utils.text import slugify
     
 #     def __str__(self):
 #         return f"{self.name} - {self.position}"
+
+class CampingPackage(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True)
+    description = models.TextField()
+    main_image = models.ImageField(upload_to="camping/")
     
+    check_in = models.CharField(max_length=20)
+    check_out = models.CharField(max_length=20)
+    
+    normal_price = models.DecimalField(max_digits=10, decimal_places=2)
+    special_price = models.DecimalField(max_digits=10, decimal_places=2)
+    extra_person_price = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    package_items = models.TextField()
+    facilities = models.TextField()
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "Camping Packages"
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -32,6 +62,32 @@ class GalleryImage(models.Model):
 
     def __str__(self):
         return self.title if self.title else f"Image {self.id}"
+
+class Activity(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True)
+    description = models.TextField()
+    image = models.ImageField(upload_to="activities/", help_text="Activity cover image")
+    duration = models.CharField(max_length=100, blank=True, help_text="Duration (e.g., 3 Days, 2 Hours)")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name_plural = "Activities"
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)
+            slug = base_slug
+            counter = 1
+            while Activity.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
 class Blog(models.Model):
     image = models.ImageField(upload_to="blogs/", help_text="Blog cover image")

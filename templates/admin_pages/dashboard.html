@@ -9,7 +9,6 @@
 
 <div class="dashboard-wrap">
 
-    <!-- Stats: 4 cards -->
     <div class="stats-grid">
 
         <div class="stat-card stat-green">
@@ -49,6 +48,15 @@
             <div class="stat-value">{{ stats.total_contacts }}</div>
             <div class="stat-footer">Total Received</div>
         </div>
+        
+        <div class="stat-card stat-primary">
+            <div class="stat-top">
+                <span class="stat-label">Camping Packages</span>
+                <div class="stat-icon"><i class="icofont-tent"></i></div>
+            </div>
+            <div class="stat-value">{{ stats.total_packages }}</div>
+            <div class="stat-footer">Total Active</div>
+        </div>
 
     </div>
 
@@ -76,30 +84,59 @@
 
     </div>
 
-    <!-- Recent Projects -->
-    <div class="data-card">
-        <div class="card-header">
-            <span class="card-title">Recent Projects</span>
-            <a href="{% url 'admin_blog_list' %}" class="view-all-link">View All →</a>
+    <!-- Recent Projects & Packages Side-by-Side -->
+    <div class="data-row">
+        <!-- Recent Projects -->
+        <div class="data-card">
+            <div class="card-header">
+                <span class="card-title">Recent Projects</span>
+                <a href="{% url 'admin_blog_list' %}" class="view-all-link">View All →</a>
+            </div>
+            <ul class="feed-list">
+                {% for project in recent_projects %}
+                <li class="feed-item">
+                    <div class="feed-avatar feed-avatar-green">
+                        <i class="icofont-image"></i>
+                    </div>
+                    <div class="feed-content">
+                        <p class="feed-name">{{ project.title }}</p>
+                        <p class="feed-meta">
+                            {% if project.location %}<i class="icofont-location-pin"></i> {{ project.location }} &nbsp;·&nbsp;{% endif %}
+                            {{ project.created_at|date:"M d, Y" }}
+                        </p>
+                    </div>
+                </li>
+                {% empty %}
+                <li class="feed-empty">No projects added yet.</li>
+                {% endfor %}
+            </ul>
         </div>
-        <ul class="feed-list">
-            {% for project in recent_projects %}
-            <li class="feed-item">
-                <div class="feed-avatar feed-avatar-green">
-                    <i class="icofont-image"></i>
-                </div>
-                <div class="feed-content">
-                    <p class="feed-name">{{ project.title }}</p>
-                    <p class="feed-meta">
-                        {% if project.location %}<i class="icofont-location-pin"></i> {{ project.location }} &nbsp;·&nbsp;{% endif %}
-                        {{ project.created_at|date:"M d, Y" }}
-                    </p>
-                </div>
-            </li>
-            {% empty %}
-            <li class="feed-empty">No projects added yet.</li>
-            {% endfor %}
-        </ul>
+        
+        <!-- Recent Camping Packages -->
+        <div class="data-card">
+            <div class="card-header">
+                <span class="card-title">Recent Packages</span>
+                <a href="{% url 'admin_camping_package_list' %}" class="view-all-link">View All →</a>
+            </div>
+            <ul class="feed-list">
+                {% for package in recent_packages %}
+                <li class="feed-item">
+                    <div class="feed-avatar feed-avatar-primary">
+                        <i class="icofont-tent"></i>
+                    </div>
+                    <div class="feed-content">
+                        <p class="feed-name">{{ package.name }}</p>
+                        <p class="feed-sub">{{ package.normal_price|default:"0.00" }}</p>
+                        <p class="feed-meta">
+                            <i class="icofont-clock-time"></i> {{ package.created_at|timesince }} ago
+                        </p>
+                    </div>
+                </li>
+                {% empty %}
+                <li class="feed-empty">No camping packages yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
     <!-- Inquiries + Contacts side by side -->
@@ -247,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* Stats */
     .stats-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 18px;
     }
 
@@ -265,6 +302,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .stat-blue   { border-top-color: #3b82f6; }
     .stat-purple { border-top-color: #a855f7; }
     .stat-orange { border-top-color: #f59e0b; }
+    .stat-primary { border-top-color: #4f46e5; }
 
     .stat-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
     .stat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: #9ca3af; }
@@ -274,6 +312,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .stat-blue   .stat-icon { background: #eff6ff; color: #3b82f6; }
     .stat-purple .stat-icon { background: #faf5ff; color: #a855f7; }
     .stat-orange .stat-icon { background: #fffbeb; color: #f59e0b; }
+    .stat-primary .stat-icon { background: #eef2ff; color: #4f46e5; }
 
     .stat-value { font-size: 30px; font-weight: 800; color: #111827; letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
     .stat-footer { font-size: 12px; color: #9ca3af; font-weight: 500; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
@@ -307,6 +346,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .feed-avatar-green  { background: #f0fdf4; color: #22c55e; }
     .feed-avatar-purple { background: #faf5ff; color: #a855f7; }
     .feed-avatar-orange { background: #fffbeb; color: #f59e0b; }
+    .feed-avatar-primary { background: #eef2ff; color: #4f46e5; }
 
     .feed-content { flex: 1; min-width: 0; }
     .feed-name { font-size: 14px; font-weight: 600; color: #111827; margin: 0 0 2px; }

@@ -28,7 +28,82 @@
     </div>
     <!-- Page Header Section End -->
 
-    <!-- Page Trips Start -->
+    <div class="page-trips">
+        <div class="container">
+            <div class="row">
+                
+                {% for activity in activities %}
+                <div class="col-xl-4 col-md-6">
+                    <div class="trip-item wow fadeInUp" data-wow-delay="{% cycle '0s' '0.2s' '0.4s' %}">
+                        
+                        <div class="trip-item-image">
+                            <a href="{% url 'activity_single' activity.slug %}" data-cursor-text="View">
+                                <figure>
+                                    {% if activity.image %}
+                                        <img src="{{ activity.image.url }}" alt="{{ activity.title }}">
+                                    {% else %}
+                                        <img src="{% static 'images/trip-image-1.jpg' %}" alt="Default Activity">
+                                    {% endif %}
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="trip-item-body">
+                            <div class="trip-item-content">
+                                <h3><a href="{% url 'activity_single' activity.slug %}">{{ activity.title }}</a></h3>
+                                
+                                {% comment %} {% if activity.duration %}
+                                <small class="text-muted mb-2 d-block"><i class="fa fa-clock-o"></i> {{ activity.duration }}</small>
+                                {% endif %} {% endcomment %}
+                                
+                                <p>{{ activity.description|striptags|truncatewords:15 }}</p>
+                            </div>
+                            <div class="trip-item-btn">
+                                <a href="{% url 'activity_single' activity.slug %}" class="btn-default">Explore Activity</a>
+                            </div>
+                            </div>  
+                        </div>
+                    </div>
+                {% empty %}
+                <div class="col-12 text-center">
+                    <h3>No activities found yet.</h3>
+                </div>
+                {% endfor %}
+    
+            </div>
+    
+            {% if activities.has_other_pages %}
+            <div class="row mt-5">
+                <div class="col-12">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            {% if activities.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ activities.previous_page_number }}">Previous</a>
+                            </li>
+                            {% endif %}
+    
+                            {% for num in activities.paginator.page_range %}
+                                {% if activities.number == num %}
+                                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                {% elif num > activities.number|add:'-3' and num < activities.number|add:'3' %}
+                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+    
+                            {% if activities.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ activities.next_page_number }}">Next</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            {% endif %}
+            </div>
+    </div>
+
+    {% comment %} <!-- Page Trips Start -->
     <div class="page-trips">
         <div class="container">
             <div class="row">
@@ -232,7 +307,7 @@
             </div>
         </div>
     </div>
-    <!-- Page Trips End -->
+    <!-- Page Trips End --> {% endcomment %}
 
     <!-- Our Experiences Section Start -->
     <div class="our-adventures parallaxie">

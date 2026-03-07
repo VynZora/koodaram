@@ -209,23 +209,28 @@
                 <div class="col-lg-12">
                     <!-- Section Title Start -->
                     <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">Our Services</h3>
-                        <h2 class="text-effect" data-cursor="-opaque">Our services are designed to create experiences that last a lifetime</h2>
+                        <h3 class="wow fadeInUp">Our Camping Packages</h3>
+                        <h2 class="text-effect" data-cursor="-opaque">Our camping packages are designed to create experiences that last a lifetime</h2>
                     </div>
                     <!-- Section Title End -->
                 </div>
             </div>
 
             <div class="row">
+                {% for package in packages %}
                 <div class="col-xl-3 col-lg-6 col-md-6">
                     <!-- Service Item Start -->
-                    <div class="service-item-royal wow fadeInUp">
+                    <div class="service-item-royal wow fadeInUp" {% cycle '' 'data-wow-delay="0.2s"' 'data-wow-delay="0.4s"' 'data-wow-delay="0.6s"' %}>
                         <!-- Service Image Start -->
                         <div class="service-image-royal">
                             <div class="service-img-royal">
-                                <a href="{% url 'service_single' %}" data-cursor-text="View">
+                                <a href="{% url 'service_single' package.slug %}" data-cursor-text="View">
                                     <figure>
-                                        <img src="{% static 'images/service-image-royal-1.jpg' %}" alt="">
+                                        {% if package.main_image %}
+                                        <img src="{{ package.main_image.url }}" alt="{{ package.name }}">
+                                        {% else %}
+                                        <img src="{% static 'images/service-image-royal-1.jpg' %}" alt="{{ package.name }}">
+                                        {% endif %}
                                     </figure>
                                 </a>
                             </div>
@@ -239,14 +244,14 @@
                         <div class="service-content-body-royal">
                             <!-- Service Content Start -->
                             <div class="service-content-royal">
-                                <h3><a href="{% url 'service_single' %}">Luxury Camping Stays</a></h3>
-                                <p>Stay in comfort amidst tea gardens and misty hills.</p>
+                                <h3><a href="{% url 'service_single' package.slug %}">{{ package.name }}</a></h3>
+                                <p>{{ package.description|striptags|truncatewords:10 }}</p>
                             </div>
                             <!-- Service Content End --> 
 
                             <!-- Service Button Start -->
                             <div class="service-btn-royal">
-                                <a href="{% url 'service_single' %}" class="btn-default-royal">Read More</a>
+                                <a href="{% url 'service_single' package.slug %}" class="btn-default-royal">Read More</a>
                             </div>
                             <!-- Service Button End -->
                         </div> 
@@ -254,120 +259,11 @@
                     </div>
                     <!-- Service Item End -->
                 </div>
-
-                <div class="col-xl-3 col-lg-6 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item-royal wow fadeInUp" data-wow-delay="0.2s">
-                        <!-- Service Image Start -->
-                        <div class="service-image-royal">
-                            <div class="service-img-royal">
-                                <a href="{% url 'service_single' %}" data-cursor-text="View">
-                                    <figure>
-                                        <img src="{% static 'images/service-image-royal-2.jpg' %}" alt="">
-                                    </figure>
-                                </a>
-                            </div>
-                            <div class="icon-box">
-                                <img src="{% static 'images/icon-service-2-royal.svg' %}" alt="">
-                            </div>
-                        </div>
-                        <!-- Service Image End -->
-
-                        <!-- Service Content Body Start -->
-                        <div class="service-content-body-royal">
-                            <!-- Service Content Start -->
-                            <div class="service-content-royal">
-                                <h3><a href="{% url 'service_single' %}">Nature Retreats</a></h3>
-                                <p>Stay in comfort amidst tea gardens and misty hills.</p>
-                            </div>
-                            <!-- Service Content End --> 
-
-                            <!-- Service Button Start -->
-                            <div class="service-btn-royal">
-                                <a href="{% url 'service_single' %}" class="btn-default-royal">Read More</a>
-                            </div>
-                            <!-- Service Button End -->
-                        </div> 
-                        <!-- Service Content Body End -->                    
-                    </div>
-                    <!-- Service Item End -->
+                {% empty %}
+                <div class="col-12 mt-4 text-center">
+                    <p>No camping packages available at the moment.</p>
                 </div>
-
-                <div class="col-xl-3 col-lg-6 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item-royal wow fadeInUp" data-wow-delay="0.4s">
-                        <!-- Service Image Start -->
-                        <div class="service-image-royal">
-                            <div class="service-img-royal">
-                                <a href="{% url 'service_single' %}" data-cursor-text="View">
-                                    <figure>
-                                        <img src="{% static 'images/service-image-royal-3.jpg' %}" alt="">
-                                    </figure>
-                                </a>
-                            </div>
-                            <div class="icon-box">
-                                <img src="{% static 'images/icon-service-3-royal.svg' %}" alt="">
-                            </div>
-                        </div>
-                        <!-- Service Image End -->
-
-                        <!-- Service Content Body Start -->
-                        <div class="service-content-body-royal">
-                            <!-- Service Content Start -->
-                            <div class="service-content-royal">
-                                <h3><a href="{% url 'service_single' %}">Family & Group Activities</a></h3>
-                                <p>Stay in comfort amidst tea gardens and misty hills.</p>
-                            </div>
-                            <!-- Service Content End --> 
-
-                            <!-- Service Button Start -->
-                            <div class="service-btn-royal">
-                                <a href="{% url 'service_single' %}" class="btn-default-royal">Read More</a>
-                            </div>
-                            <!-- Service Button End -->
-                        </div> 
-                        <!-- Service Content Body End -->                       
-                    </div>
-                    <!-- Service Item End -->
-                </div>
-
-                <div class="col-xl-3 col-lg-6 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item-royal wow fadeInUp" data-wow-delay="0.6s">
-                        <!-- Service Image Start -->
-                        <div class="service-image-royal">
-                            <div class="service-img-royal">
-                                <a href="{% url 'service_single' %}" data-cursor-text="View">
-                                    <figure>
-                                        <img src="{% static 'images/service-image-royal-4.jpg' %}" alt="">
-                                    </figure>
-                                </a>
-                            </div>
-                            <div class="icon-box">
-                                <img src="{% static 'images/icon-service-4-royal.svg' %}" alt="">
-                            </div>
-                        </div>
-                        <!-- Service Image End -->
-
-                        <!-- Service Content Body Start -->
-                        <div class="service-content-body-royal">
-                            <!-- Service Content Start -->
-                            <div class="service-content-royal">
-                                <h3><a href="{% url 'service_single' %}">Romantic Getaways</a></h3>
-                                <p>Stay in comfort amidst tea gardens and misty hills.</p>
-                            </div>
-                            <!-- Service Content End --> 
-
-                            <!-- Service Button Start -->
-                            <div class="service-btn-royal">
-                                <a href="{% url 'service_single' %}" class="btn-default-royal">Read More</a>
-                            </div>
-                            <!-- Service Button End -->
-                        </div> 
-                        <!-- Service Content Body End -->                       
-                    </div>
-                    <!-- Service Item End -->
-                </div>
+                {% endfor %}
             </div>
 
             <div class="row">
@@ -390,15 +286,15 @@
                 <div class="col-xl-6 col-lg-7">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp">My Adventure</h3>
-                        <h2 class="text-effect" data-cursor="-opaque">Find your adventure and escape the  ordinary today</h2>
+                        <h3 class="wow fadeInUp">Why Koodaram</h3>
+                        <h2 class="text-effect" data-cursor="-opaque">Experience the ultimate blend of wilderness and comfort</h2>
                     </div>
                     <!-- Section Title End -->
                 </div>
                 <div class="col-xl-6 col-lg-5">
                     <!-- Section Button Start -->
                     <div class="section-btn wow fadeInUp" data-wow-delay="0.2s">
-                        <a href="{% url 'contact' %}" class="btn-default-royal">Start Your Journey</a>
+                        <a href="{% url 'contact' %}" class="btn-default-royal">Plan Your Escape</a>
                     </div>
                     <!-- Section Button End -->
                 </div>
@@ -411,10 +307,10 @@
                         <!-- Adventure Box 1 Start -->
                         <div class="adventure-box-1-royal wow fadeInUp">
                             <div class="adventure-box-header-royal">
-                                <h3>Step Into Nature's Heart and Begin Writing Your Unique Story of Adventure & Discovery</h3>
+                                <h3>Immerse Yourself in the Serenity of Nature and Create Memories That Last a Lifetime</h3>
                             </div>
                             <div class="adventure-box-btn-royal">
-                                <a href="{% url 'about' %}" class="btn-default-royal">Learn More About</a>
+                                <a href="{% url 'about' %}" class="btn-default-royal">Discover Our Vision</a>
                             </div>
                         </div>
                         <!-- Adventure Box 1 End -->
@@ -424,14 +320,14 @@
                             <!-- Adventure Box Image Start -->
                             <div class="advrnture-box-image-royal">
                                 <figure>
-                                    <img src="{% static 'images/adventure-image-1-royal.jpg' %}" alt="">
+                                    <img src="{% static 'images/new/blogs.jpg' %}" alt="">
                                 </figure>
 
                                 <!-- Adventure Content Body Start -->
                                 <div class="adventure-content-body-royal">
                                     <!-- Adventure Info Content Start -->
                                     <div class="adventure-info-content-royal">
-                                        <p>Every adventure is more than just a trip - it's a story waiting to be written. My Adventure is all about creating unforgettable</p>
+                                        <p>Experience the perfect balance of rugged outdoors and premium amenities. Our meticulously designed campsites ensure you get the best of both worlds.</p>
                                     </div>
                                     <!-- Adventure Info Content End -->
 
@@ -439,7 +335,7 @@
                                     <div class="adventure-info-footer-royal">
                                         <div class="adventure-info-list-royal">
                                             <ul>
-                                                <li><img src="{% static 'images/icon-adventure-info-list-royal.svg' %}" alt="">Luxury Stays in Nature</li>
+                                                <li><img src="{% static 'images/icon-adventure-info-list-royal.svg' %}" alt="">Premium Tents & Cabins</li>
                                             </ul>
                                         </div>
                                         <div class="adventure-info-btn-royal">
@@ -459,7 +355,7 @@
                             <!-- Adventure Box Image Start -->
                             <div class="advrnture-box-image-royal">
                                 <figure class="image-anime">
-                                    <img src="{% static 'images/adventure-image-2-royal.jpg' %}" alt="">
+                                    <img src="{% static 'images/new/fireplace.webp' %}" alt="">
                                 </figure>
                                 <!-- Adventure Content Body Start -->
                                 <div class="adventure-content-body-royal">
@@ -467,7 +363,7 @@
                                     <div class="adventure-info-footer-royal">
                                         <div class="adventure-info-list-royal">
                                             <ul>
-                                                <li><img src="{% static 'images/icon-adventure-info-list-royal.svg' %}" alt="">Eco-Friendly</li>
+                                                <li><img src="{% static 'images/icon-adventure-info-list-royal.svg' %}" alt="">Sustainable Tourism</li>
                                             </ul>
                                         </div>
                                         <div class="adventure-info-btn-royal">
@@ -482,7 +378,7 @@
 
                             <!-- Adventure Box Content Start -->
                             <div class="adventure-box-content-royal">
-                                <p>Travel responsibly without sacrificing comfort. Our eco-conscious camping experiences</p>
+                                <p>Travel responsibly without sacrificing comfort. We are committed to preserving the natural beauty of our surroundings for future generations.</p>
                             </div>
                             <!-- Adventure Box Content End -->
                         </div>
@@ -671,21 +567,26 @@
                     <!-- Section Title Start -->
                     <div class="section-title section-title-center">
                         <h3 class="wow fadeInUp">Explore Koodaram Stays</h3>
-                        <h2 class="text-effect" data-cursor="-opaque">Discover unique camping trips across stunning destinations</h2>
+                        <h2 class="text-effect" data-cursor="-opaque">Discover unique activities across stunning destinations</h2>
                     </div>
                     <!-- Section Title End -->
                 </div>
             </div>
 
             <div class="row">
+                {% for activity in activities %}
                 <div class="col-xl-3 col-md-6">
                     <!-- Trip Item Start -->
-                    <div class="trip-item-royal wow fadeInUp">
+                    <div class="trip-item-royal wow fadeInUp" {% cycle '' 'data-wow-delay="0.2s"' 'data-wow-delay="0.4s"' 'data-wow-delay="0.6s"' %}>
                         <!-- Trip Item Image Start -->
                         <div class="trip-item-image-royal">
-                            <a href="{% url 'trip_single' %}" data-cursor-text="View">
+                            <a href="{% url 'activity_single' activity.slug %}" data-cursor-text="View">
                                 <figure>
-                                    <img src="{% static 'images/trip-image-royal-1.jpg' %}" alt="">
+                                    {% if activity.image %}
+                                    <img src="{{ activity.image.url }}" alt="{{ activity.title }}">
+                                    {% else %}
+                                    <img src="{% static 'images/trip-image-royal-1.jpg' %}" alt="{{ activity.title }}">
+                                    {% endif %}
                                 </figure>
                             </a>
                         </div>
@@ -695,14 +596,14 @@
                         <div class="trip-item-body-royal">
                             <!-- Trip Content Start -->
                             <div class="trip-item-content-royal">
-                                <p>Romance</p>
-                                <h3><a href="{% url 'trip_single' %}">Romantic Getaways Under the Starry Sky</a></h3>
+                                <p>Activity</p>
+                                <h3><a href="{% url 'activity_single' activity.slug %}">{{ activity.title }}</a></h3>
                             </div>
                             <!-- Trip Content End -->
                             
                             <!-- Trip Readmore Button Start -->
                             <div class="trip-item-btn-royal">
-                                <a href="{% url 'trip_single' %}" class="readmore-btn">Explore Trip</a>
+                                <a href="{% url 'activity_single' activity.slug %}" class="readmore-btn">Explore Activity</a>
                             </div>
                             <!-- Trip Readmore Button End -->
                         </div>  
@@ -710,110 +611,16 @@
                     </div>
                     <!-- Trip Item End -->
                 </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Trip Item Start -->
-                    <div class="trip-item-royal wow fadeInUp" data-wow-delay="0.2s">
-                        <!-- Trip Item Image Start -->
-                        <div class="trip-item-image-royal">
-                            <a href="{% url 'trip_single' %}" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/trip-image-royal-2.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Trip Item Image End -->
-
-                        <!-- Trip Item Body Start -->
-                        <div class="trip-item-body-royal">
-                            <!-- Trip Content Start -->
-                            <div class="trip-item-content-royal">
-                                <p>Luxury</p>
-                                <h3><a href="{% url 'trip_single' %}">Luxury Escape Surround by Scenic Wilderness</a></h3>
-                            </div>
-                            <!-- Trip Content End -->
-                            
-                            <!-- Trip Readmore Button Start -->
-                            <div class="trip-item-btn-royal">
-                                <a href="{% url 'trip_single' %}" class="readmore-btn">Explore Trip</a>
-                            </div>
-                            <!-- Trip Readmore Button End -->
-                        </div>  
-                        <!-- Trip Item Body End -->
-                    </div>
-                    <!-- Trip Item End -->
+                {% empty %}
+                <div class="col-12 mt-4 text-center">
+                    <p>No activities available at the moment.</p>
                 </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Trip Item Start -->
-                    <div class="trip-item-royal wow fadeInUp" data-wow-delay="0.4s">
-                        <!-- Trip Item Image Start -->
-                        <div class="trip-item-image-royal">
-                            <a href="{% url 'trip_single' %}" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/trip-image-royal-3.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Trip Item Image End -->
-
-                        <!-- Trip Item Body Start -->
-                        <div class="trip-item-body-royal">
-                            <!-- Trip Content Start -->
-                            <div class="trip-item-content-royal">
-                                <p>Adventure</p>
-                                <h3><a href="{% url 'trip_single' %}">Family Adventures in Nature's Playground</a></h3>
-                            </div>
-                            <!-- Trip Content End -->
-                            
-                            <!-- Trip Readmore Button Start -->
-                            <div class="trip-item-btn-royal">
-                                <a href="{% url 'trip_single' %}" class="readmore-btn">Explore Trip</a>
-                            </div>
-                            <!-- Trip Readmore Button End -->
-                        </div>  
-                        <!-- Trip Item Body End -->
-                    </div>
-                    <!-- Trip Item End -->
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Trip Item Start -->
-                    <div class="trip-item-royal wow fadeInUp" data-wow-delay="0.6s">
-                        <!-- Trip Item Image Start -->
-                        <div class="trip-item-image-royal">
-                            <a href="{% url 'trip_single' %}" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/trip-image-royal-4.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Trip Item Image End -->
-
-                        <!-- Trip Item Body Start -->
-                        <div class="trip-item-body-royal">
-                            <!-- Trip Content Start -->
-                            <div class="trip-item-content-royal">
-                                <p>Stargazer</p>
-                                <h3><a href="{% url 'trip_single' %}">Thrilling Outdoor Journeys for Every Explorer</a></h3>
-                            </div>
-                            <!-- Trip Content End -->
-                            
-                            <!-- Trip Readmore Button Start -->
-                            <div class="trip-item-btn-royal">
-                                <a href="{% url 'trip_single' %}" class="readmore-btn">Explore Trip</a>
-                            </div>
-                            <!-- Trip Readmore Button End -->
-                        </div>  
-                        <!-- Trip Item Body End -->
-                    </div>
-                    <!-- Trip Item End -->
-                </div>
+                {% endfor %}
 
                 <div class="col-lg-12">
                     <!-- Section Footer Text Start -->
                     <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                        <p><span>Free</span>Let's find your perfect escape together. <a href="{% url 'trips' %}">View All Trips.</a></p>
+                        <p><span>Free</span>Let's find your perfect adventure together. <a href="{% url 'activity_list' %}">View All Activities.</a></p>
                     </div>
                     <!-- Section Footer Text End -->
                 </div>

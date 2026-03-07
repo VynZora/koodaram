@@ -3,8 +3,19 @@
 
 {% block title %}Trip Details | Koodaram{% endblock %}
 {% block meta_description %}Koodaram Trip Details page.{% endblock %}
+{% block page_header_style %}
+<style>
+    .page-header {
+        {% if activity.image %}
+        background-image: url('{{ activity.image.url }}');
+        {% else %}
+        background-image: url('{% static "images/new/adventure.webp" %}');
+        {% endif %}
+    }
+</style>
+{% endblock %}
+{% block content %} 
 
-{% block content %}
 
     <!-- Page Header Section Start -->
     <div class="page-header parallaxie">
@@ -13,12 +24,12 @@
                 <div class="col-lg-12">
                     <!-- Page Header Box Start -->
                     <div class="page-header-box">
-                        <h1 class="text-anime-style-3" data-cursor="-opaque">Attukad Waterfalls Trek, Munnar</h1>
+                        <h1 class="text-anime-style-3" data-cursor="-opaque">{{activity.title}}</h1>
                         <nav class="wow fadeInUp">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="./">home</a></li>
-                                <li class="breadcrumb-item"><a href="{% url 'trips' %}">trips</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Attukad Waterfalls Trek, Munnar</li>
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">home</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'activity_list' %}">activities</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{activity.title}}</li>
                             </ol>
                         </nav>
                     </div>
@@ -29,7 +40,7 @@
     </div>
     <!-- Page Header Section End -->
 
-    <!-- Page Trip Single Start -->
+    {% comment %} <!-- Page Trip Single Start -->
     <div class="page-trip-single">
         <div class="container">
             <div class="row">
@@ -302,8 +313,209 @@
             </div>
         </div>
     </div>
-    <!-- Page Trip Single End -->
+    <!-- Page Trip Single End --> {% endcomment %}
+    <div class="page-trip-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="page-single-sidebar">
+                        <div class="page-category-list trip-category-list wow fadeInUp">
+                            <h3>Activity Information</h3>
+                            <div class="trip-category-body">
+                                <ul>
+                                    <li><span><strong>{{ activity.title }}</strong></span></li>
+                                    <li><span>Duration</span>{{ activity.duration|default:"Flexible" }}</li>
+                                    {% comment %} <li><span>Min Age</span>10 Years+</li> {% endcomment %}
+                                    {% comment %} <li><span>Type</span>Adventure, Nature</li> {% endcomment %}
+                                    <li><span>Location</span>Munnar, Kerala</li>
+                                </ul>
+                                <a href="{% url 'contact' %}" class="btn-default">Contact Us</a>
+                            </div>
+                        </div>
+                        <div class="sidebar-cta-box wow fadeInUp" data-wow-delay="0.25s">
+                            <div class="icon-box">
+                                <img src="{% static 'images/icon-sidebar-cta.svg' %}" alt="">
+                            </div>
+                            <div class="sidebar-cta-content">
+                                <h3>Let's plan your perfect nature escape</h3>
+                            </div>
+                            <div class="sidebar-cta-contact-list">
+                                <ul>
+                                    <li><a href="tel:+919497000000"><img src="{% static 'images/icon-phone-white.svg' %}" alt=""> +91 94970 00000</a></li>
+                                    <li><a href="mailto:hello@koodaram.com"><img src="{% static 'images/icon-mail-white.svg' %}" alt=""> hello@koodaram.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-8">
+                    <div class="trip-single-content">
+                        <div class="page-single-image">
+                            <figure class="image-anime reveal">
+                                {% if activity.image %}
+                                    <img src="{{ activity.image.url }}" alt="{{ activity.title }}">
+                                {% else %}
+                                    <img src="{% static 'images/trip-image-1.jpg' %}" alt="Default Image">
+                                {% endif %}
+                            </figure>
+                        </div>
+                        <div class="trip-entry">
+                            <div class="wow fadeInUp mb-4">
+                                <h2 class="mb-3">{{ activity.title }}</h2>
+                                {{ activity.description|safe }}
+                            </div>
+    
+                            {% comment %}
+                            <div class="trip-info-box">
+                                <h2 class="text-anime-style-3">Your package at a glance</h2>
+                                <p class="wow fadeInUp">To make your journey clear and hassle-free, we've outlined exactly what's included in your adventure package.</p>
+    
+                                <div class="trip-info-body">
+                                    <div class="trip-info-item wow fadeInUp" data-wow-delay="0.2s">
+                                        <h3>Include</h3>
+                                        <p>Your trip has been carefully designed to provide comfort and adventure.</p>
+                                        <ul>
+                                            <li>Professional Guide</li>
+                                            <li>Safety Equipment</li>
+                                            <li>Refreshments</li>
+                                            <li>Photo opportunities</li>
+                                        </ul>
+                                    </div>
+                                    <div class="trip-info-item wow fadeInUp" data-wow-delay="0.4s">
+                                        <h3>Exclude</h3>
+                                        <p>Please note the following are not included in the standard package.</p>
+                                        <ul>
+                                            <li>Personal expenses</li>
+                                            <li>Tips and gratuities</li>
+                                            <li>Medical insurance</li>
+                                            <li>Pickup/Drop (unless specified)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endcomment %}
 
+                            {% comment %}
+                            <div class="trip-adventure-box">
+                                <h2 class="text-anime-style-3">Activity Highlights</h2>
+                                <p class="wow fadeInUp">Experience the best of nature with our curated itinerary.</p>
+    
+                                <div class="trip-adventure-body">
+                                    <div class="trip-location-list">
+                                        <div class="trip-adventure-item wow fadeInUp" data-wow-delay="0.2s">
+                                            <div class="icon-box">
+                                                <img src="{% static 'images/icon-location-primary.svg' %}" alt="">
+                                            </div>
+                                            <div class="trip-adventure-item-content">
+                                                <h4>Step 1</h4>
+                                                <h3>Arrival & Briefing</h3>
+                                                <p>Meet at the base camp for a safety briefing and gear check.</p>
+                                            </div>
+                                        </div>
+                                        <div class="trip-adventure-item wow fadeInUp" data-wow-delay="0.4s">
+                                            <div class="icon-box">
+                                                <img src="{% static 'images/icon-location-primary.svg' %}" alt="">
+                                            </div>
+                                            <div class="trip-adventure-item-content">
+                                                <h4>Step 2</h4>
+                                                <h3>The Adventure Begins</h3>
+                                                <p>Embark on the trail through tea plantations and scenic valleys.</p>
+                                            </div>
+                                        </div>
+                                        <div class="trip-adventure-item wow fadeInUp" data-wow-delay="0.6s">
+                                            <div class="icon-box">
+                                                <img src="{% static 'images/icon-location-primary.svg' %}" alt="">
+                                            </div>
+                                            <div class="trip-adventure-item-content">
+                                                <h4>Step 3</h4>
+                                                <h3>Relaxation</h3>
+                                                <p>Enjoy refreshments and take in the panoramic views.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="trip-adventure-image">
+                                        <figure class="image-anime reveal">
+                                            <img src="{% static 'images/trip-adventure-image.jpg' %}" alt="">
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endcomment %}
+
+                        </div> 
+                        <div class="page-single-faqs">
+                            <div class="section-title">
+                                <h2 class="text-anime-style-3" data-cursor="-opaque">Frequently asked questions</h2>
+                            </div>
+                            <div class="faq-accordion" id="faqaccordion">
+                                <div class="accordion-item wow fadeInUp">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                            Q1. What safety measures are in place?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#faqaccordion">
+                                        <div class="accordion-body">
+                                            <p>Your safety is our top priority. All activities are supervised by trained professionals, and we use high-quality, regularly inspected equipment.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item wow fadeInUp" data-wow-delay="0.2s">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                            Q2. Is this suitable for beginners?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse show" aria-labelledby="heading2" data-bs-parent="#faqaccordion">
+                                        <div class="accordion-body">
+                                            <p>Yes! Most of our activities are designed to be beginner-friendly. Our guides will provide all necessary instructions before you begin.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item wow fadeInUp" data-wow-delay="0.4s">
+                                    <h2 class="accordion-header" id="heading3">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                            Q3. What should I wear?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#faqaccordion">
+                                        <div class="accordion-body">
+                                            <p>We recommend comfortable outdoor clothing and sturdy shoes. Avoid loose jewelry or clothing that could get snagged.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item wow fadeInUp" data-wow-delay="0.6s">
+                                    <h2 class="accordion-header" id="heading4">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                            Q4. Do I need to bring my own food?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#faqaccordion">
+                                        <div class="accordion-body">
+                                            <p>Light refreshments are usually provided. For longer activities, we recommend bringing water and light snacks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item wow fadeInUp" data-wow-delay="0.8s">
+                                    <h2 class="accordion-header" id="heading5">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                           Q5. What is the cancellation policy?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#faqaccordion">
+                                        <div class="accordion-body">
+                                            <p>Please contact our support team for details regarding cancellations and rescheduling, as policies may vary by activity type.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Scrolling Ticker Section Start -->
     <div class="our-scrolling-ticker bg-section">
         <!-- Scrolling Ticker Start -->

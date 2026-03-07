@@ -5,8 +5,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models.functions import Lower
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import BlogForm, ContactForm, TestimonialForm
-from .models import Blog, Category, ContactMessage, GalleryImage, Testimonial
+from .forms import BlogForm, ContactForm, TestimonialForm, ActivityForm, CampingPackageForm
+from .models import Blog, Category, ContactMessage, GalleryImage, Testimonial, Activity, CampingPackage
 
 
 def home(request):
@@ -16,7 +16,15 @@ def home(request):
         testimonials = (testimonials * repeat_count)[:3]
 
     blogs = Blog.objects.all()[:3]
-    context = {"testimonials": testimonials, "blogs": blogs}
+    packages = CampingPackage.objects.all()[:4]
+    activities = Activity.objects.all()[:4]
+    
+    context = {
+        "testimonials": testimonials, 
+        "blogs": blogs,
+        "packages": packages,
+        "activities": activities
+    }
     return render(request, "frontend/index.html", context)
 
 
@@ -132,9 +140,71 @@ def admin_logout(request):
     return redirect("admin_login")
 
 
+import datetime
+from django.utils import timezone
+from dateutil.relativedelta import relativedelta
+
 @login_required(login_url="admin_login")
 def admin_dashboard(request):
-    return render(request, "admin_pages/dashboard.html")
+    now = timezone.now()
+    month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+    
+    # 1. Total Stats
+    stats = {
+        'total_projects': Blog.objects.count(), # Assuming Portfolio Projects means Blogs based on the URL in template
+        'projects_this_month': Blog.objects.filter(created_at__gte=month_start).count(),
+        'total_services': Category.objects.count(), # Assuming Categories map to Services
+        'total_inquiries': ContactMessage.objects.filter(service_type__isnull=False).count() if hasattr(ContactMessage, 'service_type') else 0, # Since service_type might not exist, failing gracefully
+        'total_contacts': ContactMessage.objects.count(),
+        'total_packages': CampingPackage.objects.count()
+    }
+
+    # 2. Recent Lists
+    recent_projects = Blog.objects.all().order_by('-created_at')[:4]
+    recent_contacts = ContactMessage.objects.all().order_by('-created_at')[:4]
+    recent_packages = CampingPackage.objects.all().order_by('-created_at')[:4]
+    # Inquiries fallback if no dedicated model
+    recent_inquiries = ContactMessage.objects.all().order_by('-created_at')[:4] if not hasattr(ContactMessage, 'service_type') else ContactMessage.objects.exclude(service_type__isnull=True).order_by('-created_at')[:4]
+
+    # 3. Chart Data (Projects over last 6 months)
+    month_labels = []
+    month_counts = []
+    for i in range(5, -1, -1):
+        target_month = now - relativedelta(months=i)
+        label = target_month.strftime('%b')
+        month_labels.append(label)
+        
+        count = Blog.objects.filter(
+            created_at__year=target_month.year,
+            created_at__month=target_month.month
+        ).count()
+        month_counts.append(count)
+        
+    # 4. Service Distribution (Doughnut Chart)
+    service_labels = []
+    service_counts = []
+    for category in Category.objects.all()[:6]: # Limit to top 6 categories for visual fit
+        service_labels.append(category.name)
+        # Using GalleryImage count as a proxy for category size since there is no direct service linkage
+        service_counts.append(category.images.count())
+        
+    if not service_labels: # Fallback if empty to load chart cleanly
+        service_labels = ['No Data']
+        service_counts = [1]
+
+    context = {
+        'stats': stats,
+        'recent_projects': recent_projects,
+        'recent_contacts': recent_contacts,
+        'recent_inquiries': recent_inquiries,
+        'recent_packages': recent_packages,
+        'month_labels': month_labels,
+        'month_counts': month_counts,
+        'service_labels': service_labels,
+        'service_counts': service_counts,
+    }
+
+    return render(request, "admin_pages/dashboard.html", context)
 
 
 
@@ -347,3 +417,141 @@ def delete_contact(request, pk):
     if request.method == "POST":
         contact.delete()
     return redirect("view_contacts")
+
+
+# ==========================================
+# 10. ACTIVITIES (FRONTEND)
+# ==========================================
+
+def activity_list(request):
+    # Fetch activities, ordered by newest first
+    activities_qs = Activity.objects.all().order_by("-created_at")
+    paginator = Paginator(activities_qs, 9)
+    page_number = request.GET.get("page")
+    activities = paginator.get_page(page_number)
+    return render(request, "frontend/activities.html", {"activities": activities})
+
+
+def activity_single(request, slug):
+    activity = get_object_or_404(Activity, slug=slug)
+    # Optional: fetch other recent activities for a sidebar
+    recent_activities = Activity.objects.exclude(slug=slug)[:3]
+    context = {"activity": activity, "recent_activities": recent_activities}
+    return render(request, "frontend/activity-single.html", context)
+
+
+# ==========================================
+# 11. ACTIVITIES (ADMIN DASHBOARD)
+# ==========================================
+
+@login_required(login_url="admin_login")
+def admin_activity_list(request):
+    activities_qs = Activity.objects.all().order_by("-created_at")
+    paginator = Paginator(activities_qs, 10)
+    page_number = request.GET.get("page")
+    activities = paginator.get_page(page_number)
+    return render(request, "admin_pages/activity_list.html", {"activities": activities})
+
+
+@login_required(login_url="admin_login")
+def activity_create(request):
+    if request.method == "POST":
+        form = ActivityForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Activity created successfully!")
+            return redirect("admin_activity_list")
+    else:
+        form = ActivityForm()
+    return render(request, "admin_pages/create_activity.html", {"form": form})
+
+
+@login_required(login_url="admin_login")
+def activity_update(request, pk):
+    activity = get_object_or_404(Activity, pk=pk)
+    if request.method == "POST":
+        form = ActivityForm(request.POST, request.FILES, instance=activity)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Activity updated successfully!")
+            return redirect("admin_activity_list")
+    else:
+        form = ActivityForm(instance=activity)
+    # Reusing the create template for editing is common practice
+    return render(request, "admin_pages/create_activity.html", {"form": form, "activity": activity})
+
+
+@login_required(login_url="admin_login")
+def activity_delete(request, pk):
+    activity = get_object_or_404(Activity, pk=pk)
+    if request.method == "POST":
+        activity.delete()
+        messages.success(request, "Activity deleted successfully!")
+    return redirect("admin_activity_list")
+
+
+# ==========================================
+# 12. CAMPING PACKAGES (FRONTEND)
+# ==========================================
+
+def services(request):
+    packages_qs = CampingPackage.objects.all().order_by("-created_at")
+    paginator = Paginator(packages_qs, 9)
+    page_number = request.GET.get("page")
+    packages = paginator.get_page(page_number)
+    return render(request, "frontend/services.html", {"packages": packages})
+
+
+def service_single(request, slug):
+    package = get_object_or_404(CampingPackage, slug=slug)
+    recent_packages = CampingPackage.objects.exclude(slug=slug).order_by("-created_at")[:5]
+    return render(request, "frontend/service-single.html", {"package": package, "recent_packages": recent_packages})
+
+
+# ==========================================
+# 13. CAMPING PACKAGES (ADMIN DASHBOARD)
+# ==========================================
+
+@login_required(login_url="admin_login")
+def admin_camping_package_list(request):
+    packages_qs = CampingPackage.objects.all().order_by("-created_at")
+    paginator = Paginator(packages_qs, 10)
+    page_number = request.GET.get("page")
+    packages = paginator.get_page(page_number)
+    return render(request, "admin_pages/camping_package_list.html", {"packages": packages})
+
+
+@login_required(login_url="admin_login")
+def camping_package_create(request):
+    if request.method == "POST":
+        form = CampingPackageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Camping Package created successfully!")
+            return redirect("admin_camping_package_list")
+    else:
+        form = CampingPackageForm()
+    return render(request, "admin_pages/create_camping_package.html", {"form": form})
+
+
+@login_required(login_url="admin_login")
+def camping_package_update(request, pk):
+    package = get_object_or_404(CampingPackage, pk=pk)
+    if request.method == "POST":
+        form = CampingPackageForm(request.POST, request.FILES, instance=package)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Camping Package updated successfully!")
+            return redirect("admin_camping_package_list")
+    else:
+        form = CampingPackageForm(instance=package)
+    return render(request, "admin_pages/create_camping_package.html", {"form": form, "package": package})
+
+
+@login_required(login_url="admin_login")
+def camping_package_delete(request, pk):
+    package = get_object_or_404(CampingPackage, pk=pk)
+    if request.method == "POST":
+        package.delete()
+        messages.success(request, "Camping Package deleted successfully!")
+    return redirect("admin_camping_package_list")

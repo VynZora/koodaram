@@ -1,5 +1,5 @@
 from django import forms
-from .models import  Blog, Testimonial, Category, GalleryImage, ContactMessage
+from .models import  Blog, Testimonial, Category, GalleryImage, ContactMessage, Activity, CampingPackage
 
 
 class BlogForm(forms.ModelForm):
@@ -30,3 +30,18 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactMessage
         fields = ["first_name", "last_name", "phone", "email", "message"]
+
+class ActivityForm(forms.ModelForm):
+    class Meta:
+        model = Activity
+        fields = ["title", "description", "image", "duration"]
+
+
+class CampingPackageForm(forms.ModelForm):
+    class Meta:
+        model = CampingPackage
+        fields = [
+            "name", "description", "main_image", "check_in", "check_out",
+            "normal_price", "special_price", "extra_person_price",
+            "package_items", "facilities"
+        ]

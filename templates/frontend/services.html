@@ -20,11 +20,11 @@
                 <div class="col-lg-12">
                     <!-- Page Header Box Start -->
                     <div class="page-header-box">
-                        <h1 class="text-anime-style-3" data-cursor="-opaque">Our services</h1>
+                        <h1 class="text-anime-style-3" data-cursor="-opaque">Camping Packages</h1>
                         <nav class="wow fadeInUp">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="./">home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">services</li>
+                                <li class="breadcrumb-item active" aria-current="page">camping packages</li>
                             </ol>
                         </nav>
                     </div>
@@ -39,14 +39,15 @@
     <div class="page-services">
         <div class="container">
             <div class="row">
+                {% for package in packages %}
                 <div class="col-xl-3 col-md-6">
                     <!-- Service Item Start -->
-                    <div class="service-item wow fadeInUp">
+                    <div class="service-item wow fadeInUp" {% cycle '' 'data-wow-delay="0.2s"' 'data-wow-delay="0.4s"' 'data-wow-delay="0.6s"' 'data-wow-delay="0.8s"' 'data-wow-delay="1s"' 'data-wow-delay="1.2s"' 'data-wow-delay="1.4s"' %}>
                         <!-- Service Item Image Start -->
                         <div class="service-item-image">
-                            <a href="{% url 'service_single' %}" data-cursor-text="View">
+                            <a href="{% url 'service_single' package.slug %}" data-cursor-text="View">
                                 <figure>
-                                    <img src="{% static 'images/service-image-1.jpg' %}" alt="">
+                                    <img src="{{ package.main_image.url }}" alt="{{ package.name }}">
                                 </figure>
                             </a>
                         </div>
@@ -56,14 +57,14 @@
                         <div class="service-item-body">
                             <!-- Service Content Start -->
                             <div class="service-item-content">
-                                <h3><a href="{% url 'service_single' %}">Forest Haven</a></h3>
-                                <p>Escape into the serene woodland with private tents surrounded.</p>
+                                <h3><a href="{% url 'service_single' package.slug %}">{{ package.name }}</a></h3>
+                                <p>{{ package.description|truncatewords:10|striptags }}</p>
                             </div>
                             <!-- Service Content End -->
                             
                             <!-- Service Readmore Button Start -->
                             <div class="service-readmore-btn">
-                                <a href="{% url 'service_single' %}" class="readmore-btn">Read More</a>
+                                <a href="{% url 'service_single' package.slug %}" class="readmore-btn">Read More</a>
                             </div>
                             <!-- Service Readmore Button End -->
                         </div>  
@@ -71,238 +72,31 @@
                     </div>
                     <!-- Service Item End -->
                 </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item wow fadeInUp" data-wow-delay="0.2s">
-                        <!-- Service Item Image Start -->
-                        <div class="service-item-image">
-                            <a href="{% url 'service_single' %}" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/service-image-2.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Service Item Image End -->
-
-                        <!-- Service Item Body Start -->
-                        <div class="service-item-body">
-                            <!-- Service Content Start -->
-                            <div class="service-item-content">
-                                <h3><a href="{% url 'service_single' %}">Riverbend Safari Tent</a></h3>
-                                <p>This spacious safari tent is ideal for couples or families seeking.</p>
-                            </div>
-                            <!-- Service Content End -->
-                            
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="{% url 'service_single' %}" class="readmore-btn">Read More</a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>  
-                        <!-- Service Item Body End -->
-                    </div>
-                    <!-- Service Item End -->
+                {% empty %}
+                <div class="col-12">
+                    <p class="text-center">No camping packages available yet.</p>
                 </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item wow fadeInUp" data-wow-delay="0.4s">
-                        <!-- Service Item Image Start -->
-                        <div class="service-item-image">
-                            <a href="{% url 'service_single' %}" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/service-image-3.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Service Item Image End -->
-
-                        <!-- Service Item Body Start -->
-                        <div class="service-item-body">
-                            <!-- Service Content Start -->
-                            <div class="service-item-content">
-                                <h3><a href="{% url 'service_single' %}">Mountain Nest Cabin</a></h3>
-                                <p>A beautifully designed A-frame cabin offer-ing modern luxury.</p>
-                            </div>
-                            <!-- Service Content End -->
-                            
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="{% url 'service_single' %}" class="readmore-btn">Read More</a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>  
-                        <!-- Service Item Body End -->
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination (if more than 9 items) -->
+            {% if packages.has_other_pages %}
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <div class="pagination">
+                        {% if packages.has_previous %}
+                            <a href="?page={{ packages.previous_page_number }}" class="btn">&laquo; Previous</a>
+                        {% endif %}
+                        <span class="current">
+                            Page {{ packages.number }} of {{ packages.paginator.num_pages }}
+                        </span>
+                        {% if packages.has_next %}
+                            <a href="?page={{ packages.next_page_number }}" class="btn">Next &raquo;</a>
+                        {% endif %}
                     </div>
-                    <!-- Service Item End -->
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item wow fadeInUp" data-wow-delay="0.6s">
-                        <!-- Service Item Image Start -->
-                        <div class="service-item-image">
-                            <a href="{% url 'service_single' %}" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/service-image-4.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Service Item Image End -->
-
-                        <!-- Service Item Body Start -->
-                        <div class="service-item-body">
-                            <!-- Service Content Start -->
-                            <div class="service-item-content">
-                                <h3><a href="{% url 'service_single' %}">Lakeside Escape</a></h3>
-                                <p>Relax beside shimmering waters, ideal for kayaking, fishing.</p>
-                            </div>
-                            <!-- Service Content End -->
-                            
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="{% url 'service_single' %}" class="readmore-btn">Read More</a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>  
-                        <!-- Service Item Body End -->
-                    </div>
-                    <!-- Service Item End -->
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item wow fadeInUp" data-wow-delay="0.8s">
-                        <!-- Service Item Image Start -->
-                        <div class="service-item-image">
-                            <a href="{% url 'service_single' %}" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/service-image-5.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Service Item Image End -->
-
-                        <!-- Service Item Body Start -->
-                        <div class="service-item-body">
-                            <!-- Service Content Start -->
-                            <div class="service-item-content">
-                                <h3><a href="{% url 'service_single' %}">Trailblazer Treks</a></h3>
-                                <p>Embark on guided journeys through untouched landscapes.</p>
-                            </div>
-                            <!-- Service Content End -->
-                            
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="{% url 'service_single' %}" class="readmore-btn">Read More</a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>  
-                        <!-- Service Item Body End -->
-                    </div>
-                    <!-- Service Item End -->
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item wow fadeInUp" data-wow-delay="1s">
-                        <!-- Service Item Image Start -->
-                        <div class="service-item-image">
-                            <a href="{% url 'service_single' %}" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/service-image-6.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Service Item Image End -->
-
-                        <!-- Service Item Body Start -->
-                        <div class="service-item-body">
-                            <!-- Service Content Start -->
-                            <div class="service-item-content">
-                                <h3><a href="{% url 'service_single' %}">Wild River Runs</a></h3>
-                                <p>Dive into the thrill of nature's current with guided rafting.</p>
-                            </div>
-                            <!-- Service Content End -->
-                            
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="{% url 'service_single' %}" class="readmore-btn">Read More</a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>  
-                        <!-- Service Item Body End -->
-                    </div>
-                    <!-- Service Item End -->
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item wow fadeInUp" data-wow-delay="1.2s">
-                        <!-- Service Item Image Start -->
-                        <div class="service-item-image">
-                            <a href="{% url 'service_single' %}" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/service-image-7.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Service Item Image End -->
-
-                        <!-- Service Item Body Start -->
-                        <div class="service-item-body">
-                            <!-- Service Content Start -->
-                            <div class="service-item-content">
-                                <h3><a href="{% url 'service_single' %}">Ecoquest Adventures</a></h3>
-                                <p>Discover the wild while trading lightly on the earth.</p>
-                            </div>
-                            <!-- Service Content End -->
-                            
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="{% url 'service_single' %}" class="readmore-btn">Read More</a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>  
-                        <!-- Service Item Body End -->
-                    </div>
-                    <!-- Service Item End -->
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item wow fadeInUp" data-wow-delay="1.4s">
-                        <!-- Service Item Image Start -->
-                        <div class="service-item-image">
-                            <a href="{% url 'service_single' %}" data-cursor-text="View">
-                                <figure>
-                                    <img src="{% static 'images/service-image-8.jpg' %}" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Service Item Image End -->
-
-                        <!-- Service Item Body Start -->
-                        <div class="service-item-body">
-                            <!-- Service Content Start -->
-                            <div class="service-item-content">
-                                <h3><a href="{% url 'service_single' %}">Forest Thrill Tours</a></h3>
-                                <p>Step into the heart of wilderness where every path leads.</p>
-                            </div>
-                            <!-- Service Content End -->
-                            
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="{% url 'service_single' %}" class="readmore-btn">Read More</a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>  
-                        <!-- Service Item Body End -->
-                    </div>
-                    <!-- Service Item End -->
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
     <!-- Page Services End -->

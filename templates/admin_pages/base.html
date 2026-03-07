@@ -1078,6 +1078,20 @@
                         </a>
                     </li>
                      {% endcomment %}
+                     <li>
+                        <a href="{% url 'admin_camping_package_list' %}"
+                           class="{% if request.resolver_match.url_name == 'admin_camping_package_list' %}active{% endif %}">
+                            <i class="icofont-quote-left"></i>
+                            Camping Packages
+                        </a>
+                    </li>
+                     <li>
+                        <a href="{% url 'admin_activity_list' %}"
+                           class="{% if request.resolver_match.url_name == 'admin_activity_list' %}active{% endif %}">
+                            <i class="icofont-quote-left"></i>
+                            Activities
+                        </a>
+                    </li>
                     <li class="has-dropdown {% if request.resolver_match.url_name == 'list_image' or request.resolver_match.url_name == 'category_list' %}open{% endif %}">
                         <a href="#">
                             <i class="icofont-picture"></i>

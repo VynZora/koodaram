@@ -112,22 +112,26 @@
                         class="wow fadeInUp" data-wow-delay="0.2s">
                         {% csrf_token %}
                         <div class="row">
-                            <div class="form-group col-md-6 mb-4">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Name"
-                                    value="{{ request.POST.name|default:'' }}" required>
-                                <div class="help-block with-errors"></div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Name"
+                                        value="{{ request.POST.name|default:'' }}" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <input type="text" name="phone" class="form-control" id="phone"
+                                        placeholder="Phone Number" value="{{ request.POST.phone|default:'' }}" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
                             </div>
 
                             <div class="form-group col-md-6 mb-4">
-                                <input type="email" name="email" class="form-control" id="email"
-                                    placeholder="Email Address" value="{{ request.POST.email|default:'' }}" required>
-                                <div class="help-block with-errors"></div>
-                            </div>
-
-                            <div class="form-group col-md-6 mb-4">
-                                <input type="text" name="phone" class="form-control" id="phone"
-                                    placeholder="Phone Number" value="{{ request.POST.phone|default:'' }}" required>
-                                <div class="help-block with-errors"></div>
+                                <div style="height: 100%; display: flex; flex-direction: column;">
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        placeholder="Email Address" value="{{ request.POST.email|default:'' }}" required 
+                                        style="flex-grow: 1; min-height: 110px;">
+                                    <div class="help-block with-errors"></div>
+                                </div>
                             </div>
 
                             <div class="form-group col-md-6 mb-4">

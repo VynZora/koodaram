@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models.functions import Lower
 from django.shortcuts import get_object_or_404, redirect, render
+from django.core.mail import EmailMultiAlternatives
+from django.utils.html import strip_tags
+from django.conf import settings
 
 from .forms import BlogForm, ContactForm, TestimonialForm, ActivityForm, CampingPackageForm, BookingForm
 from .models import Blog, Category, ContactMessage, GalleryImage, Testimonial, Activity, CampingPackage, Booking
@@ -438,7 +441,96 @@ def booking(request):
     form = BookingForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
-            form.save()
+            booking_obj = form.save()
+            
+            # Email sending logic
+            try:
+                subject = f"New Booking Inquiry - {booking_obj.name}"
+                
+                html_message = f"""
+                <!DOCTYPE html>
+                <html>
+                <head><meta charset="UTF-8"></head>
+                <body style="margin:0; padding:0; background-color:#f4f4f4; font-family: Arial, sans-serif;">
+                    <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 20px;">
+                        <tr>
+                            <td align="center">
+                                <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                                    <tr>
+                                        <td style="background:#C5A880; padding:30px; text-align:center;">
+                                            <h2 style="margin:0; color:#ffffff;">New Booking Inquiry</h2>
+                                            <p style="margin:5px 0 0; color:#f9f9f9; font-size:14px;">Koodaram Camping</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:30px;">
+                                            <p style="color:#555; font-size:15px; margin-bottom:20px;">A new booking inquiry has been submitted through the Koodaram website.</p>
+                                            
+                                            <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e0e0e0; border-radius:6px; font-size:14px;">
+                                                <tr>
+                                                    <td style="padding:12px; font-weight:bold; width:40%; border-bottom:1px solid #eee;">Guest Name</td>
+                                                    <td style="padding:12px; border-bottom:1px solid #eee;">{booking_obj.name}</td>
+                                                </tr>
+                                                
+                                                <tr style="background:#f8f9fa;">
+                                                    <td style="padding:12px; font-weight:bold; border-bottom:1px solid #eee;">Phone</td>
+                                                    <td style="padding:12px; border-bottom:1px solid #eee;">{booking_obj.phone}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="padding:12px; font-weight:bold; border-bottom:1px solid #eee;">Email</td>
+                                                    <td style="padding:12px; border-bottom:1px solid #eee;">{booking_obj.email}</td>
+                                                </tr>
+
+                                                <tr style="background:#f8f9fa;">
+                                                    <td style="padding:12px; font-weight:bold; border-bottom:1px solid #eee;">Dates</td>
+                                                    <td style="padding:12px; border-bottom:1px solid #eee;">{booking_obj.check_in} to {booking_obj.check_out}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="padding:12px; font-weight:bold; border-bottom:1px solid #eee;">Selected Package</td>
+                                                    <td style="padding:12px; border-bottom:1px solid #eee;">{booking_obj.camping_package.name if booking_obj.camping_package else 'No specific package'}</td>
+                                                </tr>
+                                                
+                                                <tr style="background:#f8f9fa;">
+                                                    <td style="padding:12px; font-weight:bold; border-bottom:1px solid #eee;">Number of Guests</td>
+                                                    <td style="padding:12px; border-bottom:1px solid #eee;">{booking_obj.guests}</td>
+                                                </tr>
+                                            </table>
+                                            
+                                            <div style="margin-top:25px;">
+                                                <p style="font-weight:bold; margin-bottom:5px;">Message/Additional Request:</p>
+                                                <p style="background:#f9f9f9; padding:15px; border-radius:4px; color:#555;">{booking_obj.message or 'No additional message'}</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#333; padding:20px; text-align:center;">
+                                            <p style="margin:0; font-size:13px; color:#aaa;">&copy; {timezone.now().year} Koodaram Admin System</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </body>
+                </html>
+                """
+                
+                plain_message = strip_tags(html_message)
+                email = EmailMultiAlternatives(
+                    subject,
+                    plain_message,
+                    settings.EMAIL_HOST_USER,
+                    [settings.EMAIL_HOST_USER]
+                )
+                email.attach_alternative(html_message, "text/html")
+                email.send(fail_silently=False)
+                
+            except Exception as e:
+                print(f"Error sending email: {e}")
+                # We still redirect successfully since the booking was saved.
+            
             messages.success(request, "Booking request sent successfully. We will contact you soon.")
             return redirect("booking")
         messages.error(request, "Please check the form and try again.")

@@ -6,7 +6,7 @@
 {% block page_header_style %}
 <style>
     .page-header {
-        background-image: url('{% static "images/new/service-page.jpg" %}');
+        background-image: url('{% static "images/new/tent-camping.png" %}');
     }
 </style>
 {% endblock %}
@@ -196,112 +196,76 @@
     </div>
     <!-- Interactive Process Layout End -->
 
-    <!-- Our Feature Section Start -->
-    <div class="our-features">
+    <!-- Our Activities Section Start -->
+    <div class="our-trips-royal">
         <div class="container">
-            <div class="row section-row">                
+            <div class="row section-row">
                 <div class="col-lg-12">
                     <!-- Section Title Start -->
                     <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">Our Feature</h3>
-                        <h2 class="text-effect" data-cursor="-opaque">Designed for travelers who seek adventure without sacrificing <img src="{% static 'images/features-title-image.jpg' %}" alt=""> comfort, style, or connection to nature</h2>
+                        <h3 class="wow fadeInUp">Explore Koodaram Stays</h3>
+                        <h2 class="text-effect" data-cursor="-opaque">Discover unique activities across stunning destinations</h2>
                     </div>
-                    <!-- Section Title End -->                
+                    <!-- Section Title End -->
                 </div>
             </div>
 
-            <div class="col-lg-12">
-                <!-- Feature Item List Start -->
-                <div class="feature-item-list">
-                    <!-- Feature Item Start -->
-                    <div class="feature-item box-1 wow fadeInUp">
-                        <div class="feature-item-image">
-                            <figure>
-                                <img src="{% static 'images/feature-item-image-1.jpg' %}" alt="">
-                            </figure>
+            <div class="row">
+                {% for activity in activities %}
+                <div class="col-xl-3 col-md-6">
+                    <!-- Trip Item Start -->
+                    <div class="trip-item-royal wow fadeInUp" {% cycle '' 'data-wow-delay="0.2s"' 'data-wow-delay="0.4s"' 'data-wow-delay="0.6s"' %}>
+                        <!-- Trip Item Image Start -->
+                        <div class="trip-item-image-royal">
+                            <a href="{% url 'activity_single' activity.slug %}" data-cursor-text="View">
+                                <figure>
+                                    {% if activity.image %}
+                                    <img src="{{ activity.image.url }}" alt="{{ activity.title }}">
+                                    {% else %}
+                                    <img src="{% static 'images/trip-image-royal-1.jpg' %}" alt="{{ activity.title }}">
+                                    {% endif %}
+                                </figure>
+                            </a>
                         </div>
-                        <div class="feature-item-body">
-                            <div class="feature-item-content">
-                                <h3>Luxury Tents & Cabins</h3>
-                                <p>Enjoy hotel-like comfort with cozy beds, climate control, private decks, and stylish interiors.</p>
-                            </div>
-                            <div class="feature-item-btn">
-                                <a href="{% url 'contact' %}" class="readmore-btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Feature Item End -->
+                        <!-- Trip Item Image End -->
 
-                    <!-- Feature Item Start -->
-                    <div class="feature-item box-2 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="feature-item-image">
-                            <figure>
-                                <img src="{% static 'images/feature-item-image-2.jpg' %}" alt="">
-                            </figure>
-                        </div>
-                        <div class="feature-item-body">
-                            <div class="feature-item-content">
-                                <h3>Modern Amenities</h3>
-                                <p>From Wi-Fi and charging stations to hot showers and gourmet meals, we blend rustic charm.</p>
+                        <!-- Trip Item Body Start -->
+                        <div class="trip-item-body-royal">
+                            <!-- Trip Content Start -->
+                            <div class="trip-item-content-royal">
+                                <p>Activity</p>
+                                <h3><a href="{% url 'activity_single' activity.slug %}">{{ activity.title }}</a></h3>
                             </div>
-                            <div class="feature-item-btn">
-                                <a href="{% url 'contact' %}" class="readmore-btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Feature Item End -->
+                            <!-- Trip Content End -->
 
-                    <!-- Feature Item Start -->
-                    <div class="feature-item box-3 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="feature-item-image">
-                            <figure>
-                                <img src="{% static 'images/feature-item-image-3.jpg' %}" alt="">
-                            </figure>
-                        </div>
-                        <div class="feature-item-body">
-                            <div class="feature-item-content">
-                                <h3>Safety First, Always</h3>
-                                <p>Our campsites follow strict safety protocols with 24/7 security, first-aid kits, and trained staff.</p>
+                            <!-- Trip Readmore Button Start -->
+                            <div class="trip-item-btn-royal">
+                                <a href="{% url 'activity_single' activity.slug %}" class="readmore-btn">Explore Activity</a>
                             </div>
-                            <div class="feature-item-btn">
-                                <a href="{% url 'contact' %}" class="readmore-btn">Read More</a>
-                            </div>
+                            <!-- Trip Readmore Button End -->
                         </div>
+                        <!-- Trip Item Body End -->
                     </div>
-                    <!-- Feature Item End -->
-
-                    <!-- Feature Item Start -->
-                    <div class="feature-item box-4 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="feature-item-image">
-                            <figure>
-                                <img src="{% static 'images/feature-item-image-1.jpg' %}" alt="">
-                            </figure>
-                        </div>
-                        <div class="feature-item-body">
-                            <div class="feature-item-content">
-                                <h3>Eco-Friendly Comfort</h3>
-                                <p>Stay in thoughtfully designed spaces that combine natural beauty with sustainable practices.</p>
-                            </div>
-                            <div class="feature-item-btn">
-                                <a href="{% url 'contact' %}" class="readmore-btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Feature Item End -->
+                    <!-- Trip Item End -->
                 </div>
-                <!-- Feature Item List End -->
-            </div>
-            
-            <div class="col-lg-12">
-                <!-- Section Footer Text Start -->
-                <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                    <p>From check-in to checkout - <a href="{% url 'contact' %}">we turn wild landscapes into personal, luxurious retreats.</a></p>
+                {% empty %}
+                <div class="col-12 mt-4 text-center">
+                    <p>No activities available at the moment.</p>
                 </div>
-                <!-- Section Footer Text End -->
+                {% endfor %}
+
+                <div class="col-lg-12">
+                    <!-- Section Footer Text Start -->
+                    <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
+                        <p><span>Free</span>Let's find your perfect adventure together. <a href="{% url 'activity_list' %}">View All Activities.</a></p>
+                    </div>
+                    <!-- Section Footer Text End -->
+                </div>
             </div>
         </div>
     </div>
-    <!-- Our Feature Section End -->
+    <!-- Our Activities Section End -->
+
 
     <!-- Our Experiences Section Start -->
     <div class="our-adventures parallaxie">

@@ -57,4 +57,8 @@ urlpatterns = [
 
     path("dashboard/contacts/", views.view_contacts, name="view_contacts"),
     path("dashboard/contacts/<int:pk>/delete/", views.delete_contact, name="delete_contact"),
+
+    path("booking/", views.booking, name="booking"),
+    path("dashboard/bookings/", views.admin_view_bookings, name="admin_view_bookings"),
+    path("dashboard/bookings/<int:pk>/delete/", views.admin_delete_booking, name="admin_delete_booking"),
 ]

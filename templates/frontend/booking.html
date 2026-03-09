@@ -1,0 +1,200 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}Booking | Koodaram{% endblock %}
+{% block meta_description %}Koodaram Booking page.{% endblock %}
+{% block page_header_style %}
+<style>
+    .page-header {
+        background-image: url('{% static "images/new/contact-us.png" %}');
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Section Start -->
+<div class="page-header parallaxie">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Page Header Box Start -->
+                <div class="page-header-box">
+                    <h1 class="text-anime-style-3" data-cursor="-opaque">Book Your Stay</h1>
+                    <nav class="wow fadeInUp">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Book Now</li>
+                        </ol>
+                    </nav>
+                </div>
+                <!-- Page Header Box End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header Section End -->
+
+<!-- Page Contact Us Start -->
+<div class="page-contact-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Contact Info List Start -->
+                <div class="contact-info-list">
+                    <!-- Contact Info Item Start -->
+                    <div class="contact-info-item wow fadeInUp">
+                        <div class="icon-box">
+                            <img src="{% static 'images/icon-phone-primary.svg' %}" alt="">
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Phone Number</h3>
+                            <p><a href="tel:+456789254">+(456) 789 254</a></p>
+                            <p><a href="tel:+919497000000">+91 94970 00000</a></p>
+                        </div>
+                    </div>
+                    <!-- Contact Info Item End -->
+
+                    <!-- Contact Info Item Start -->
+                    <div class="contact-info-item wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="icon-box">
+                            <img src="{% static 'images/icon-mail-primary.svg' %}" alt="">
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Email Address</h3>
+                            <p><a href="mailto:hello@koodaram.com">hello@koodaram.com</a></p>
+                            <p><a href="mailto:hello@koodaram.com">hello@koodaram.com</a></p>
+                        </div>
+                    </div>
+                    <!-- Contact Info Item End -->
+
+                    <!-- Contact Info Item Start -->
+                    <div class="contact-info-item wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="icon-box">
+                            <img src="{% static 'images/icon-location-primary.svg' %}" alt="">
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Our Location</h3>
+                            <p>Koodaram Munnar, Kerala</p>
+                            <p>Retreat, 123 Wilderness</p>
+                        </div>
+                    </div>
+                    <!-- Contact Info Item End -->
+
+                    <!-- Contact Info Item Start -->
+                    <div class="contact-info-item wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="icon-box">
+                            <img src="{% static 'images/icon-clock-primary.svg' %}" alt="">
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Working hours</h3>
+                            <p>Monday to Saturday : 07pm - 05am</p>
+                            <p>Sunday : Closed</p>
+                        </div>
+                    </div>
+                    <!-- Contact Info Item End -->
+                </div>
+                <!-- Contact Info List Start -->
+            </div>
+
+            <div class="col-xl-6 col-lg-12">
+                <!-- Contact Form Start -->
+                <div class="contact-form">
+                    <!-- Section Title Start -->
+                    <div class="section-title">
+                        <h3 class="wow fadeInUp">Book a Tent</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Experience the serenity. Book your spot
+                            today.</h2>
+                    </div>
+                    <!-- Section Title End -->
+
+                    <!-- Contact Form Start -->
+                    <form id="contactForm" action="{% url 'booking' %}" method="POST" data-toggle="validator"
+                        class="wow fadeInUp" data-wow-delay="0.2s">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="form-group col-md-6 mb-4">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Name"
+                                    value="{{ request.POST.name|default:'' }}" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+                            <div class="form-group col-md-6 mb-4">
+                                <input type="email" name="email" class="form-control" id="email"
+                                    placeholder="Email Address" value="{{ request.POST.email|default:'' }}" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+                            <div class="form-group col-md-6 mb-4">
+                                <input type="text" name="phone" class="form-control" id="phone"
+                                    placeholder="Phone Number" value="{{ request.POST.phone|default:'' }}" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+                            <div class="form-group col-md-6 mb-4">
+                                <label for="check_in" class="form-label text-start d-block">Check In</label>
+                                <input type="date" name="check_in" class="form-control" id="check_in"
+                                    value="{{ request.POST.check_in|default:'' }}" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group col-md-6 mb-4">
+                                <label for="check_out" class="form-label text-start d-block">Check Out</label>
+                                <input type="date" name="check_out" class="form-control" id="check_out"
+                                    value="{{ request.POST.check_out|default:'' }}" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group col-md-12 mb-4">
+                                <label for="camping_package" class="form-label text-start d-block">Select Package
+                                    (Optional)</label>
+                                    <select name="camping_package" id="camping_package" class="form-control">
+                                        <option value="">-- No specific package --</option>
+                                        {% for package in packages %}
+                                        <option value="{{ package.id }}" {% if request.POST.camping_package == package.id|stringformat:"s" %}selected{% endif %}>
+                                            {{ package.name }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+                            <div class="form-group col-md-12 mb-4">
+                                <input type="number" name="guests" class="form-control" id="guests"
+                                    placeholder="Number of Guests" value="{{ request.POST.guests|default:'' }}"
+                                    required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+                            <div class="form-group col-md-12 mb-5">
+                                <textarea name="message" class="form-control" id="message" rows="4"
+                                    placeholder="Additional Request (Optional)">{{ request.POST.message|default:'' }}</textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="contact-form-btn">
+                                    <button type="submit" class="btn-default"><span>Book Now</span></button>
+                                    <div id="msgSubmit" class="h3 hidden"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Contact Form End -->
+                </div>
+                <!-- Contact Form End -->
+            </div>
+
+            <div class="col-xl-6 col-lg-12">
+                <!-- Google Map Iframe Start -->
+                <div class="google-map-iframe">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.5319800241!2d77.0583012753632!3d10.05542447207791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0799229725f51f%3A0xc5074e224af4afa6!2sKoodaram%20camping!5e0!3m2!1sen!2sin!4v1772703451783!5m2!1sen!2sin"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <!-- Google Map Iframe End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Contact Us End -->
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import  Blog, Testimonial, Category, GalleryImage, ContactMessage, Activity, CampingPackage
+from .models import  Blog, Testimonial, Category, GalleryImage, ContactMessage, Activity, CampingPackage, Booking
 
 
 class BlogForm(forms.ModelForm):
@@ -45,3 +45,13 @@ class CampingPackageForm(forms.ModelForm):
             "normal_price", "special_price", "extra_person_price",
             "package_items", "facilities"
         ]
+
+class BookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ["name", "email", "phone", "check_in", "check_out", "camping_package", "guests", "message"]
+        widgets = {
+            'check_in': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'check_out': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'camping_package': forms.Select(attrs={'class': 'form-control'}),
+        }

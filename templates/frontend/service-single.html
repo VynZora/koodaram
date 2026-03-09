@@ -6,7 +6,7 @@
 {% block page_header_style %}
 <style>
     .page-header {
-        background-image: url('{% static "images/page-header-bg.jpg" %}');
+        background-image: url('{{ package.main_image.url }}');
     }
 </style>
 {% endblock %}

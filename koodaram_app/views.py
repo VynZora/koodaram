@@ -5,8 +5,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models.functions import Lower
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import BlogForm, ContactForm, TestimonialForm, ActivityForm, CampingPackageForm
-from .models import Blog, Category, ContactMessage, GalleryImage, Testimonial, Activity, CampingPackage
+from .forms import BlogForm, ContactForm, TestimonialForm, ActivityForm, CampingPackageForm, BookingForm
+from .models import Blog, Category, ContactMessage, GalleryImage, Testimonial, Activity, CampingPackage, Booking
 
 
 def home(request):
@@ -33,7 +33,9 @@ def about(request):
     if testimonials and len(testimonials) < 3:
         repeat_count = (3 + len(testimonials) - 1) // len(testimonials)
         testimonials = (testimonials * repeat_count)[:3]
-    return render(request, "frontend/about.html", {"testimonials": testimonials})
+    
+    packages = CampingPackage.objects.all()[:4]
+    return render(request, "frontend/about.html", {"testimonials": testimonials, "packages": packages})
 
 
 def blog(request):
@@ -151,34 +153,41 @@ def admin_dashboard(request):
     
     # 1. Total Stats
     stats = {
-        'total_projects': Blog.objects.count(), # Assuming Portfolio Projects means Blogs based on the URL in template
-        'projects_this_month': Blog.objects.filter(created_at__gte=month_start).count(),
-        'total_services': Category.objects.count(), # Assuming Categories map to Services
-        'total_inquiries': ContactMessage.objects.filter(service_type__isnull=False).count() if hasattr(ContactMessage, 'service_type') else 0, # Since service_type might not exist, failing gracefully
+        'total_blogs': Blog.objects.count(),
+        'blogs_this_month': Blog.objects.filter(created_at__gte=month_start).count(),
+        'total_services': Category.objects.count(),
         'total_contacts': ContactMessage.objects.count(),
-        'total_packages': CampingPackage.objects.count()
+        'total_packages': CampingPackage.objects.count(),
+        'total_activities': Activity.objects.count()
     }
 
     # 2. Recent Lists
-    recent_projects = Blog.objects.all().order_by('-created_at')[:4]
+    recent_blogs = Blog.objects.all().order_by('-created_at')[:4]
     recent_contacts = ContactMessage.objects.all().order_by('-created_at')[:4]
     recent_packages = CampingPackage.objects.all().order_by('-created_at')[:4]
-    # Inquiries fallback if no dedicated model
-    recent_inquiries = ContactMessage.objects.all().order_by('-created_at')[:4] if not hasattr(ContactMessage, 'service_type') else ContactMessage.objects.exclude(service_type__isnull=True).order_by('-created_at')[:4]
+    recent_activities = Activity.objects.all().order_by('-created_at')[:4]
 
-    # 3. Chart Data (Projects over last 6 months)
+    # 3. Chart Data (Blogs vs Contacts over last 6 months)
     month_labels = []
-    month_counts = []
+    blogs_counts = []
+    contacts_counts = []
+    
     for i in range(5, -1, -1):
         target_month = now - relativedelta(months=i)
         label = target_month.strftime('%b')
         month_labels.append(label)
         
-        count = Blog.objects.filter(
+        blogs_count = Blog.objects.filter(
             created_at__year=target_month.year,
             created_at__month=target_month.month
         ).count()
-        month_counts.append(count)
+        blogs_counts.append(blogs_count)
+        
+        contacts_count = ContactMessage.objects.filter(
+            created_at__year=target_month.year,
+            created_at__month=target_month.month
+        ).count()
+        contacts_counts.append(contacts_count)
         
     # 4. Service Distribution (Doughnut Chart)
     service_labels = []
@@ -194,12 +203,13 @@ def admin_dashboard(request):
 
     context = {
         'stats': stats,
-        'recent_projects': recent_projects,
+        'recent_blogs': recent_blogs,
         'recent_contacts': recent_contacts,
-        'recent_inquiries': recent_inquiries,
         'recent_packages': recent_packages,
+        'recent_activities': recent_activities,
         'month_labels': month_labels,
-        'month_counts': month_counts,
+        'blogs_counts': blogs_counts,
+        'contacts_counts': contacts_counts,
         'service_labels': service_labels,
         'service_counts': service_counts,
     }
@@ -420,6 +430,41 @@ def delete_contact(request, pk):
 
 
 # ==========================================
+# 9.5 BOOKINGS (FRONTEND AND ADMIN)
+# ==========================================
+
+def booking(request):
+    packages = CampingPackage.objects.all()
+    form = BookingForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Booking request sent successfully. We will contact you soon.")
+            return redirect("booking")
+        messages.error(request, "Please check the form and try again.")
+    return render(request, "frontend/booking.html", {
+        "form": form,
+        "packages": packages
+    })
+
+@login_required(login_url="admin_login")
+def admin_view_bookings(request):
+    bookings = Booking.objects.all().order_by("-created_at")
+    paginator = Paginator(bookings, 10)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request, "admin_pages/view_bookings.html", {"bookings": page_obj})
+
+@login_required(login_url="admin_login")
+def admin_delete_booking(request, pk):
+    booking_obj = get_object_or_404(Booking, pk=pk)
+    if request.method == "POST":
+        booking_obj.delete()
+        messages.success(request, "Booking deleted successfully!")
+    return redirect("admin_view_bookings")
+
+
+# ==========================================
 # 10. ACTIVITIES (FRONTEND)
 # ==========================================
 
@@ -429,7 +474,11 @@ def activity_list(request):
     paginator = Paginator(activities_qs, 9)
     page_number = request.GET.get("page")
     activities = paginator.get_page(page_number)
-    return render(request, "frontend/activities.html", {"activities": activities})
+    testimonials = list(Testimonial.objects.all()[:8])
+    if testimonials and len(testimonials) < 3:
+        repeat_count = (3 + len(testimonials) - 1) // len(testimonials)
+        testimonials = (testimonials * repeat_count)[:3]
+    return render(request, "frontend/activities.html", {"activities": activities, "testimonials": testimonials})
 
 
 def activity_single(request, slug):
@@ -499,7 +548,8 @@ def services(request):
     paginator = Paginator(packages_qs, 9)
     page_number = request.GET.get("page")
     packages = paginator.get_page(page_number)
-    return render(request, "frontend/services.html", {"packages": packages})
+    activities = Activity.objects.all()[:4]
+    return render(request, "frontend/services.html", {"packages": packages, "activities": activities})
 
 
 def service_single(request, slug):

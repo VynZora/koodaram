@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-     <!-- Favicon -->
+    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
@@ -316,7 +316,7 @@
             color: var(--primary-blue);
         }
 
-        
+
 
         .sidebar-menu a.active {
             background: var(--light-blue);
@@ -331,7 +331,7 @@
         }
 
 
-        
+
         /* Fix for dropdown arrow visibility */
         /* Replace dropdown arrow with a dot */
         .has-dropdown>a::after {
@@ -1003,7 +1003,7 @@
                         <i class="icofont-logout"></i>
                         Logout
                     </a>
-                   
+
                 </div>
             </div>
         </div>
@@ -1034,65 +1034,66 @@
     <!-- Dashboard Sidebar -->
     <aside class="dashboard-sidebar" id="dashboardSidebar">
         <div class="sidebar-content">
-    
+
             <!-- Main Section -->
             <div class="sidebar-section">
                 <h6 class="sidebar-title">Main</h6>
                 <ul class="sidebar-menu">
-    
+
                     <li>
                         <a href="{% url 'admin_dashboard' %}"
-                           class="{% if request.resolver_match.url_name == 'admin_dashboard' %}active{% endif %}">
+                            class="{% if request.resolver_match.url_name == 'admin_dashboard' %}active{% endif %}">
                             <i class="icofont-dashboard"></i>
                             Dashboard
                         </a>
                     </li>
-    
+
                 </ul>
             </div>
-    
+
             <!-- Management Section -->
             <div class="sidebar-section">
                 <h6 class="sidebar-title">Management</h6>
                 <ul class="sidebar-menu">
-    
+
                     {% comment %} <li>
                         <a href="{% url 'service_list' %}"
-                           class="{% if request.resolver_match.url_name == 'service_list' %}active{% endif %}">
+                            class="{% if request.resolver_match.url_name == 'service_list' %}active{% endif %}">
                             <i class="icofont-leaf"></i>
                             Services
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'project_list' %}"
-                           class="{% if request.resolver_match.url_name == 'project_list' %}active{% endif %}">
+                            class="{% if request.resolver_match.url_name == 'project_list' %}active{% endif %}">
                             <i class="icofont-image"></i>
                             Projects
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'team_list' %}"
-                           class="{% if request.resolver_match.url_name == 'team_list' %}active{% endif %}">
+                            class="{% if request.resolver_match.url_name == 'team_list' %}active{% endif %}">
                             <i class="icofont-users-alt-5"></i>
                             Our Team
                         </a>
                     </li>
-                     {% endcomment %}
-                     <li>
+                    {% endcomment %}
+                    <li>
                         <a href="{% url 'admin_camping_package_list' %}"
-                           class="{% if request.resolver_match.url_name == 'admin_camping_package_list' %}active{% endif %}">
+                            class="{% if request.resolver_match.url_name == 'admin_camping_package_list' %}active{% endif %}">
                             <i class="icofont-quote-left"></i>
                             Camping Packages
                         </a>
                     </li>
-                     <li>
+                    <li>
                         <a href="{% url 'admin_activity_list' %}"
-                           class="{% if request.resolver_match.url_name == 'admin_activity_list' %}active{% endif %}">
+                            class="{% if request.resolver_match.url_name == 'admin_activity_list' %}active{% endif %}">
                             <i class="icofont-quote-left"></i>
                             Activities
                         </a>
                     </li>
-                    <li class="has-dropdown {% if request.resolver_match.url_name == 'list_image' or request.resolver_match.url_name == 'category_list' %}open{% endif %}">
+                    <li
+                        class="has-dropdown {% if request.resolver_match.url_name == 'list_image' or request.resolver_match.url_name == 'category_list' %}open{% endif %}">
                         <a href="#">
                             <i class="icofont-picture"></i>
                             Gallery
@@ -1114,20 +1115,20 @@
                     </li>
                     <li>
                         <a href="{% url 'review_list' %}"
-                           class="{% if request.resolver_match.url_name == 'review_list' %}active{% endif %}">
+                            class="{% if request.resolver_match.url_name == 'review_list' %}active{% endif %}">
                             <i class="icofont-quote-left"></i>
                             Testimonials
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'admin_blog_list' %}"
-                           class="{% if request.resolver_match.url_name == 'admin_blog_list' %}active{% endif %}">
+                            class="{% if request.resolver_match.url_name == 'admin_blog_list' %}active{% endif %}">
                             <i class="icofont-newspaper"></i>
                             Blogs
                         </a>
                     </li>
 
-    
+
                     <!-- Enquiries Dropdown -->
                     <li class="has-dropdown">
                         <a href="#">
@@ -1135,28 +1136,33 @@
                             Enquiries
                         </a>
                         <ul class="submenu">
-    
+
                             {% comment %} <li>
                                 <a href="{% url 'inquiry_list' %}"
-                                   class="{% if request.resolver_match.url_name == 'inquiry_list' %}active{% endif %}">
-                                    
+                                    class="{% if request.resolver_match.url_name == 'inquiry_list' %}active{% endif %}">
+
                                     Service Inquiries
                                 </a>
                             </li> {% endcomment %}
-    
+
                             <li>
                                 <a href="{% url 'view_contacts' %}"
-                                   class="{% if request.resolver_match.url_name == 'view_contacts' %}active{% endif %}">
+                                    class="{% if request.resolver_match.url_name == 'view_contacts' %}active{% endif %}">
                                     Contact Messages
                                 </a>
                             </li>
-
+                            <li>
+                                <a href="{% url 'admin_view_bookings' %}"
+                                    class="{% if request.resolver_match.url_name == 'admin_view_bookings' %}active{% endif %}">
+                                    Bookings
+                                </a>
+                            </li>
                         </ul>
                     </li>
-    
+
                 </ul>
             </div>
-    
+
         </div>
     </aside>
 
@@ -1172,18 +1178,18 @@
             </div>
 
             <!-- Content Area -->
-            
-                {% block content %}
-                <!-- Content will be overridden by child templates -->
-                <div class="content-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Welcome to Dashboard</h3>
-                        <a href="#" class="card-action">View All</a>
-                    </div>
-                    <p>This is your main content area. Content from child templates will appear here.</p>
+
+            {% block content %}
+            <!-- Content will be overridden by child templates -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h3 class="card-title">Welcome to Dashboard</h3>
+                    <a href="#" class="card-action">View All</a>
                 </div>
-                {% endblock %}
-            
+                <p>This is your main content area. Content from child templates will appear here.</p>
+            </div>
+            {% endblock %}
+
         </div>
     </main>
 
@@ -1324,16 +1330,16 @@
             const toast = document.getElementById('global-toast');
             const toastMessage = toast.querySelector('.toast-message');
             const toastIcon = toast.querySelector('.toast-icon');
-        
+
             // Set message
             toastMessage.textContent = message;
-        
+
             // Remove all type classes
             toast.classList.remove('success', 'error', 'warning', 'info');
-        
+
             // Add the correct type class
             toast.classList.add(type);
-        
+
             // Set FontAwesome Icons
             // 'fas' is solid style, 'fa-check-circle' is the icon name
             switch (type) {
@@ -1350,12 +1356,12 @@
                     toastIcon.className = 'toast-icon fas fa-info-circle';
                     break;
                 default:
-                     toastIcon.className = 'toast-icon fas fa-info-circle';
+                    toastIcon.className = 'toast-icon fas fa-info-circle';
             }
-        
+
             // Show toast
             toast.classList.add('show');
-        
+
             // Remove toast after 5 seconds
             setTimeout(() => {
                 toast.classList.remove('show');

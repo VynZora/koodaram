@@ -145,3 +145,17 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.phone}"
+
+class Booking(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    check_in = models.DateField()
+    check_out = models.DateField()
+    camping_package = models.ForeignKey(CampingPackage, on_delete=models.SET_NULL, null=True, blank=True)
+    guests = models.IntegerField()
+    message = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Booking for {self.name} on {self.check_in}"

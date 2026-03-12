@@ -119,8 +119,7 @@
             <form method="post" enctype="multipart/form-data" action="{% url 'camping_package_update' package.id %}">
                 {% csrf_token %}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="updatePackageModalLabel{{ package.id }}">Update Package: {{
-                        package.name }}</h5>
+                    <h5 class="modal-title" id="updatePackageModalLabel{{ package.id }}">Update Package: {{ package.name }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!-- Adding max-height and scrolling to modal body to support long forms -->

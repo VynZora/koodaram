@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.conf import settings
+from urllib.parse import quote
 
 from .forms import BlogForm, ContactForm, TestimonialForm, ActivityForm, CampingPackageForm, BookingForm
 from .models import Blog, Category, ContactMessage, GalleryImage, Testimonial, Activity, CampingPackage, Booking
@@ -439,6 +440,7 @@ def delete_contact(request, pk):
 def booking(request):
     packages = CampingPackage.objects.all()
     form = BookingForm(request.POST or None)
+    whatsapp_redirect_url = request.session.pop("booking_whatsapp_redirect_url", None)
     if request.method == "POST":
         if form.is_valid():
             booking_obj = form.save()
@@ -530,13 +532,28 @@ def booking(request):
             except Exception as e:
                 print(f"Error sending email: {e}")
                 # We still redirect successfully since the booking was saved.
-            
+
+            package_name = booking_obj.camping_package.name if booking_obj.camping_package else "No specific package"
+            message_text = (
+                "New Booking Request - Koodaram\n\n"
+                f"Name: {booking_obj.name}\n"
+                f"Phone: {booking_obj.phone}\n"
+                f"Email: {booking_obj.email}\n"
+                f"Check-in: {booking_obj.check_in}\n"
+                f"Check-out: {booking_obj.check_out}\n"
+                f"Package: {package_name}\n"
+                f"Guests: {booking_obj.guests}\n"
+                f"Message: {booking_obj.message or 'No additional message'}"
+            )
+            whatsapp_url = f"https://wa.me/919995497856?text={quote(message_text)}"
+            request.session["booking_whatsapp_redirect_url"] = whatsapp_url
             messages.success(request, "Booking request sent successfully. We will contact you soon.")
             return redirect("booking")
         messages.error(request, "Please check the form and try again.")
     return render(request, "frontend/booking.html", {
         "form": form,
-        "packages": packages
+        "packages": packages,
+        "whatsapp_redirect_url": whatsapp_redirect_url,
     })
 
 @login_required(login_url="admin_login")

@@ -40,6 +40,115 @@
     <!-- Main Custom Css -->
     <link href="{% static 'css/custom.css' %}" rel="stylesheet" media="screen">
     {% block page_header_style %}{% endblock %}
+    {% comment %} <style>
+        :root {
+            --bg-color: #2c2c2c;
+            /* Softer Charcoal */
+            --white-color: #383838;
+            /* Slightly lighter for cards */
+            --secondary-color: #383838;
+            --primary-color: #ffffff;
+            --text-color: #e0e0e0;
+            --divider-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .section-title h1,
+        .section-title h2,
+        .section-title h3 {
+            color: #ffffff !important;
+        }
+
+        /* Sections and Containers */
+        .bg-section-royal,
+        .about-us-royal,
+        .our-services-royal,
+        .our-adventure-royal,
+        .our-trips-royal,
+        .what-we-do-royal,
+        .page-contact-us,
+        .contact-form {
+            background-color: #2c2c2c !important;
+        }
+
+        .dark-section,
+        .main-footer-royal,
+        .topbar {
+            background-color: #1a1a1a !important;
+            /* Slightly deeper than bg but not black */
+        }
+
+        /* Form Controls */
+        .form-control,
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            background-color: #3d3d3d !important;
+            border: 1px solid #555 !important;
+            color: #ffffff !important;
+        }
+
+        .form-control::placeholder {
+            color: #aaaaaa !important;
+        }
+
+        /* Hero adjustment to keep it dark but readable */
+        .hero-royal.dark-section {
+            background-color: transparent !important;
+        }
+
+        /* Cards and Items */
+        .service-item-royal,
+        .trip-item-royal,
+        .contact-info-item {
+            background-color: #383838 !important;
+            border: 1px solid #444 !important;
+        }
+
+        .service-content-royal h3 a,
+        .trip-item-content-royal h3 a {
+            color: #ffffff !important;
+        }
+
+        /* Navbar Sticky Adjustment */
+        header.main-header .header-sticky.active {
+            background: #1a1a1a !important;
+        }
+
+        /* Preloader Adjustment */
+        .preloader {
+            background: #2c2c2c !important;
+        }
+
+        .loading {
+            border-color: transparent #ffffff transparent #ffffff !important;
+        }
+
+        /* Specific text improvements */
+        .about-client-content-royal p,
+        .section-footer-text p,
+        .adventure-box-content-royal p {
+            color: #cccccc !important;
+        }
+
+        .btn-default-royal {
+            color: #000000 !important;
+        }
+
+        .btn-default-royal:hover {
+            color: #ffffff !important;
+        }
+    </style> {% endcomment %}
 </head>
 
 <body>

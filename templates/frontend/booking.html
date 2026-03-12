@@ -11,6 +11,16 @@
 </style>
 {% endblock %}
 
+{% block extra_js %}
+{% if whatsapp_redirect_url %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        window.open("{{ whatsapp_redirect_url|escapejs }}", "_blank", "noopener,noreferrer");
+    });
+</script>
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <!-- Page Header Section Start -->
 <div class="page-header parallaxie">

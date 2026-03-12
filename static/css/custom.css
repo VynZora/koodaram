@@ -7391,15 +7391,18 @@ header.main-header.header-royal .header-sticky.active {
 	border-radius: 0 0 20px 20px;
 }
 
-.hero-royal {
-	position: relative;
-	/* background: url('../images/new/koodaram-banner.jpg') no-repeat;
-	background-position: center center;
-	background-size: cover; */
-	padding: 200px 0 100px;
-	margin-top: 20px;
-	overflow: hidden;
-}
+		.hero-royal {
+			position: relative;
+		/* background: url('../images/new/koodaram-banner.jpg') no-repeat;
+		background-position: center center;
+		background-size: cover; */
+			padding: 100px 0;
+			margin-top: 0;
+			overflow: hidden;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+		}
 
 .hero-video-bg {
 	position: absolute;
@@ -9560,10 +9563,10 @@ header.main-header.header-royal .header-sticky.active {
 		border-radius: 0;
 	}
 
-	.hero-royal {
-		padding: 140px 0 50px;
-		margin-top: 0;
-	}
+		.hero-royal {
+			padding: 140px 0 50px;
+			margin-top: 0;
+		}
 
 	.hero-content-royal .section-title h1 {
 		font-size: 50px;

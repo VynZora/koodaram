@@ -88,6 +88,51 @@
     .feature-item-rating-royal-royal {
         background: none !important;
     }
+
+    /* Hero full-bleed override for home page only */
+    .hero-royal.bg-section-royal {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        height: 100vh !important;
+        height: 100svh !important;
+    }
+
+    .hero-royal .hero-video-bg,
+    .hero-royal .hero-video-bg video {
+        width: 100%;
+        height: 100%;
+    }
+
+    @media only screen and (max-width: 991px) {
+        .hero-royal.bg-section-royal {
+            padding: 0 !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+            height: 100vh !important;
+            height: 100svh !important;
+        }
+    }
+    @media (min-width: 992px) {
+        header.main-header .header-sticky.bg-section-royal {
+            background: rgba(255, 255, 255, 0.12) !important;
+            backdrop-filter: blur(7px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 50px;
+            margin: 16px auto;
+            width: calc(100% - 80px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            padding-top: 4px !important;
+            padding-bottom: 4px !important;
+        }
+        .navbar {
+            padding: 0 !important;
+        }
+    }
 </style>
 <!-- Hero Section Start -->
 <div class="hero-royal bg-section-royal dark-section parallaxie">
@@ -125,55 +170,6 @@
                     </div>
                     <!-- Hero Content End -->
 
-                    <!-- Hero Contact Info Box Start -->
-                    <div class="hero-contact-info-box-royal wow fadeInUp" data-wow-delay="0.6s">
-                        <!-- Hero Contact Item Title Start -->
-                        <div class="hero-contact-item-title">
-                            <h3>Your Koodaram Retreat Starts Here!</h3>
-                        </div>
-                        <!-- Hero Contact Item Title End -->
-
-                        <!-- Hero Contact List Start -->
-                        <div class="hero-contact-list-royal">
-                            <!-- Hero Contact Item Start -->
-                            <div class="hero-contact-item-royal">
-                                <div class="icon-box">
-                                    <img src="{% static 'images/icon-phone-accent.svg' %}" alt="">
-                                </div>
-                                <div class="hero-contact-item-content-royal">
-                                    <h3>Call us</h3>
-                                    <p><a href="tel:+919497000000">+91 94970 00000</a></p>
-                                </div>
-                            </div>
-                            <!-- Hero Contact Item End -->
-
-                            <!-- Hero Contact Item Start -->
-                            <div class="hero-contact-item-royal">
-                                <div class="icon-box">
-                                    <img src="{% static 'images/icon-mail-accent.svg' %}" alt="">
-                                </div>
-                                <div class="hero-contact-item-content-royal">
-                                    <h3>E-mail us</h3>
-                                    <p><a href="mailto:hello@koodaram.com">hello@koodaram.com</a></p>
-                                </div>
-                            </div>
-                            <!-- Hero Contact Item End -->
-
-                            <!-- Hero Contact Item Start -->
-                            <div class="hero-contact-item-royal">
-                                <div class="icon-box">
-                                    <img src="{% static 'images/icon-clock-accent.svg' %}" alt="">
-                                </div>
-                                <div class="hero-contact-item-content-royal">
-                                    <h3>Working hours</h3>
-                                    <p>Monday - Saturday : 08:pm to 05:am</p>
-                                </div>
-                            </div>
-                            <!-- Hero Contact Item End -->
-                        </div>
-                        <!-- Hero Contact List End -->
-                    </div>
-                    <!-- Hero Info Box End -->
                 </div>
                 <!-- Hero Box End -->
             </div>

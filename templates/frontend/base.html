@@ -40,6 +40,70 @@
     <!-- Main Custom Css -->
     <link href="{% static 'css/custom.css' %}" rel="stylesheet" media="screen">
     {% block page_header_style %}{% endblock %}
+    <style>
+        .main-menu ul li.nav-booking-item {
+            display: none;
+        }
+
+        @media only screen and (max-width: 1199px) {
+            .main-header.header-royal .main-menu .nav-menu-wrapper {
+                margin: 0 10px;
+            }
+
+            .main-header.header-royal .main-menu ul li {
+                margin: 0 4px;
+            }
+
+            .main-header.header-royal .main-menu ul li a {
+                font-size: 15px;
+                padding: 12px 6px !important;
+            }
+
+            .main-header.header-royal .header-btn {
+                display: none;
+            }
+
+            .main-menu ul li.nav-booking-item {
+                display: inline-block;
+                margin-left: 10px;
+            }
+
+            .main-header.header-royal .main-menu ul li.nav-booking-item a.nav-booking-link {
+                display: inline-block;
+                background: var(--accent-color);
+                border-radius: 100px;
+                color: var(--primary-color) !important;
+                font-family: var(--accent-font);
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 1.2em;
+                padding: 13px 40px 13px 16px !important;
+                text-transform: capitalize;
+                position: relative;
+            }
+
+            .main-header.header-royal .main-menu ul li.nav-booking-item a.nav-booking-link::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: 14px;
+                width: 18px;
+                height: 18px;
+                background-image: url('{% static "images/arrow-primary-royal.svg" %}');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                transform: translateY(-50%);
+            }
+        }
+
+        @media only screen and (max-width: 991px) {
+            .slicknav_nav li.nav-booking-item {
+                display: block;
+            }
+        }
+    </style>
+
     {% comment %} <style>
         :root {
             --bg-color: #2c2c2c;
@@ -208,7 +272,7 @@
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav mr-auto" id="menu">
                                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Camping
                                         Packages</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{% url 'activity_list' %}">Activities</a>
@@ -217,6 +281,8 @@
                                 <li class="nav-item"><a class="nav-link" href="{% url 'image_gallery' %}">Gallery</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+                                <li class="nav-item nav-booking-item"><a class="nav-link nav-booking-link"
+                                        href="{% url 'booking' %}">Book Now</a></li>
                             </ul>
                         </div>
 

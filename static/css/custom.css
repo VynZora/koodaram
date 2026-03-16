@@ -50,14 +50,23 @@
 /************************************/
 
 :root {
-	--primary-color: #000000;
+	/* --primary-color: #000000;
 	--secondary-color: #FFFFFF;
 	--text-color: #808080;
-	--accent-color: #CBCA7B;
+	--accent-color: #4F7942;
 	--bg-color: #F7F7F7;
 	--white-color: #FFFFFF;
 	--divider-color: #0000001A;
-	--dark-divider-color: #FFFFFF1A;
+	--dark-divider-color: #FFFFFF1A; */
+	--primary-color: #0F3620;
+	--secondary-color: #FFFFFF;
+	--text-color: #2D5A3D;
+	/* --accent-color: #009E60; */
+	--accent-color: #3A9612;
+	--bg-color: #F0FDF4;
+	--white-color: #FFFFFF;
+	--divider-color: #16A34A1A;
+	--dark-divider-color: #22C55E1A;
 	--error-color: rgb(230, 87, 87);
 	--default-font: "Manrope", sans-serif;
 	--accent-font: "Bricolage Grotesque", sans-serif;
@@ -438,7 +447,7 @@ a:focus {
 	left: 0;
 	top: 50%;
 	transform: translateY(-50%);
-	background-image: url(../images/icon-sub-heading-accent.svg);
+	/* background-image: url(../images/icon-sub-heading-accent.svg); */
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -7391,18 +7400,18 @@ header.main-header.header-royal .header-sticky.active {
 	border-radius: 0 0 20px 20px;
 }
 
-		.hero-royal {
-			position: relative;
-		/* background: url('../images/new/koodaram-banner.jpg') no-repeat;
+.hero-royal {
+	position: relative;
+	/* background: url('../images/new/koodaram-banner.jpg') no-repeat;
 		background-position: center center;
 		background-size: cover; */
-			padding: 100px 0;
-			margin-top: 0;
-			overflow: hidden;
-			height: 100vh;
-			display: flex;
-			align-items: center;
-		}
+	padding: 100px 0;
+	margin-top: 0;
+	overflow: hidden;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+}
 
 .hero-video-bg {
 	position: absolute;
@@ -7427,7 +7436,7 @@ header.main-header.header-royal .header-sticky.active {
 	left: 0;
 	right: 0;
 	background: var(--primary-color);
-	opacity: 40%;
+	opacity: 0.15;
 	width: 100%;
 	height: 100%;
 	z-index: 1;
@@ -9563,10 +9572,10 @@ header.main-header.header-royal .header-sticky.active {
 		border-radius: 0;
 	}
 
-		.hero-royal {
-			padding: 140px 0 50px;
-			margin-top: 0;
-		}
+	.hero-royal {
+		padding: 140px 0 50px;
+		margin-top: 0;
+	}
 
 	.hero-content-royal .section-title h1 {
 		font-size: 50px;

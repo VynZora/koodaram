@@ -8,83 +8,79 @@
 <style>
     .google-review-badge {
         display: inline-flex;
-        position: relative;
-        overflow: hidden;
+        align-items: center;
+        gap: 12px;
         text-decoration: none;
-        border-radius: 12px;
         background: #fff;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06);
-        padding: 8px 14px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        margin-bottom: 10px;
+        border-radius: 12px;
+        padding: 10px 16px;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+        transition: box-shadow 0.2s ease;
     }
-    
+
     .google-review-badge:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.06);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
-    
+
     .google-review-inner {
         display: flex;
         flex-direction: column;
-        gap: 4px;
-        position: relative;
-        z-index: 1;
+        gap: 3px;
     }
-    
+
     .google-review-top {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .google-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: #444;
+        letter-spacing: 0;
+    }
+
+    .google-label .google-brand {
+        font-weight: 600;
+        background: linear-gradient(90deg,
+            #4285F4 0%, #4285F4 16.6%,
+            #EA4335 16.6%, #EA4335 33.2%,
+            #FBBC05 33.2%, #FBBC05 49.8%,
+            #4285F4 49.8%, #4285F4 66.4%,
+            #34A853 66.4%, #34A853 83%,
+            #EA4335 83%, #EA4335 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .google-stars-row {
         display: flex;
         align-items: center;
         gap: 6px;
     }
-    
-    .google-label {
-        font-size: 11px;
-        font-weight: 600;
-        color: #555;
-        letter-spacing: 0.3px;
-        text-transform: uppercase;
-    }
-    
-    .google-stars-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .google-stars i {
-        color: #FBBC05;
-        font-size: 14px;
-        margin-right: 1px;
-    }
-    
+
     .google-score {
-        font-size: 15px;
+        font-size: 18px;
         font-weight: 700;
         color: #222;
+        line-height: 1;
     }
-    
-    .google-max {
-        font-size: 11px;
+
+    .google-stars i {
+        color: #FBBC05;
+        font-size: 15px;
+        margin-right: 1px;
+    }
+
+    .google-count {
+        font-size: 12px;
+        color: #888;
         font-weight: 400;
-        color: #999;
     }
-    
-    /* Shine sweep on hover */
-    .google-review-shine {
-        position: absolute;
-        top: 0; left: -75%;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
-        transform: skewX(-20deg);
-        transition: left 0.45s ease;
-        pointer-events: none;
-    }
-    
-    .google-review-badge:hover .google-review-shine {
-        left: 130%;
-    }
+
     .feature-item-rating-royal-royal {
         background: none !important;
     }
@@ -194,7 +190,7 @@
                         </div>
                         <!-- About Image 1 End -->
 
-                        <!-- About Client Box Start -->
+                        {% comment %} <!-- About Client Box Start -->
                         <div class="about-client-box-royal">
                             <!-- Satisfy Client Images Start -->
                             <div class="satisfy-client-images-royal">
@@ -225,7 +221,51 @@
                             </div>
                             <!-- About Client Content End -->
                         </div>
-                        <!-- About Client Box End -->
+                        <!-- About Client Box End --> {% endcomment %}
+                         <!-- About Client Box Start -->
+<div class="about-client-box-royal">
+    <!-- Google Review Badge Start -->
+    <a href="{{ google_review_url }}" target="_blank" rel="noopener noreferrer"
+        aria-label="Google rating {{ google_review_rating }} out of 5"
+        class="google-review-badge">
+        <svg viewBox="0 0 24 24" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        <div class="google-review-inner">
+            <div class="google-review-top">
+                <span class="google-label">
+                    <span class="google-brand">Google</span> Rating
+                </span>
+            </div>
+            <div class="google-stars-row">
+                <span class="google-score">{{ google_review_rating }}</span>
+                <div class="google-stars">
+                    {% for star in google_review_stars %}
+                        {% if star == "full" %}
+                            <i class="fa-solid fa-star"></i>
+                        {% elif star == "half" %}
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        {% else %}
+                            <i class="fa-regular fa-star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <span class="google-count">{{ google_review_count }}+ reviews</span>
+            </div>
+        </div>
+    </a>
+    <!-- Google Review Badge End -->
+
+    <!-- About Client Content Start -->
+    {% comment %} <div class="about-client-content-royal">
+        <p>Guests who loved Koodaram</p>
+    </div> {% endcomment %}
+    <!-- About Client Content End -->
+</div>
+<!-- About Client Box End -->
                     </div>
                     <!-- About Image Item 1 End -->
 
@@ -1323,17 +1363,20 @@
                     <a href="{{ google_review_url }}" target="_blank" rel="noopener noreferrer"
                         aria-label="Google rating {{ google_review_rating }} out of 5"
                         class="google-review-badge">
+                        <svg viewBox="0 0 24 24" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
                         <div class="google-review-inner">
                             <div class="google-review-top">
-                                <svg class="google-icon" viewBox="0 0 24 24" width="18" height="18">
-                                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                                </svg>
-                                <span class="google-label">Google Reviews</span>
+                                <span class="google-label">
+                                    <span class="google-brand">Google</span> Rating
+                                </span>
                             </div>
                             <div class="google-stars-row">
+                                <span class="google-score">{{ google_review_rating }}</span>
                                 <div class="google-stars">
                                     {% for star in google_review_stars %}
                                         {% if star == "full" %}
@@ -1345,11 +1388,9 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
-                                <span class="google-score">{{ google_review_rating }}<span class="google-max">/5</span></span>
-                                <span class="google-count">({{ google_review_count }}+)</span>
+                                <span class="google-count">{{ google_review_count }}+ reviews</span>
                             </div>
                         </div>
-                        <div class="google-review-shine"></div>
                     </a>
                 </div>
                 <!-- Section Footer Text End -->

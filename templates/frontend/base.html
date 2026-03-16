@@ -226,7 +226,7 @@
     </div>
     <!-- Preloader End -->
 
-    {% if request.resolver_match.url_name != 'home' %}
+    {% comment %} {% if request.resolver_match.url_name != 'home' %}
     <!-- Topbar Section Start -->
     <div class="topbar">
         <div class="container">
@@ -254,7 +254,7 @@
         </div>
     </div>
     <!-- Topbar Section End -->
-    {% endif %}
+    {% endif %} {% endcomment %}
 
     <!-- Header Start -->
     <header class="main-header header-royal">

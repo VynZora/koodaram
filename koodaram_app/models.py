@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from .utils.image_optimizer import optimize_image
 
 # class TeamMember(models.Model):
 #     name = models.CharField(max_length=100)  
@@ -10,7 +11,23 @@ from django.utils.text import slugify
 #     def __str__(self):
 #         return f"{self.name} - {self.position}"
 
-class CampingPackage(models.Model):
+class OptimizedImageModel(models.Model):
+    image_fields = []
+
+    class Meta:
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        for field in self.image_fields:
+            image_field = getattr(self, field, None)
+            if image_field and hasattr(image_field, "path"):
+                optimize_image(image_field.path)
+
+
+class CampingPackage(OptimizedImageModel):
+    image_fields = ["main_image"]
+
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     description = models.TextField()
@@ -50,8 +67,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class GalleryImage(OptimizedImageModel):
+    image_fields = ["image"]
 
-class GalleryImage(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="images"
     )
@@ -59,11 +77,13 @@ class GalleryImage(models.Model):
     image = models.ImageField(upload_to="gallery/")
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
         return self.title if self.title else f"Image {self.id}"
 
-class Activity(models.Model):
+
+class Activity(OptimizedImageModel):
+    image_fields = ["image"]
+
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     description = models.TextField()
@@ -89,7 +109,9 @@ class Activity(models.Model):
             self.slug = slug
         super().save(*args, **kwargs)
 
-class Blog(models.Model):
+class Blog(OptimizedImageModel):
+    image_fields = ["image"]
+
     image = models.ImageField(upload_to="blogs/", help_text="Blog cover image")
     slug = models.SlugField(unique=True, blank=True)
     title = models.CharField(max_length=200)
@@ -113,7 +135,9 @@ class Blog(models.Model):
             self.slug = slug
         super().save(*args, **kwargs)
     
-class Testimonial(models.Model):
+class Testimonial(OptimizedImageModel):
+    image_fields = ["image"]
+
     name = models.CharField(
         max_length=100, help_text="Name of the person giving the testimonial"
     )
@@ -124,8 +148,6 @@ class Testimonial(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    image_fields = ["image"]
 
     class Meta:
         ordering = ["-created_at"]

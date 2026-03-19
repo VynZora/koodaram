@@ -181,8 +181,7 @@
                         <p class="feed-name">{{ contact.first_name }} {{ contact.last_name }}</p>
                         <p class="feed-sub">{{ contact.message|truncatewords:10 }}</p>
                         <p class="feed-meta">
-                            <i class="icofont-phone"></i> {{ contact.phone }} &nbsp;·&nbsp; {{
-                            contact.created_at|timesince }} ago
+                            <i class="icofont-phone"></i> {{ contact.phone }} &nbsp;·&nbsp; {{ contact.created_at|timesince }} ago
                         </p>
                     </div>
                 </li>

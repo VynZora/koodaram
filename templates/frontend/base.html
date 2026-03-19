@@ -45,6 +45,41 @@
             display: none;
         }
 
+        .btn-default-royal {
+            background: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .btn-default-royal:hover {
+            background: var(--accent-color);
+            color: var(--white-color);
+        }
+
+        .btn-default-royal::before,
+        .btn-default-royal:hover::before {
+            filter: brightness(0) invert(1);
+        }
+
+        .btn-default-royal::after,
+        .btn-default-royal:hover::after {
+            display: none;
+        }
+
+        .btn-default {
+            background: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .btn-default:hover {
+            background: var(--accent-color);
+            color: var(--white-color);
+        }
+
+        .btn-default::after,
+        .btn-default:hover::after {
+            display: none;
+        }
+
         @media only screen and (max-width: 1199px) {
             .main-header.header-royal .main-menu .nav-menu-wrapper {
                 margin: 0 10px;
@@ -70,9 +105,9 @@
 
             .main-header.header-royal .main-menu ul li.nav-booking-item a.nav-booking-link {
                 display: inline-block;
-                background: var(--accent-color);
+                background: var(--primary-color);
                 border-radius: 100px;
-                color: var(--primary-color) !important;
+                color: var(--white-color) !important;
                 font-family: var(--accent-font);
                 font-size: 15px;
                 font-weight: 700;
@@ -93,6 +128,7 @@
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: cover;
+                filter: brightness(0) invert(1);
                 transform: translateY(-50%);
             }
         }
@@ -102,6 +138,19 @@
                 display: block;
             }
         }
+        .footer-copyright-text-royal a {
+            color: #ffffff !important;
+        }
+        .footer-copyright-text-royal small {
+            color: #ffffff !important;
+        }
+        .main-footer-header-royal {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .footer-copyright-royal {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
     </style>
 
     {% comment %} <style>
@@ -244,8 +293,8 @@
                 <div class="col-lg-5 col-md-6">
                     <div class="topbar-social-links">
                         <ul>
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
-                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i>Facebook</a></li>
+                            <li><a href="https://www.instagram.com/koodaram_munnar/"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
+                            <li><a href="https://www.facebook.com/KoodaramMunnar/"><i class="fa-brands fa-facebook-f"></i>Facebook</a></li>
                             <li><a href="#"><i class="fa-brands fa-youtube"></i>YouTube</a></li>
                         </ul>
                     </div>
@@ -426,16 +475,13 @@
                     </div>
 
                     <div class="col-md-6">
-                        <!-- Footer Social Links Start -->
                         <div class="footer-social-links-royal">
                             <ul>
-                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="https://www.facebook.com/KoodaramMunnar/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/koodaram_munnar/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="https://wa.me/919995497856" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
                             </ul>
                         </div>
-                        <!-- Footer Social Links End -->
                     </div>
                 </div>
             </div>

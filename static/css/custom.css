@@ -63,7 +63,7 @@
 	--text-color: #2D5A3D;
 	/* --accent-color: #009E60; */
 	--accent-color: #3A9612;
-	--bg-color: #F0FDF4;
+	--bg-color: #E6FAED;
 	--white-color: #FFFFFF;
 	--divider-color: #16A34A1A;
 	--dark-divider-color: #22C55E1A;
@@ -2630,7 +2630,7 @@ header.main-header .header-sticky.active {
 
 .our-testimonials {
 	position: relative;
-	background: url('../images/new/testimonial-bg.webp') no-repeat;
+	background: url('../images/Koodaram_webp/why_choose_us.webp') no-repeat;
 	background-position: center center;
 	background-size: cover;
 	padding: 100px 0;
@@ -3749,7 +3749,7 @@ header.main-header .header-sticky.active {
 
 .How-it-work {
 	position: relative;
-	background-image: url('../images/new/koodaram-banner.jpg');
+	background-image: url('../images/Koodaram_webp/koodaram-banner.webp');
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -8079,7 +8079,7 @@ header.main-header.header-royal .header-sticky.active {
 
 .why-choose-us-royal {
 	position: relative;
-	background: url('../images/new/why_choose_us.jpeg') center center no-repeat;
+	background: url('../images/Koodaram_webp/why_choose_us.webp') center center no-repeat;
 	background-position: center center;
 	background-size: cover;
 	padding: 100px 0;
@@ -8094,8 +8094,10 @@ header.main-header.header-royal .header-sticky.active {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
-	background: linear-gradient(270deg, rgba(0, 0, 0, 0.00) 1.4%, rgba(0, 0, 0, 0.80) 44.17%);
+	height: 98%;
+	background: linear-gradient(270deg,
+			rgba(0, 0, 0, 0.00) 1.4%,
+			rgba(0, 0, 0, 0.50) 44.17%);
 	z-index: 1;
 }
 
@@ -8363,7 +8365,7 @@ header.main-header.header-royal .header-sticky.active {
 }
 
 .feature-item-royal.box-2 {
-	background: var(--accent-color) url('../images/feature-item-royal-box-2-bg-shape.png') no-repeat;
+	/* background: var(--accent-color) url('../images/feature-item-royal-box-2-bg-shape.png') no-repeat; */
 	background-position: left -35px bottom -43px;
 	background-size: auto;
 	text-align: center;
@@ -9014,7 +9016,7 @@ header.main-header.header-royal .header-sticky.active {
 
 .main-footer-royal {
 	position: relative;
-	background: url('../images/new/koodaram-banner.jpg') no-repeat;
+	background: url('../images/Koodaram_webp/footer.webp') no-repeat;
 	background-position: center center;
 	background-size: cover;
 	padding: 100px 0 0 0;

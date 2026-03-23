@@ -1007,7 +1007,375 @@
         </div>
     </div>
 </div>
+<!-- What We Do Section End --> 
+{% comment %} 
+<!-- What We Do Section Start -->
+<div class="what-we-do-royal">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <div class="section-title mb-0">
+                    <h3 class="wow fadeInUp">What we do</h3>
+                    <h2 class="text-anime-style-3" data-cursor="-opaque">Where Adventure Feels Like Luxury</h2>
+                </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-end">
+                <p class="what-we-lead-royal wow fadeInUp" data-wow-delay="0.2s">
+                    Not every escape needs to be rushed.<br> Some are meant to be felt.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="what-we-bento-royal">
+            <!-- Featured Large Card -->
+            <div class="what-we-featured-royal wow fadeInUp" data-wow-delay="0.1s">
+                <figure>
+                    <img src="{% static 'images/new/walking.jpeg' %}" alt="Adventure at Koodaram">
+                </figure>
+                <div class="what-we-featured-overlay-royal">
+                    <span class="what-we-tag-royal">Featured Experience</span>
+                    <h3>Family &amp; Group Escapes in Munnar</h3>
+                    <p>Reconnect with your loved ones through immersive nature stays and scenic surroundings.</p>
+                    <a href="{% url 'contact' %}" class="what-we-arrow-royal">
+                        Explore Now <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Stack -->
+            <div class="what-we-stack-royal">
+                <!-- Romantic Card -->
+                <div class="what-we-card-royal wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="what-we-card-icon-royal">
+                        <img src="{% static 'images/icon-what-we-do-2-royal.svg' %}" alt="">
+                    </div>
+                    <div class="what-we-card-body-royal">
+                        <h4>Romantic Getaways &amp; Couple Camping</h4>
+                        <p>Discover intimate moments amidst misty hills, tranquil landscapes and most memorable experiences.</p>
+                    </div>
+                </div>
+
+                <!-- Eco Card -->
+                <div class="what-we-card-royal wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="what-we-card-icon-royal">
+                        <img src="{% static 'images/icon-what-we-do-3-royal.svg' %}" alt="">
+                    </div>
+                    <div class="what-we-card-body-royal">
+                        <h4>Eco-Friendly &amp; Sustainable Travel</h4>
+                        <p>Stay responsibly with eco-conscious camping experiences that preserve nature while offering comfort.</p>
+                    </div>
+                </div>
+
+                <!-- CTA Card -->
+                <div class="what-we-cta-card-royal wow fadeInUp" data-wow-delay="0.4s">
+                    <ul class="what-we-list-royal">
+                        <li>Wake up to the sound of the forest</li>
+                        <li>Comfort without compromising the thrill</li>
+                        <li>End your day under a sky full of stars</li>
+                    </ul>
+                    <a href="{% url 'contact' %}" class="btn-default-royal mt-4 d-inline-block">Start Your Journey</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- What We Do Section End -->
+
+<style>
+    /* ---- What We Do - Royal ---- */
+.what-we-do-royal {
+    padding: 70px 0;
+    background: var(--bg-color);
+}
+
+.what-we-lead-royal {
+    font-size: 16px;
+    line-height: 1.7em;
+    color: var(--text-color);
+    margin-bottom: 0;
+    padding-bottom: 10px;
+}
+
+/* Bento Grid */
+.what-we-bento-royal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 35px;
+}
+
+/* Featured Large Card */
+.what-we-featured-royal {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 420px;
+}
+
+.what-we-featured-royal figure {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.what-we-featured-royal figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease-in-out;
+}
+
+.what-we-featured-royal:hover figure img {
+    transform: scale(1.05);
+}
+
+.what-we-featured-overlay-royal {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 54, 32, 0.92) 0%, rgba(15, 54, 32, 0.3) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+}
+
+.what-we-tag-royal {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--primary-color);
+    background: var(--accent-color);
+    border-radius: 6px;
+    padding: 4px 10px;
+    margin-bottom: 14px;
+    width: fit-content;
+}
+
+.what-we-featured-overlay-royal h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white-color);
+    margin-bottom: 8px;
+    line-height: 1.2em;
+}
+
+.what-we-featured-overlay-royal p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6em;
+    margin-bottom: 14px;
+    max-width: 380px;
+}
+
+.what-we-arrow-royal {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: gap 0.3s ease;
+}
+
+.what-we-arrow-royal:hover {
+    color: var(--white-color);
+    gap: 14px;
+}
+
+/* Right Stack */
+.what-we-stack-royal {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Feature Cards */
+.what-we-card-royal {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--white-color);
+    border-radius: 20px;
+    padding: 22px;
+    border: 1px solid var(--divider-color);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.what-we-card-royal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(15, 54, 32, 0.1);
+}
+
+.what-we-card-icon-royal {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    background: var(--bg-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.what-we-card-royal:hover .what-we-card-icon-royal {
+    background: var(--accent-color);
+}
+
+.what-we-card-icon-royal img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.what-we-card-royal:hover .what-we-card-icon-royal img {
+    transform: rotateY(180deg);
+}
+
+.what-we-card-body-royal h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+    line-height: 1.3em;
+}
+
+.what-we-card-body-royal p {
+    font-size: 13px;
+    line-height: 1.7em;
+    color: var(--text-color);
+    margin-bottom: 0;
+}
+
+/* CTA Card */
+.what-we-cta-card-royal {
+    background: var(--primary-color);
+    border-radius: 20px;
+    padding: 24px;
+}
+
+.what-we-list-royal ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.what-we-list-royal ul li {
+    position: relative;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5em;
+    padding-left: 26px;
+    margin-bottom: 10px;
+}
+
+.what-we-list-royal ul li:last-child {
+    margin-bottom: 0;
+}
+
+.what-we-list-royal ul li::before {
+    content: '\f058';
+    position: absolute;
+    font-family: 'Font Awesome 7 Free';
+    font-weight: 900;
+    top: 1px;
+    left: 0;
+    font-size: 14px;
+    color: var(--accent-color);
+}
+
+/* Responsive */
+@media only screen and (max-width: 1199px) {
+    .what-we-bento-royal {
+        grid-template-columns: 1fr;
+    }
+
+    .what-we-featured-royal {
+        min-height: 380px;
+    }
+
+    .what-we-stack-royal {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .what-we-card-royal {
+        flex: 1 1 calc(50% - 7px);
+    }
+
+    .what-we-cta-card-royal {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .what-we-do-royal {
+        padding: 50px 0;
+    }
+
+    .what-we-bento-royal {
+        margin-top: 25px;
+        gap: 12px;
+    }
+
+    .what-we-featured-royal {
+        min-height: 300px;
+    }
+
+    .what-we-featured-overlay-royal {
+        padding: 20px;
+    }
+
+    .what-we-featured-overlay-royal h3 {
+        font-size: 18px;
+    }
+
+    .what-we-stack-royal {
+        flex-direction: column;
+    }
+
+    .what-we-card-royal {
+        flex: 1 1 100%;
+        padding: 18px;
+    }
+
+    .what-we-cta-card-royal {
+        padding: 18px;
+    }
+}
+.what-we-do-royal {
+    padding: 50px 0;
+}
+
+.what-we-card-royal {
+    padding: 16px;
+}
+
+.what-we-cta-card-royal {
+    padding: 18px;
+}
+
+.what-we-list-royal ul li {
+    margin-bottom: 8px;
+}
+
+.what-we-bento-royal {
+    margin-top: 25px;
+}
+.what-we-bento-royal {
+    max-height: 420px;
+}
+</style> {% endcomment %}
 
 {% comment %} <!-- Intro Video Section Start -->
 <div class="intro-video-royal bg-section-royal dark-section-royal parallaxie">

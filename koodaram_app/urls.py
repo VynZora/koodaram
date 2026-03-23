@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import RedirectView
 
 from . import views
 
@@ -19,8 +20,11 @@ urlpatterns = [
     path("blog/<slug:slug>/", views.blog_single, name="blog_single"),
     path("activities/", views.activity_list, name="activity_list"),
     path("activities/<slug:slug>/", views.activity_single, name="activity_single"),
-    path("services/", views.services, name="services"),
-    path("services/<slug:slug>/", views.service_single, name="service_single"),
+    path("camping-packages/", views.services, name="camping_packages"),
+    path("camping-packages/<slug:slug>/", views.service_single, name="camping_package_single"),
+    # Backward-compatible redirects for old URLs.
+    path("services/", RedirectView.as_view(pattern_name="camping_packages", permanent=True)),
+    path("services/<slug:slug>/", RedirectView.as_view(pattern_name="camping_package_single", permanent=True)),
     path("contact/", views.contact, name="contact"),
     path("admin-login/", views.admin_login, name="admin_login"),
     path("admin-logout/", views.admin_logout, name="admin_logout"),

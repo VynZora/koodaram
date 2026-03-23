@@ -1018,7 +1018,7 @@
                     <!-- Service Image Start -->
                     <div class="service-image-royal">
                         <div class="service-img-royal">
-                            <a href="{% url 'service_single' package.slug %}" data-cursor-text="View">
+                            <a href="{% url 'camping_package_single' package.slug %}" data-cursor-text="View">
                                 <figure>
                                     {% if package.main_image %}
                                     <img src="{{ package.main_image.url }}" alt="{{ package.name }}">
@@ -1038,14 +1038,14 @@
                     <div class="service-content-body-royal">
                         <!-- Service Content Start -->
                         <div class="service-content-royal">
-                            <h3><a href="{% url 'service_single' package.slug %}">{{ package.name }}</a></h3>
+                            <h3><a href="{% url 'camping_package_single' package.slug %}">{{ package.name }}</a></h3>
                             <p>{{ package.description|striptags|truncatewords:10 }}</p>
                         </div>
                         <!-- Service Content End -->
 
                         <!-- Service Button Start -->
                         <div class="service-btn-royal">
-                            <a href="{% url 'service_single' package.slug %}" class="btn-default-royal">Read More</a>
+                            <a href="{% url 'camping_package_single' package.slug %}" class="btn-default-royal">Read More</a>
                         </div>
                         <!-- Service Button End -->
                     </div>

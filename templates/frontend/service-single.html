@@ -228,7 +228,7 @@
                         <nav class="wow fadeInUp">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">home</a></li>
-                                <li class="breadcrumb-item"><a href="{% url 'services' %}">camping packages</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'camping_packages' %}">camping packages</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{ package.name }}</li>
                             </ol>
                         </nav>
@@ -252,7 +252,7 @@
                             <h3>Explore Packages</h3>
                             <ul>
                                 {% for recent in recent_packages %}
-                                <li><a href="{% url 'service_single' recent.slug %}">{{ recent.name }}</a></li>
+                                <li><a href="{% url 'camping_package_single' recent.slug %}">{{ recent.name }}</a></li>
                                 {% empty %}
                                 <li>No other packages available</li>
                                 {% endfor %}

@@ -80,6 +80,55 @@
             display: none;
         }
 
+        /* Global persistent navbar + scroll-state styling */
+        header.main-header.header-royal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1100;
+        }
+        header.main-header.header-royal .header-sticky {
+            transform: none !important;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        header.main-header.header-royal .header-sticky.nav-scrolled {
+            background: var(--primary-color) !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        header.main-header.header-royal .header-sticky.nav-scrolled .header-btn .btn-default-royal,
+        header.main-header.header-royal .header-sticky.nav-scrolled .main-menu ul li.nav-booking-item a.nav-booking-link {
+            background: var(--accent-color) !important;
+            color: var(--primary-color) !important;
+        }
+        header.main-header.header-royal .header-sticky.nav-scrolled .header-btn .btn-default-royal::before,
+        header.main-header.header-royal .header-sticky.nav-scrolled .main-menu ul li.nav-booking-item a.nav-booking-link::before {
+            filter: none !important;
+        }
+        @media (min-width: 992px) {
+            header.main-header.header-royal .header-sticky.bg-section-royal {
+                background: rgba(255, 255, 255, 0.12) !important;
+                backdrop-filter: blur(7px);
+                -webkit-backdrop-filter: blur(14px);
+                border-radius: 50px;
+                margin: 16px auto;
+                width: calc(100% - 80px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+                transition: background 0.3s ease, box-shadow 0.3s ease;
+                padding-top: 4px !important;
+                padding-bottom: 4px !important;
+            }
+            .navbar {
+                padding: 0 !important;
+            }
+            header.main-header.header-royal .header-sticky.bg-section-royal.nav-scrolled {
+                background: var(--primary-color) !important;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+        }
+
         @media only screen and (max-width: 1199px) {
             .main-header.header-royal .main-menu .nav-menu-wrapper {
                 margin: 0 10px;
@@ -568,6 +617,15 @@
                 return new bootstrap.Toast(toastEl, { delay: 5000 });
             });
             toastList.forEach(toast => toast.show());
+
+            var sticky = document.querySelector("header.main-header.header-royal .header-sticky");
+            if (sticky) {
+                function updateNavbarState() {
+                    sticky.classList.toggle("nav-scrolled", window.scrollY > 40);
+                }
+                updateNavbarState();
+                window.addEventListener("scroll", updateNavbarState, { passive: true });
+            }
         });
     </script>
     {% block extra_js %}{% endblock %}

@@ -5337,7 +5337,7 @@ header.main-header .header-sticky.active {
 	line-height: 1.6em;
 	color: var(--text-color);
 	background-color: transparent;
-	border: 1px solid var(--divider-color);
+	border: 1px solid #2D5A3D;
 	border-radius: 12px;
 	padding: 17px 20px;
 	outline: none;

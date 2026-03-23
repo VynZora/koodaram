@@ -145,10 +145,24 @@
             color: #ffffff !important;
         }
         .main-footer-header-royal {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.45);
         }
         .footer-copyright-royal {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 2px solid rgba(255, 255, 255, 0.45);
+        }
+        footer.main-footer-royal {
+            position: relative;
+        }
+        footer.main-footer-royal::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 1);
+            z-index: 0;
+        }
+        footer.main-footer-royal > * {
+            position: relative;
+            z-index: 1;
         }
         
     </style>
@@ -284,7 +298,7 @@
                     <div class="topbar-contact-info">
                         <ul>
                             <li><img src="{% static 'images/icon-phone-primary.svg' %}" alt=""><a
-                                    href="tel:+919497000000">+91 94970 00000</a></li>
+                                    href="tel:+919995497856">+91 99954 97856</a></li>
                             <li><img src="{% static 'images/icon-mail-primary.svg' %}" alt=""><a
                                     href="mailto:hello@koodaram.com">hello@koodaram.com</a></li>
                         </ul>
@@ -406,7 +420,7 @@
                         <div class="footer-about-royal">
                             <!-- Section Title Start -->
                             <div class="section-title">
-                                <h2 class="text-anime-style-3">Take Nothing But Memories , Leave With More.
+                                <h2 class="text-anime-style-3">Take Nothing But Memories, <br>Leave With More.
                                 </h2>
                             </div>
                             <!-- Section Title End -->
@@ -417,7 +431,7 @@
                                     <img src="{% static 'images/icon-headphone-accent.svg' %}" alt="">
                                 </div>
                                 <div class="footer-about-contact-content-royal">
-                                    <h3><a href="tel:+919497000000">+91 94970 00000</a></h3>
+                                    <h3><a href="tel:+919995497856">+91 99954 97856</a></h3>
                                 </div>
                             </div>
                             <!-- Footer About Contact Box End -->

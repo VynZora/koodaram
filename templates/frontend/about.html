@@ -1011,8 +1011,13 @@
         </div>
 
         <div class="row">
-            {% for package in packages %}
-            <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="col-lg-12">
+                <!-- Package Slider Start -->
+                <div class="testimonial-slider-royal">
+                    <div class="swiper">
+                        <div class="swiper-wrapper" data-cursor-text="Drag">
+                            {% for package in packages %}
+                            <div class="swiper-slide">
                 <!-- Service Item Start -->
                 <div class="service-item-royal wow fadeInUp" {%
                     cycle '' 'data-wow-delay="0.2s"' 'data-wow-delay="0.4s"' 'data-wow-delay="0.6s"' %}>
@@ -1053,15 +1058,23 @@
                     <!-- Service Content Body End -->
                 </div>
                 <!-- Service Item End -->
+                            </div>
+                            {% empty %}
+                            <div class="swiper-slide">
+                                <div class="col-12 mt-4 text-center">
+                                    <p>No camping packages available at the moment.</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="testimonial-pagination-royal mt-5 d-flex justify-content-center mt-4"></div>
+                    </div>
+                </div>
+                <!-- Package Slider End -->
             </div>
-            {% empty %}
-            <div class="col-12 mt-4 text-center">
-                <p>No camping packages available at the moment.</p>
-            </div>
-            {% endfor %}
         </div>
 
-        <div class="row">
+        {% comment %} <div class="row">
             <div class="col-lg-12">
                 <!-- Section Footer Text Start -->
                 <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
@@ -1070,7 +1083,7 @@
                 </div>
                 <!-- Section Footer Text End -->
             </div>
-        </div>
+        </div> {% endcomment %}
     </div>
 </div>
 <!-- Our Services Section End -->

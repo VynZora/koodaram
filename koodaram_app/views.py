@@ -20,7 +20,7 @@ def home(request):
         testimonials = (testimonials * repeat_count)[:3]
 
     blogs = Blog.objects.all()[:3]
-    packages = CampingPackage.objects.all()[:4]
+    packages = CampingPackage.objects.all()
     activities = Activity.objects.all()[:4]
     
     context = {
@@ -38,7 +38,7 @@ def about(request):
         repeat_count = (3 + len(testimonials) - 1) // len(testimonials)
         testimonials = (testimonials * repeat_count)[:3]
     
-    packages = CampingPackage.objects.all()[:4]
+    packages = CampingPackage.objects.all()
     return render(request, "frontend/about.html", {"testimonials": testimonials, "packages": packages})
 
 

@@ -137,6 +137,23 @@
             .slicknav_nav li.nav-booking-item {
                 display: block;
             }
+            .navbar-brand img {
+                max-width: 170px;
+            }
+            .slicknav_nav li.nav-booking-item a.nav-booking-link {
+                display: inline-block !important;
+                background: var(--primary-color) !important;
+                color: var(--white-color) !important;
+                border-radius: 999px !important;
+                padding: 12px 18px !important;
+                margin: 10px 20px 8px !important;
+                font-weight: 700 !important;
+                line-height: 1 !important;
+            }
+            .slicknav_nav li.nav-booking-item a.nav-booking-link::after {
+                content: " \2197";
+                font-weight: 700;
+            }
         }
         .footer-copyright-text-royal a {
             color: #ffffff !important;
@@ -300,7 +317,7 @@
                             <li><img src="{% static 'images/icon-phone-primary.svg' %}" alt=""><a
                                     href="tel:+919995497856">+91 99954 97856</a></li>
                             <li><img src="{% static 'images/icon-mail-primary.svg' %}" alt=""><a
-                                    href="mailto:hello@koodaram.com">hello@koodaram.com</a></li>
+                                    href="mailto:koodarammunnar@gmail.com">koodarammunnar@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -405,7 +422,7 @@
                                 <li><img src="{% static 'images/icon-location-accent.svg' %}" alt="">Location: Koodaram,
                                     Munnar, Kerala</li>
                                 <li><img src="{% static 'images/icon-mail-accent.svg' %}" alt=""><a
-                                        href="mailto:hello@koodaram.com">hello@koodaram.com</a></li>
+                                        href="mailto:koodarammunnar@gmail.com">koodarammunnar@gmail.com</a></li>
                             </ul>
                         </div>
                         <!-- Footer Contact Details End -->
@@ -447,6 +464,7 @@
                                     <li><a href="{% url 'home' %}">Home</a></li>
                                     <li><a href="{% url 'about' %}">About us</a></li>
                                     <li><a href="{% url 'camping_packages' %}">Camping Packages</a></li>
+                                    <li><a href="{% url 'activity_list' %}">Activities</a></li>
                                     <li><a href="{% url 'blog' %}">Blog</a></li>
                                     <li><a href="{% url 'contact' %}">Contact Us</a></li>
                                 </ul>

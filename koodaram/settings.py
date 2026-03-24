@@ -146,3 +146,6 @@ TEMPLATES[0]["OPTIONS"]["context_processors"].append(
 )
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+RECAPTCHA_SITE_KEY = "6LdCu5UsAAAAABBzhuzpjYtmJGvwlpNmj0tI2Qj_"
+RECAPTCHA_SECRET_KEY = "6LdCu5UsAAAAABvwNs8b-89EddjyW8TQMdn97im2"

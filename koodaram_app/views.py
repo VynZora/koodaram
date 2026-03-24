@@ -57,15 +57,51 @@ def blog_single(request, slug):
     return render(request, "frontend/blog-single.html", context)
 
 
+import requests
 def contact(request):
     form = ContactForm(request.POST or None)
+
     if request.method == "POST":
+
+        captcha_token = request.POST.get("g-recaptcha-response")
+
+        if not captcha_token:
+            messages.error(request, "Please verify captcha.")
+            return render(request, "frontend/contact.html", {
+                "form": form,
+                "RECAPTCHA_SITE_KEY": settings.RECAPTCHA_SITE_KEY
+            })
+
+        data = {
+            "secret": settings.RECAPTCHA_SECRET_KEY,
+            "response": captcha_token
+        }
+
+        r = requests.post(
+            "https://www.google.com/recaptcha/api/siteverify",
+            data=data
+        )
+
+        result = r.json()
+
+        if not result.get("success"):
+            messages.error(request, "Captcha verification failed. Try again.")
+            return render(request, "frontend/contact.html", {
+                "form": form,
+                "RECAPTCHA_SITE_KEY": settings.RECAPTCHA_SITE_KEY
+            })
+
         if form.is_valid():
             form.save()
             messages.success(request, "Message sent successfully. We will contact you soon.")
             return redirect("contact")
+
         messages.error(request, "Please check the form and try again.")
-    return render(request, "frontend/contact.html", {"form": form})
+
+    return render(request, "frontend/contact.html", {
+        "form": form,
+        "RECAPTCHA_SITE_KEY": settings.RECAPTCHA_SITE_KEY
+    })
 
 
 def services(request):

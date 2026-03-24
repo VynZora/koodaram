@@ -79,15 +79,22 @@
         color: #7f1d1d;
     }
 
+    .date-error-text {
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #c53030;
+    }
+
     .booking-ack-box.shake {
         animation: ackShake 0.28s ease-in-out 1;
     }
 
     @keyframes ackShake {
-        0% { transform: translateX(0); }
-        25% { transform: translateX(-4px); }
-        50% { transform: translateX(4px); }
-        75% { transform: translateX(-3px); }
+        0%   { transform: translateX(0); }
+        25%  { transform: translateX(-4px); }
+        50%  { transform: translateX(4px); }
+        75%  { transform: translateX(-3px); }
         100% { transform: translateX(0); }
     }
 
@@ -101,33 +108,181 @@
         cursor: pointer;
     }
 
-    .booking-info-modal .modal-dialog {
-        max-width: 760px;
-    }
+    /* ── Liquid Glass Modal ─────────────────────────────────────── */
 
-    body.modal-open .booking-info-modal.show {
-        z-index: 14000 !important;
-    }
-
+    body.modal-open .booking-info-modal.show { z-index: 14000 !important; }
     body.modal-open .modal-backdrop.show {
         z-index: 13990 !important;
+        background: rgba(5, 15, 8, 0.68) !important;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
     }
-
     body.modal-open header.main-header.header-royal,
     body.modal-open header.main-header.header-royal .header-sticky,
-    body.modal-open header.main-header.header-royal .header-sticky.active {
-        z-index: 1200 !important;
+    body.modal-open header.main-header.header-royal .header-sticky.active { z-index: 1200 !important; }
+
+    .booking-info-modal .modal-dialog {
+        max-width: 700px;
+    }
+
+    .booking-info-modal .modal-content {
+        position: relative;
+        border: none;
+        border-radius: 28px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background: transparent;
+        isolation: isolate;
+        box-shadow:
+            0 2px 0 0 rgba(255, 255, 255, 0.55) inset,
+            0 -1px 0 0 rgba(255, 255, 255, 0.12) inset,
+            1px 0 0 0 rgba(255, 255, 255, 0.22) inset,
+            -1px 0 0 0 rgba(255, 255, 255, 0.12) inset,
+            0 32px 80px -12px rgba(0, 0, 0, 0.5),
+            0 8px 24px -4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Glass fill layer */
+    .booking-info-modal .modal-content::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        background: linear-gradient(
+            160deg,
+            rgba(255, 255, 255, 0.52) 0%,
+            rgba(255, 255, 255, 0.36) 40%,
+            rgba(200, 240, 215, 0.30) 70%,
+            rgba(255, 255, 255, 0.28) 100%
+        );
+        backdrop-filter: blur(80px) saturate(180%) brightness(1.12);
+        -webkit-backdrop-filter: blur(80px) saturate(180%) brightness(1.12);
+    }
+
+    /* Specular sweep — the "wet glass" highlight */
+    .booking-info-modal .modal-content::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        border-radius: inherit;
+        background: linear-gradient(
+            118deg,
+            rgba(255, 255, 255, 0.38) 0%,
+            rgba(255, 255, 255, 0.10) 28%,
+            transparent 52%,
+            rgba(180, 230, 200, 0.06) 78%,
+            rgba(255, 255, 255, 0.04) 100%
+        );
+    }
+
+    /* ── Sections ───────────────────────────────────────────────── */
+    .booking-info-modal .modal-header {
+        position: relative;
+        z-index: 1;
+        padding: 1.4rem 1.6rem 1.1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.14) 0%,
+            rgba(255, 255, 255, 0.04) 100%
+        );
+    }
+
+    .booking-info-modal .modal-body {
+        position: relative;
+        z-index: 1;
+        padding: 1.3rem 1.6rem 1.5rem;
+    }
+
+    .booking-info-modal .modal-footer {
+        position: relative;
+        z-index: 1;
+        padding: 1rem 1.6rem 1.3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        background: linear-gradient(
+            to top,
+            rgba(255, 255, 255, 0.10) 0%,
+            rgba(255, 255, 255, 0.02) 100%
+        );
+    }
+
+    /* ── Typography ─────────────────────────────────────────────── */
+    .booking-info-modal .modal-title {
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #0c1f12 !important;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    .booking-info-modal .modal-body p,
+    .booking-info-modal .modal-body li {
+        color: rgba(12, 28, 18, 0.88) !important;
+        font-size: 0.94rem;
+        font-weight: 500;
+        line-height: 1.65;
     }
 
     .booking-info-modal .modal-body h6 {
-        margin-top: 18px;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #1f7a43 !important;
+        margin-top: 20px;
         margin-bottom: 8px;
-        font-weight: 700;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
     .booking-info-modal .modal-body ul {
-        margin-bottom: 10px;
-        padding-left: 18px;
+        padding-left: 1.1rem;
+        margin-bottom: 4px;
+    }
+
+    .booking-info-modal .modal-body ul li {
+        margin-bottom: 5px;
+    }
+
+    .booking-info-modal .modal-footer .booking-modal-close-btn {
+        min-width: 140px;
+    }
+    @media (max-width: 576px) {
+        .booking-info-modal .modal-dialog {
+            margin: 0.65rem;
+            max-width: calc(100vw - 1.3rem);
+            height: calc(100dvh - 1.3rem);
+        }
+    
+        .booking-info-modal .modal-content {
+            height: 100%;
+            max-height: 100%;
+            border-radius: 20px;
+        }
+
+        .booking-info-modal .modal-header {
+            padding: 1rem 1rem 0.85rem;
+        }
+
+        .booking-info-modal .modal-body {
+            padding: 0.95rem 1rem 1rem;
+            min-height: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            touch-action: pan-y;
+        }
+
+        .booking-info-modal .modal-footer {
+            padding: 0.85rem 1rem 1rem;
+        }
+
+        .booking-info-modal .modal-footer .booking-modal-close-btn {
+            width: 100%;
+        }
     }
 </style>
 {% endblock %}
@@ -145,6 +300,9 @@
         var form = document.getElementById("contactForm");
         var checkbox = document.getElementById("ack");
         var ackBox = document.getElementById("ackBox");
+        var checkInInput = document.getElementById("check_in");
+        var checkOutInput = document.getElementById("check_out");
+        var dateErrorText = document.getElementById("dateErrorText");
         var importantInfoModal = document.getElementById("importantInfoModal");
 
         if (importantInfoModal && importantInfoModal.parentElement !== document.body) {
@@ -155,6 +313,71 @@
             return;
         }
 
+        function getTodayInputValue() {
+            var today = new Date();
+            var month = String(today.getMonth() + 1).padStart(2, "0");
+            var day = String(today.getDate()).padStart(2, "0");
+            return today.getFullYear() + "-" + month + "-" + day;
+        }
+
+        function updateDateMins() {
+            if (!checkInInput || !checkOutInput) {
+                return;
+            }
+
+            var todayValue = getTodayInputValue();
+            checkInInput.min = todayValue;
+            checkOutInput.min = checkInInput.value || todayValue;
+        }
+
+        function validateDates(showError) {
+            if (!checkInInput || !checkOutInput) {
+                return true;
+            }
+
+            var todayValue = getTodayInputValue();
+            var checkInValue = checkInInput.value;
+            var checkOutValue = checkOutInput.value;
+            var errorMessage = "";
+
+            checkInInput.setCustomValidity("");
+            checkOutInput.setCustomValidity("");
+
+            if (checkInValue && checkInValue < todayValue) {
+                errorMessage = "Check-in date cannot be in the past.";
+                checkInInput.setCustomValidity(errorMessage);
+            } else if (checkInValue && checkOutValue && checkOutValue <= checkInValue) {
+                errorMessage = "Check-out date must be after check-in date.";
+                checkOutInput.setCustomValidity(errorMessage);
+            }
+
+            if (dateErrorText) {
+                if (showError && errorMessage) {
+                    dateErrorText.textContent = errorMessage;
+                    dateErrorText.style.display = "block";
+                } else {
+                    dateErrorText.textContent = "";
+                    dateErrorText.style.display = "none";
+                }
+            }
+
+            return !errorMessage;
+        }
+
+        updateDateMins();
+        validateDates(false);
+
+        if (checkInInput && checkOutInput) {
+            checkInInput.addEventListener("change", function () {
+                updateDateMins();
+                validateDates(false);
+            });
+
+            checkOutInput.addEventListener("change", function () {
+                validateDates(false);
+            });
+        }
+
         checkbox.addEventListener("change", function () {
             if (this.checked) {
                 ackBox.classList.remove("is-invalid", "shake");
@@ -162,16 +385,29 @@
         });
 
         form.addEventListener("submit", function (event) {
-            if (checkbox.checked) {
-                return;
+            var shouldBlockSubmit = false;
+
+            if (!validateDates(true)) {
+                shouldBlockSubmit = true;
+                if (checkInInput && checkInInput.validationMessage) {
+                    checkInInput.focus();
+                } else if (checkOutInput && checkOutInput.validationMessage) {
+                    checkOutInput.focus();
+                }
             }
 
-            event.preventDefault();
-            ackBox.classList.add("is-invalid");
-            ackBox.classList.remove("shake");
-            void ackBox.offsetWidth;
-            ackBox.classList.add("shake");
-            checkbox.focus();
+            if (!checkbox.checked) {
+                shouldBlockSubmit = true;
+                ackBox.classList.add("is-invalid");
+                ackBox.classList.remove("shake");
+                void ackBox.offsetWidth;
+                ackBox.classList.add("shake");
+                checkbox.focus();
+            }
+
+            if (shouldBlockSubmit) {
+                event.preventDefault();
+            }
         });
     });
 </script>
@@ -307,13 +543,22 @@
                                 <label for="check_in" class="form-label text-start d-block">Check In</label>
                                 <input type="date" name="check_in" class="form-control" id="check_in"
                                     value="{{ request.POST.check_in|default:'' }}" required>
+                                {% if form.check_in.errors %}
+                                <div class="date-error-text">{{ form.check_in.errors.0 }}</div>
+                                {% endif %}
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group col-md-6 mb-4">
                                 <label for="check_out" class="form-label text-start d-block">Check Out</label>
                                 <input type="date" name="check_out" class="form-control" id="check_out"
                                     value="{{ request.POST.check_out|default:'' }}" required>
+                                {% if form.check_out.errors %}
+                                <div class="date-error-text">{{ form.check_out.errors.0 }}</div>
+                                {% endif %}
                                 <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group col-md-12" style="margin-top: -8px; margin-bottom: 12px;">
+                                <p id="dateErrorText" class="date-error-text" style="display: none;"></p>
                             </div>
                             <div class="form-group col-md-12 mb-4">
                                 <label for="camping_package" class="form-label text-start d-block">Select Package
@@ -367,12 +612,12 @@
 
             <div class="modal fade booking-info-modal" id="importantInfoModal" tabindex="-1"
                 aria-labelledby="importantInfoModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="importantInfoModalLabel">Important Information &amp; Guest
                                 Acknowledgement</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            {% comment %} <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> {% endcomment %}
                         </div>
                         <div class="modal-body">
                             <p>Please read carefully before confirming your booking.</p>
@@ -403,7 +648,9 @@
                                 above points and agree to them.</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn-default booking-modal-close-btn" data-bs-dismiss="modal">
+                                <span>Close</span>
+                            </button>
                         </div>
                     </div>
                 </div>

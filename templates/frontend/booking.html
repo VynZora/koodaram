@@ -8,6 +8,127 @@
     .page-header {
         background-image: url('{% static "images/new/booking.jpg" %}');
     }
+
+    .booking-ack-box {
+        margin-top: 4px;
+        margin-bottom: 24px;
+        padding: 14px 16px;
+        border-radius: 10px;
+    }
+
+    .booking-ack-box .form-check-label {
+        font-size: 16px;
+        line-height: 1.5;
+        font-weight: 600;
+        color: #1b2b22;
+    }
+
+    .booking-ack-box .form-check {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .booking-ack-box .form-check-input {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        margin-top: 2px;
+        cursor: pointer;
+        border: 2px solid #2d8a4d;
+        border-radius: 6px;
+        background-color: #ffffff;
+        box-shadow: 0 0 0 2px rgba(45, 138, 77, 0.12);
+    }
+
+    .booking-ack-box .form-check-input:hover {
+        border-color: #1f7a43;
+        box-shadow: 0 0 0 3px rgba(31, 122, 67, 0.2);
+    }
+
+    .booking-ack-box .form-check-input:checked {
+        background-color: #1f7a43;
+        border-color: #1f7a43;
+        box-shadow: 0 0 0 3px rgba(31, 122, 67, 0.25);
+    }
+
+    .booking-ack-box .form-check-input:focus {
+        border-color: #1f7a43;
+        box-shadow: 0 0 0 4px rgba(31, 122, 67, 0.25);
+    }
+
+    .ack-error-text {
+        display: none;
+        margin-top: 8px;
+        margin-left: 36px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #c53030;
+    }
+
+    .booking-ack-box.is-invalid .ack-error-text {
+        display: block;
+    }
+
+    .booking-ack-box.is-invalid .form-check-input {
+        border-color: #c53030;
+        box-shadow: 0 0 0 3px rgba(197, 48, 48, 0.18);
+    }
+
+    .booking-ack-box.is-invalid .form-check-label {
+        color: #7f1d1d;
+    }
+
+    .booking-ack-box.shake {
+        animation: ackShake 0.28s ease-in-out 1;
+    }
+
+    @keyframes ackShake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-4px); }
+        50% { transform: translateX(4px); }
+        75% { transform: translateX(-3px); }
+        100% { transform: translateX(0); }
+    }
+
+    .terms-modal-trigger {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #1f7a43;
+        text-decoration: underline;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .booking-info-modal .modal-dialog {
+        max-width: 760px;
+    }
+
+    body.modal-open .booking-info-modal.show {
+        z-index: 14000 !important;
+    }
+
+    body.modal-open .modal-backdrop.show {
+        z-index: 13990 !important;
+    }
+
+    body.modal-open header.main-header.header-royal,
+    body.modal-open header.main-header.header-royal .header-sticky,
+    body.modal-open header.main-header.header-royal .header-sticky.active {
+        z-index: 1200 !important;
+    }
+
+    .booking-info-modal .modal-body h6 {
+        margin-top: 18px;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+
+    .booking-info-modal .modal-body ul {
+        margin-bottom: 10px;
+        padding-left: 18px;
+    }
 </style>
 {% endblock %}
 
@@ -19,6 +140,41 @@
     });
 </script>
 {% endif %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.getElementById("contactForm");
+        var checkbox = document.getElementById("ack");
+        var ackBox = document.getElementById("ackBox");
+        var importantInfoModal = document.getElementById("importantInfoModal");
+
+        if (importantInfoModal && importantInfoModal.parentElement !== document.body) {
+            document.body.appendChild(importantInfoModal);
+        }
+
+        if (!form || !checkbox || !ackBox) {
+            return;
+        }
+
+        checkbox.addEventListener("change", function () {
+            if (this.checked) {
+                ackBox.classList.remove("is-invalid", "shake");
+            }
+        });
+
+        form.addEventListener("submit", function (event) {
+            if (checkbox.checked) {
+                return;
+            }
+
+            event.preventDefault();
+            ackBox.classList.add("is-invalid");
+            ackBox.classList.remove("shake");
+            void ackBox.offsetWidth;
+            ackBox.classList.add("shake");
+            checkbox.focus();
+        });
+    });
+</script>
 {% endblock %}
 
 {% block content %}
@@ -180,8 +336,25 @@
                             </div>
 
                             <div class="col-lg-12">
+                                <div class="booking-ack-box" id="ackBox">
+                                    <div class="form-check m-0">
+                                        <input class="form-check-input" type="checkbox" id="ack"
+                                            name="acknowledged_terms" value="yes" required>
+                                        <label class="form-check-label" for="ack">
+                                            I have read and agree to the
+                                            <button type="button" class="terms-modal-trigger" data-bs-toggle="modal"
+                                                data-bs-target="#importantInfoModal">Important Information &amp;
+                                                Terms</button>.
+                                        </label>
+                                    </div>
+                                    <p class="ack-error-text">You must agree to the terms before continuing.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
                                 <div class="contact-form-btn">
-                                    <button type="submit" class="btn-default"><span>Book Now</span></button>
+                                    <button type="submit" class="btn-default" id="bookBtn"><span>Book
+                                            Now</span></button>
                                     <div id="msgSubmit" class="h3 hidden"></div>
                                 </div>
                             </div>
@@ -190,6 +363,50 @@
                     <!-- Contact Form End -->
                 </div>
                 <!-- Contact Form End -->
+            </div>
+
+            <div class="modal fade booking-info-modal" id="importantInfoModal" tabindex="-1"
+                aria-labelledby="importantInfoModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="importantInfoModalLabel">Important Information &amp; Guest
+                                Acknowledgement</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Please read carefully before confirming your booking.</p>
+
+                            <h6>What you will love</h6>
+                            <ul>
+                                <li>Family, couple, and kids friendly environment</li>
+                                <li>Located just 10 minutes from Munnar town</li>
+                                <li>Vehicle access available up to the property</li>
+                                <li>Parking available inside the property</li>
+                                <li>Surrounded by tea and cardamom plantations</li>
+                            </ul>
+
+                            <h6>Things to be aware of</h6>
+                            <ul>
+                                <li>Cabins do not have attached washrooms (common washrooms only)</li>
+                                <li>Toiletries are not provided. Please carry your own</li>
+                                <li>Pickup and drop available only on prior request and extra cost</li>
+                                <li>Last 1.1 km road is narrow</li>
+                                <li>No proper signboards inside plantation roads</li>
+                                <li>Limited mobile network coverage</li>
+                                <li>Tent allocation is managed by the team (no preferences allowed)</li>
+                                <li>Strictly no smoking, drinking, or misbehavior in common areas</li>
+                            </ul>
+
+                            <h6>Acknowledgement</h6>
+                            <p>By proceeding with the booking, you confirm that you have read and understood all the
+                                above points and agree to them.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-xl-6 col-lg-12">

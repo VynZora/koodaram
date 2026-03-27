@@ -1,5 +1,5 @@
 """
-Django settings for koodaram project.
+Django settings for koodaram project (LOCAL DEVELOPMENT).
 """
 
 from pathlib import Path
@@ -7,12 +7,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
-SECRET_KEY = 'your-secret-key-here'  # Replace with actual secret key
-DEBUG = False
+SECRET_KEY = 'your-secret-key-here'
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    "your-domain-or-ip-here",
-]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 # APPS
 INSTALLED_APPS = [
@@ -28,7 +26,8 @@ INSTALLED_APPS = [
 # MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # WhiteNoise not needed for local
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -51,6 +50,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'koodaram_app.context_processors.google_reviews',
+                'koodaram_app.context_processors.footer_packages',
             ],
         },
     },
@@ -58,7 +58,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'koodaram.wsgi.application'
 
-# DATABASE (SQLite for now)
+# DATABASE (SQLite for local)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -80,35 +80,29 @@ TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
 USE_TZ = True
 
-# STATIC FILES
+# STATIC FILES (LOCAL)
 STATIC_URL = "/static/"
+
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
-STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# No STATIC_ROOT or WhiteNoise in local
 
 # MEDIA FILES
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# EMAIL
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your-email@gmail.com'  # Replace with actual email
-EMAIL_HOST_PASSWORD = 'your-app-password'  # Replace with actual app password
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# EMAIL (print in console)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# GOOGLE REVIEWS
+# GOOGLE REVIEWS (dummy/local values)
 GOOGLE_REVIEW_RATING = 4.7
 GOOGLE_REVIEW_COUNT = 900
 GOOGLE_REVIEW_URL = "https://www.google.com/travel/search?q=Koodaram%20camping%20reviews"
 
-# RECAPTCHA
-RECAPTCHA_SITE_KEY = 'your-recaptcha-site-key'  # Replace with actual site key
-RECAPTCHA_SECRET_KEY = 'your-recaptcha-secret-key'  # Replace with actual secret key
+# RECAPTCHA (disable or use test keys)
+RECAPTCHA_SITE_KEY = ''
+RECAPTCHA_SECRET_KEY = ''
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

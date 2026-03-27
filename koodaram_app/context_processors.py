@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 from django.conf import settings
+from .models import CampingPackage
 
 
 def _star_parts(rating: float) -> list[str]:
@@ -27,3 +28,7 @@ def google_reviews(request) -> dict[str, Any]:
         "google_review_stars": _star_parts(rating),
     }
 
+
+def footer_packages(request) -> dict[str, Any]:
+    packages = CampingPackage.objects.only("name", "slug").order_by("-created_at")[:5]
+    return {"footer_packages": packages}

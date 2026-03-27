@@ -529,13 +529,15 @@
 
                             <!-- Footer Links Start -->
                             <div class="footer-links-royal">
-                                <h3>Glamping Sites</h3>
+                                <h3>Camping Packages</h3>
                                 <ul>
-                                    <li><a href="{% url 'camping_packages' %}">Munnar Valley Retreat</a></li>
-                                    <li><a href="{% url 'camping_packages' %}">Tea Garden Dome Stay</a></li>
-                                    <li><a href="{% url 'camping_packages' %}">Rainforest Canopy Stay</a></li>
-                                    <li><a href="{% url 'camping_packages' %}">Lakeside Camp Munnar</a></li>
-                                    <li><a href="{% url 'camping_packages' %}">Stargazer Tents Munnar</a></li>
+                                    {% if footer_packages %}
+                                        {% for package in footer_packages %}
+                                            <li><a href="{% url 'camping_package_single' package.slug %}">{{ package.name }}</a></li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li><a href="{% url 'camping_packages' %}">Browse All Packages</a></li>
+                                    {% endif %}
                                 </ul>
                             </div>
                             <!-- Footer Links End -->

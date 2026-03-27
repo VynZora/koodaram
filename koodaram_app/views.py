@@ -152,7 +152,7 @@ def faqs(request):
 
 
 def page_not_found(request, exception=None):
-    return render(request, "frontend/404.html")
+    return render(request, "frontend/404.html", status=404)
 
 
 def admin_login(request):

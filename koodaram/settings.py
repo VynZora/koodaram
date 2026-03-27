@@ -7,11 +7,11 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
-SECRET_KEY = 'django-insecure-vi!7u4f-aj0^6&-#zs-d+wugi+k_qau%=mivwjdtt9w@06%uq$'
+SECRET_KEY = 'your-secret-key-here'  # Replace with actual secret key
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "13.232.92.206",
+    "your-domain-or-ip-here",
 ]
 
 # APPS
@@ -93,13 +93,13 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# EMAIL (hardcoded as you asked)
+# EMAIL
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'theofaber26@gmail.com'
-EMAIL_HOST_PASSWORD = 'zrgd btbp ibti qqwy'
+EMAIL_HOST_USER = 'your-email@gmail.com'  # Replace with actual email
+EMAIL_HOST_PASSWORD = 'your-app-password'  # Replace with actual app password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # GOOGLE REVIEWS
@@ -108,7 +108,7 @@ GOOGLE_REVIEW_COUNT = 900
 GOOGLE_REVIEW_URL = "https://www.google.com/travel/search?q=Koodaram%20camping%20reviews"
 
 # RECAPTCHA
-RECAPTCHA_SITE_KEY = "6LdCu5UsAAAAABBzhuzpjYtmJGvwlpNmj0tI2Qj_"
-RECAPTCHA_SECRET_KEY = "6LdCu5UsAAAAABvwNs8b-89EddjyW8TQMdn97im2"
+RECAPTCHA_SITE_KEY = 'your-recaptcha-site-key'  # Replace with actual site key
+RECAPTCHA_SECRET_KEY = 'your-recaptcha-secret-key'  # Replace with actual secret key
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

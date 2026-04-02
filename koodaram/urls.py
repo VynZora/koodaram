@@ -14,13 +14,39 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include
+import os
+
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from django.http import HttpResponse
+from django.urls import include, path
+
+from koodaram_app.sitemap import (
+    ActivitySitemap,
+    BlogSitemap,
+    CampingPackageSitemap,
+    StaticViewSitemap,
+)
 
 handler404 = "koodaram_app.views.page_not_found"
 
+sitemaps = {
+    "static": StaticViewSitemap,
+    "blog": BlogSitemap,
+    "camping_package": CampingPackageSitemap,
+    "activity": ActivitySitemap,
+}
+
+
+def robots_txt(request):
+    file_path = os.path.join(settings.BASE_DIR, "koodaram", "robots.txt")
+    with open(file_path, "r") as file:
+        return HttpResponse(file.read(), content_type="text/plain")
+
 urlpatterns = [
     path('', include('koodaram_app.urls')),
+    path("robots.txt", robots_txt),
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

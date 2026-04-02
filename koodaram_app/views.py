@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.conf import settings
+from django.db.models import Q
 from urllib.parse import quote
 
 from .forms import BlogForm, ContactForm, TestimonialForm, ActivityForm, CampingPackageForm, BookingForm
@@ -22,12 +23,17 @@ def home(request):
     blogs = Blog.objects.all()[:3]
     packages = CampingPackage.objects.all()
     activities = Activity.objects.all()[:4]
+    pricing_packages = (
+        CampingPackage.objects.filter(Q(normal_price__isnull=False) | Q(special_price__isnull=False))
+        .order_by("-created_at")[:4]
+    )
     
     context = {
         "testimonials": testimonials, 
         "blogs": blogs,
         "packages": packages,
-        "activities": activities
+        "activities": activities,
+        "pricing_packages": pricing_packages,
     }
     return render(request, "frontend/index.html", context)
 

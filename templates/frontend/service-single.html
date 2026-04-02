@@ -248,7 +248,7 @@
                     <!-- Page Single Sidebar Start -->
                     <div class="page-single-sidebar">
                         <!-- Page Category List Start -->
-                        <div class="page-category-list wow fadeInUp">
+                        <div class="page-category-list wow fadeInUp" style="margin-bottom: 25px;">
                             <h3>Explore Packages</h3>
                             <ul>
                                 {% for recent in recent_packages %}
@@ -260,30 +260,46 @@
                         </div>
                         <!-- Page Category List End -->
 
-                        <!-- Sidebar CTA Box Start -->
-                        <div class="sidebar-cta-box wow fadeInUp" data-wow-delay="0.25s">
-                            <!-- Icon Box Start -->
-                            <div class="icon-box">
-                                <img src="{% static 'images/icon-sidebar-cta.svg' %}" alt="">
+                        <!-- Sidebar Pricing Box Start -->
+                        <div class="pricing-item-royal wow fadeInUp" data-wow-delay="0.25s" style="padding: 20px 25px;">
+                            <!-- Pricing Header Start -->
+                            <div class="pricing-header-royal">
+                                <div class="icon-box">
+                                    <img src="{% static 'images/icon-pricing-item-1-royal.svg' %}" alt="">
+                                </div>
+                                <div class="pricing-title-royal">
+                                    <h3 style="font-size: 22px;">Pricing Plan</h3>
+                                </div>
                             </div>
-                            <!-- Icon Box End -->
+                            <!-- Pricing Header End -->
 
-                            <!-- Sidebar CTA Content Start -->
-                            <div class="sidebar-cta-content">
-                                <h3>Let's plan your perfect nature escape</h3>
+                            <!-- Pricing body Start -->
+                            <div class="pricing-body-royal" style="margin-top: 15px;">
+                                <h2>
+                                    {% if package.normal_price or package.special_price %}
+                                        {% if package.normal_price %}
+                                        <sub style="font-size: 15px;">Sun to Fri</sub><br>
+                                        ₹{{ package.normal_price|floatformat:0 }}<sub style="font-size: 15px;">/person</sub><br>
+                                        {% endif %}
+                                        {% if package.special_price %}
+                                        <sub style="display:inline-block; margin-top:20px; font-size: 15px;">Sat &amp; special</sub><br>
+                                        ₹{{ package.special_price|floatformat:0 }}<sub style="font-size: 15px;">/person</sub>
+                                        {% endif %}
+                                    {% else %}
+                                        <sub style="font-size: 15px;">Pricing</sub><br>
+                                        Contact us
+                                    {% endif %}
+                                </h2>
                             </div>
-                            <!-- Sidebar CTA Content End -->
-                            <!-- Sidebar CTA Contact List Start -->
-                            <div class="sidebar-cta-contact-list">
-                                <ul>
-                                    <li><a href="tel:+919995497856"><img src="{% static 'images/icon-phone-white.svg' %}" alt=""> +91 99954 97856</a></li>
-                                    <li><a href="mailto:koodarammunnar@gmail.com"><img src="{% static 'images/icon-mail-white.svg' %}" alt=""> koodarammunnar@gmail.com</a></li>
-                                </ul>
+                            <!-- Pricing body End -->
+
+                            <!-- Pricing Button Start -->
+                            <div class="pricing-btn-royal" style="margin-top: 25px;">
+                                <a href="{% url 'booking' %}" class="btn-default-royal" style="width: 100%; text-align: center; padding: 14px 24px; font-size: 16px;">Book Now</a>
                             </div>
-                            <!-- Sidebar CTA Contact List End -->
+                            <!-- Pricing Button End -->
                         </div>
-                        <!-- Sidebar CTA Box End -->
-                        <a href="{% url 'booking' %}" class="btn-default-royal" style="margin-top: 16px; display: inline-block;">Book Now</a>
+                        <!-- Sidebar Pricing Box End -->
                     </div>
                     <!-- Page Single Sidebar End -->
                 </div>

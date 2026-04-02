@@ -1,5 +1,5 @@
 {% extends 'frontend/base.html' %}
-{% load static %}
+{% load static text_extras %}
 
 {% block title %}Munnar Camping & Glamping | Koodaram Nature Camp{% endblock %}
 {% block meta_description %}Experience the best camping in Munnar at Koodaram Nature Camp. Enjoy tent stays, campfire, trekking & scenic views near Pothamedu.{% endblock %}
@@ -139,6 +139,25 @@
             width: 100%;
             line-height: 1.2;
         }
+    }
+
+    /* Home pricing: compact cards so 4 fit nicely on one row (desktop) */
+    .our-pricing-royal .pricing-item-royal {
+        padding: 22px 22px;
+        background: #fff !important;
+        border: 1px solid rgba(15, 54, 32, 0.08);
+        box-shadow: 0 14px 40px rgba(0,0,0,0.06);
+        border-radius: 18px;
+    }
+    .our-pricing-royal .pricing-content-royal p {
+        font-size: 14px;
+        line-height: 1.45;
+        margin-bottom: 12px;
+    }
+    .our-pricing-royal .pricing-body-royal ul li {
+        font-size: 13px;
+        line-height: 1.35;
+        margin-bottom: 8px;
     }
 </style>
 <!-- Hero Section Start -->
@@ -1473,7 +1492,7 @@
 
 
 
-{% comment %} <!-- Our Pricing Section Start -->
+<!-- Our Pricing Section Start -->
 <div class="our-pricing-royal">
     <div class="container">
         <div class="row section-row">
@@ -1489,141 +1508,72 @@
         </div>
 
         <div class="row">
-            <div class="col-xl-4 col-md-6">
+            {% for package in pricing_packages %}
+            <div class="col-xl-3 col-lg-6 col-md-6">
                 <!-- Pricing Item Start -->
-                <div class="pricing-item-royal wow fadeInUp">
+                <div class="pricing-item-royal wow fadeInUp" {% if forloop.counter == 2 %}data-wow-delay="0.2s"{% elif forloop.counter == 3 %}data-wow-delay="0.4s"{% elif forloop.counter == 4 %}data-wow-delay="0.6s"{% endif %}>
                     <!-- Pricing Header Start -->
                     <div class="pricing-header-royal">
                         <div class="icon-box">
+                            {% if forloop.counter == 1 %}
                             <img src="{% static 'images/icon-pricing-item-1-royal.svg' %}" alt="">
-                        </div>
-                        <div class="pricing-title-royal">
-                            <h3>Weekend Getaway</h3>
-                        </div>
-                    </div>
-                    <!-- Pricing Header End -->
-
-                    <!-- Pricing Content Start -->
-                    <div class="pricing-content-royal">
-                        <p>Includes 2 nights of camping stay outdoor breakfast & access to scenic trails.</p>
-                    </div>
-                    <!-- Pricing Content End -->
-
-                    <!-- Pricing body Start -->
-                    <div class="pricing-body-royal">
-                        <h2>$199.00<sub>/ 2 Nights</sub></h2>
-                        <h3>What's Included:</h3>
-                        <ul>
-                            <li><img src="{% static 'images/icon-pricing-list-1-royal.svg' %}" alt="">Scenic hiking
-                                trails nearby</li>
-                            <li><img src="{% static 'images/icon-pricing-list-2-royal.svg' %}" alt="">Access to shared
-                                campfire lounge</li>
-                            <li><img src="{% static 'images/icon-pricing-list-3-royal.svg' %}" alt="">Cozy camping tent
-                                with essential</li>
-                        </ul>
-                    </div>
-                    <!-- Pricing body End -->
-
-                    <!-- Pricing Button Start -->
-                    <div class="pricing-btn-royal">
-                        <a href="{% url 'booking' %}" class="btn-default-royal">Book Now</a>
-                    </div>
-                    <!-- Pricing Button End -->
-                </div>
-                <!-- Pricing Item End -->
-            </div>
-
-            <div class="col-xl-4 col-md-6">
-                <!-- Pricing Item Start -->
-                <div class="pricing-item-royal highlighted-box wow fadeInUp" data-wow-delay="0.2s">
-                    <!-- Pricing Header Start -->
-                    <div class="pricing-header-royal">
-                        <div class="icon-box">
+                            {% elif forloop.counter == 2 %}
                             <img src="{% static 'images/icon-pricing-item-2-royal.svg' %}" alt="">
-                        </div>
-                        <div class="pricing-title-royal">
-                            <h3>Adventure Explorer</h3>
-                        </div>
-                    </div>
-                    <!-- Pricing Header End -->
-
-                    <!-- Pricing Content Start -->
-                    <div class="pricing-content-royal">
-                        <p>Includes 2 nights of camping stay outdoor breakfast, and access to scenic trails.</p>
-                    </div>
-                    <!-- Pricing Content End -->
-
-                    <!-- Pricing body Start -->
-                    <div class="pricing-body-royal">
-                        <h2>$349.00<sub>/ 2 Nights</sub></h2>
-                        <h3>What's Included:</h3>
-                        <ul>
-                            <li><img src="{% static 'images/icon-pricing-list-1-royal.svg' %}" alt="">Scenic hiking
-                                trails nearby</li>
-                            <li><img src="{% static 'images/icon-pricing-list-2-royal.svg' %}" alt="">Access to shared
-                                campfire lounge</li>
-                            <li><img src="{% static 'images/icon-pricing-list-3-royal.svg' %}" alt="">Cozy camping tent
-                                with essential</li>
-                        </ul>
-                    </div>
-                    <!-- Pricing body End -->
-
-                    <!-- Pricing Button Start -->
-                    <div class="pricing-btn-royal">
-                        <a href="{% url 'booking' %}" class="btn-default-royal btn-highlighted-royal">Book Now</a>
-                    </div>
-                    <!-- Pricing Button End -->
-                </div>
-                <!-- Pricing Item End -->
-            </div>
-
-            <div class="col-xl-4 col-md-6">
-                <!-- Pricing Item Start -->
-                <div class="pricing-item-royal wow fadeInUp" data-wow-delay="0.4s">
-                    <!-- Pricing Header Start -->
-                    <div class="pricing-header-royal">
-                        <div class="icon-box">
+                            {% elif forloop.counter == 3 %}
                             <img src="{% static 'images/icon-pricing-item-3-royal.svg' %}" alt="">
+                            {% else %}
+                            <img src="{% static 'images/icon-pricing-item-1-royal.svg' %}" alt="">
+                            {% endif %}
                         </div>
                         <div class="pricing-title-royal">
-                            <h3>Luxury Retreat</h3>
+                            <h3>{{ package.name }}</h3>
                         </div>
                     </div>
                     <!-- Pricing Header End -->
 
                     <!-- Pricing Content Start -->
                     <div class="pricing-content-royal">
-                        <p>Includes 2 nights of camping stay outdoor breakfast, and access to scenic trails.</p>
+                        <p>{{ package.description|truncatewords_html:18|safe }}</p>
                     </div>
                     <!-- Pricing Content End -->
 
                     <!-- Pricing body Start -->
                     <div class="pricing-body-royal">
-                        <h2>$599.00<sub>/ 2 Nights</sub></h2>
-                        <h3>What's Included:</h3>
-                        <ul>
-                            <li><img src="{% static 'images/icon-pricing-list-1-royal.svg' %}" alt="">Scenic hiking
-                                trails nearby</li>
-                            <li><img src="{% static 'images/icon-pricing-list-2-royal.svg' %}" alt="">Access to shared
-                                campfire lounge</li>
-                            <li><img src="{% static 'images/icon-pricing-list-3-royal.svg' %}" alt="">Cozy camping tent
-                                with essential</li>
-                        </ul>
+                        <h2>
+                            {% if package.normal_price or package.special_price %}
+                                {% if package.normal_price %}
+                                <sub>Sun to Fri</sub><br>
+                                Rs {{ package.normal_price|floatformat:0 }}<sub>/person</sub><br>
+                                {% endif %}
+                                {% if package.special_price %}
+                                <sub>Sat &amp; special</sub><br>
+                                Rs {{ package.special_price|floatformat:0 }}<sub>/person</sub>
+                                {% endif %}
+                            {% else %}
+                                <sub>Pricing</sub><br>
+                                Contact us
+                            {% endif %}
+                        </h2>
                     </div>
                     <!-- Pricing body End -->
 
                     <!-- Pricing Button Start -->
                     <div class="pricing-btn-royal">
-                        <a href="{% url 'booking' %}" class="btn-default-royal">Book Now</a>
+                        <a href="{% url 'camping_package_single' package.slug %}" class="btn-default-royal">View Details</a>
                     </div>
                     <!-- Pricing Button End -->
                 </div>
                 <!-- Pricing Item End -->
             </div>
+            {% empty %}
+            <div class="col-lg-12">
+                <p style="text-align:center;">Pricing details will be updated soon.</p>
+            </div>
+            {% endfor %}
 
             <div class="col-lg-12">
                 <!-- Pricing Benifit List Start -->
-                <div class="pricing-benefit-list-royal wow fadeInUp" data-wow-delay="0.6s">
+                {% comment %} <div class="pricing-benefit-list-royal wow fadeInUp" data-wow-delay="0.6s">
                     <ul>
                         <li><img src="{% static 'images/icon-pricing-benefit-1.svg' %}" alt="">Get 30 day free trial
                         </li>
@@ -1632,13 +1582,13 @@
                         <li><img src="{% static 'images/icon-pricing-benefit-3.svg' %}" alt="">You can cancel anytime
                         </li>
                     </ul>
-                </div>
+                </div> {% endcomment %}
                 <!-- Pricing Benifit List End -->
             </div>
         </div>
     </div>
 </div>
-<!-- Our Pricing Section End --> {% endcomment %}
+<!-- Our Pricing Section End --> 
 
 <!-- Our Testimonials Section Start -->
 <div class="our-testimonials-royal bg-section-royal">

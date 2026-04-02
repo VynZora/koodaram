@@ -43,7 +43,7 @@ class CampingPackageForm(forms.ModelForm):
         model = CampingPackage
         fields = [
             "name", "description", "main_image", "check_in", "check_out",
-            "normal_price", "special_price", "extra_person_price",
+            "normal_price", "special_price",
             "package_items", "facilities"
         ]
 

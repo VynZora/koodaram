@@ -36,9 +36,9 @@ class CampingPackage(OptimizedImageModel):
     check_in = models.CharField(max_length=20)
     check_out = models.CharField(max_length=20)
     
-    normal_price = models.DecimalField(max_digits=10, decimal_places=2)
-    special_price = models.DecimalField(max_digits=10, decimal_places=2)
-    extra_person_price = models.DecimalField(max_digits=10, decimal_places=2)
+    # Prices are optional because some packages may be informational-only.
+    normal_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    special_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     
     package_items = models.TextField()
     facilities = models.TextField()

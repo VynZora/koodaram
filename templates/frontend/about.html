@@ -180,6 +180,65 @@
             background: none !important;
         }
 
+        /* Static Video Modal Styles */
+        #static-video-modal {
+            position: relative;
+            background: #000;
+            padding: 0;
+            width: auto;
+            max-width: 900px;
+            margin: 20px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        #static-video-modal video {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #static-video-modal video.ready {
+            opacity: 1;
+        }
+
+        /* Loading Spinner */
+        .video-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+            z-index: 5;
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @media (max-width: 991px) {
+            #static-video-modal {
+                max-width: 90%;
+            }
+        }
+
+        /* White close button for Magnific Popup */
+        .mfp-close {
+            color: #fff !important;
+            opacity: 1 !important;
+            font-size: 40px !important;
+            top: 10px !important;
+            right: 10px !important;
+        }
+
 </style>
 
 <!-- Page Header Section Start -->
@@ -343,7 +402,7 @@
                     <!-- Approach Image Item 2 Start -->
                     <div class="approach-image-item-2">
                         <!-- Our Approach Video Box Start -->
-                        <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="approach-client-box video-teaser-badge popup-video" data-cursor-text="Play">
+                        <a href="#static-video-modal" class="approach-client-box video-teaser-badge popup-static-video" data-cursor-text="Play" data-video-src="{% static 'main_video.mp4' %}">
                             <div class="video-play-button">
                                 <div class="play-icon">
                                     <i class="fa-solid fa-play"></i>
@@ -1425,7 +1484,15 @@
     </div>
     <!-- Scrolling Ticker End -->
 </div>
-<!-- Scrolling Ticker Section End --> {% endcomment %}
+{% endcomment %}
+
+<!-- Static Video Modal HTML -->
+<div id="static-video-modal" class="mfp-hide">
+    <div class="video-loader"></div>
+    <video controls playsinline preload="none" muted controlsList="nodownload" oncontextmenu="return false;" disablePictureInPicture>
+        Your browser does not support the video tag.
+    </video>
+</div>
 
 {% endblock %}
 

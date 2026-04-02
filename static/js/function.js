@@ -445,6 +445,48 @@
 		});
 	}
 
+	/* Popup Static Video */
+	if ($('.popup-static-video').length) {
+		$('.popup-static-video').magnificPopup({
+			type: 'inline',
+			mainClass: 'mfp-fade',
+			removalDelay: 160,
+			preloader: false,
+			fixedContentPos: true,
+			callbacks: {
+				open: function () {
+					var $video = $(this.content).find('video');
+					var videoSrc = this.currItem.el.data('video-src');
+					var $loader = $(this.content).find('.video-loader');
+					
+					if ($video.length && videoSrc) {
+						$video.attr('src', videoSrc);
+						$loader.show();
+						$video.removeClass('ready');
+						
+						$video[0].load();
+						
+						$video.on('canplay', function() {
+							$loader.fadeOut(300);
+							$video.addClass('ready');
+							$video[0].play();
+						});
+					}
+				},
+				close: function () {
+					var $video = $(this.content).find('video');
+					if ($video.length) {
+						$video[0].pause();
+						$video.attr('src', '');
+						$video[0].load();
+						$video.removeClass('ready');
+						$video.off('canplay');
+					}
+				}
+			}
+		});
+	}
+
 	/* Our Gallery (filtering) Start */
 	$window.on("load", function () {
 		if ($(".gallery-item-boxes").length) {

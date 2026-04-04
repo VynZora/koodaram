@@ -39,3 +39,5 @@ htmlcov/
 # IDE
 .vscode/
 .idea/
+
+static/*.mp4

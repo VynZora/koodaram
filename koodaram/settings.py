@@ -7,12 +7,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
-SECRET_KEY = 'django-insecure-vi!7u4f-aj0^6&-#zs-d+wugi+k_qau%=mivwjdtt9w@06%uq$'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
-
-# ALLOWED_HOSTS = ['13.232.92.206' ,'koodaramglamping.com', 'www.koodaramglamping.com']
-
+# WARNING: Keep secret key, passwords, and API keys secret in production!
+SECRET_KEY = 'your-secret-key-here-change-in-production'
+DEBUG = False  # Changed to False for production safety
+ALLOWED_HOSTS = ['your-domain.com', 'www.your-domain.com', 'localhost', '127.0.0.1']
 
 # APPS
 INSTALLED_APPS = [
@@ -51,7 +49,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'koodaram_app.context_processors.google_reviews',
-		'koodaram_app.context_processors.footer_packages',
+                'koodaram_app.context_processors.footer_packages',
             ],
         },
     },
@@ -60,17 +58,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'koodaram.wsgi.application'
 
 # DATABASE
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'koodaram_db',
-#         'USER': 'koodaram_user',
-#         'PASSWORD': '£3i*NJx!k3[098ho',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -103,13 +90,13 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# EMAIL (hardcoded as you asked)
+# EMAIL - REPLACE WITH YOUR CREDENTIALS
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.zoho.in'
+EMAIL_HOST = 'your-smtp-host.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'reservation@koodaramglamping.com'
-EMAIL_HOST_PASSWORD = 'Ffu8zPdGv2ZG'
+EMAIL_HOST_USER = 'your-email@your-domain.com'
+EMAIL_HOST_PASSWORD = 'your-email-password'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # GOOGLE REVIEWS
@@ -117,11 +104,8 @@ GOOGLE_REVIEW_RATING = 4.7
 GOOGLE_REVIEW_COUNT = 900
 GOOGLE_REVIEW_URL = "https://www.google.com/travel/search?q=Koodaram%20camping%20reviews"
 
-# RECAPTCHA
-RECAPTCHA_SITE_KEY = "6LdCu5UsAAAAABBzhuzpjYtmJGvwlpNmj0tI2Qj_"
-RECAPTCHA_SECRET_KEY = "6LdCu5UsAAAAABvwNs8b-89EddjyW8TQMdn97im2"
+# RECAPTCHA - REPLACE WITH YOUR KEYS
+RECAPTCHA_SITE_KEY = "your-recaptcha-site-key"
+RECAPTCHA_SECRET_KEY = "your-recaptcha-secret-key"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-

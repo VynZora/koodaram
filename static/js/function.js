@@ -455,32 +455,20 @@
 			fixedContentPos: true,
 			callbacks: {
 				open: function () {
-					var $video = $(this.content).find('video');
-					var videoSrc = this.currItem.el.data('video-src');
-					var $loader = $(this.content).find('.video-loader');
-					
-					if ($video.length && videoSrc) {
-						$video.attr('src', videoSrc);
-						$loader.show();
-						$video.removeClass('ready');
-						
-						$video[0].load();
-						
-						$video.on('canplay', function() {
-							$loader.fadeOut(300);
-							$video.addClass('ready');
-							$video[0].play();
-						});
+					var $iframe = $('#static-video-modal iframe');
+					if ($iframe.length) {
+						var baseSrc = $iframe.attr('data-src') || '';
+						if (baseSrc) {
+							var separator = baseSrc.indexOf('?') > -1 ? '&' : '?';
+							var embedSrc = baseSrc + separator + 'origin=' + encodeURIComponent(window.location.origin);
+							$iframe.attr('src', embedSrc);
+						}
 					}
 				},
 				close: function () {
-					var $video = $(this.content).find('video');
-					if ($video.length) {
-						$video[0].pause();
-						$video.attr('src', '');
-						$video[0].load();
-						$video.removeClass('ready');
-						$video.off('canplay');
+					var $iframe = $('#static-video-modal iframe');
+					if ($iframe.length) {
+						$iframe.attr('src', '');
 					}
 				}
 			}

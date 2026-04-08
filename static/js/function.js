@@ -468,7 +468,7 @@
 				close: function () {
 					var $iframe = $('#static-video-modal iframe');
 					if ($iframe.length) {
-						$iframe.attr('src', '');
+						$iframe.attr('src', 'about:blank');
 					}
 				}
 			}
